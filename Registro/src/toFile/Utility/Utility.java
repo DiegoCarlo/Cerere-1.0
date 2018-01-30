@@ -56,4 +56,27 @@ public class Utility
         }
         return result;
     }
+
+    public static String getMax(int max, String word)
+    {
+        String res = "";
+        if(word.length() <= max)
+        {
+            return word;
+        }
+        res = word.substring(0, max-3);
+        res += "...";
+        return res;
+    }
+    public static String getMax1Dot(int max, String word)
+    {
+        String res = "";
+        if(word.length() <= max)
+        {
+            return word;
+        }
+        res = word.substring(0, max-3);
+        res += ".";
+        return res;
+    }
 }

@@ -1,1 +1,59 @@
 0~0
+8~2~Inka Kamut Dinkel Segale~Kg
+12~4~Focaccia~n.
+0~5~Ciabatte~Kg
+1~6~Arabo Grande~Kg
+2~7~Arabo Piccolo~Kg
+3~8~Tartarughe~Kg
+4~9~Hotdog~Kg
+5~10~Sfoglie~Kg
+9~11~Expo~Kg
+10~12~Evolutivo~Kg
+11~13~Salatini Pizzette Sfoglia~Kg
+13~14~FocTond Sfilat Ciab~n.
+14~15~Pizzette Pane~Kg
+15~16~Focaccia Farcita~n.
+16~17~Base Pizza Pomodoro~n.
+18~18~Pizza Margherita~n.
+17~19~Fondo Pizza~n.
+19~20~Pizza Farcita~n.
+20~21~Grissini~Kg
+21~22~Torte~Kg
+22~23~Biscotti~Kg
+23~24~Paste Piccole~Kg
+24~25~Cornetto G~n.
+25~26~Cornetto P~n.
+26~27~Pizza Tonda~n.
+27~28~Panini Speciali~Kg
+28~29~Hamburger~n.
+29~30~Hambuger Speciali~n.
+30~31~Pancarre~Kg
+31~32~Pan Brioches~Kg
+32~33~Pane Duro~Kg
+33~34~Pan Grattato~Kg
+34~35~Pan Tostato~Kg
+35~36~Gastronomico~Kg
+36~37~Pane Noci~Kg
+37~38~Pane Olive~Kg
+38~39~Chiacchiere di Armando~Kg
+39~40~Scrocchierella~n.
+40~41~Brioches~n.
+41~42~Lievito Madre~Kg
+42~43~Pan Natale Expo~n.
+43~44~Panettone~Kg
+44~45~Panettoncini~Kg
+45~46~Pandoro~Kg
+46~47~Colombe~Kg
+47~48~Farina~Kg
+48~49~Integrali~Kg
+49~50~Soya~Kg
+50~51~Soya Piccolo~Kg
+51~52~Grano Duro~Kg
+52~53~Grano Duro Piccolo~Kg
+53~54~Mantovane~Kg
+54~55~Cereali~Kg
+55~56~Integrali Piccoli~Kg
+57~57~Hamburger Olive~n.
+58~58~Toast~Kg
+60~60~Krapfen~n.
+61~61~lievito naturale~Kg

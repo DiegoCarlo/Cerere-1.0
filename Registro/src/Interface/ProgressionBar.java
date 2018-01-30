@@ -49,7 +49,7 @@ public class ProgressionBar extends javax.swing.JFrame {
         jLabel.setText("");
         ImageIcon logo = new ImageIcon();
         logo = new ImageIcon(
-                        new ImageIcon("Icone\\Logo VDP.png")
+                        new ImageIcon("Icons\\Logo VDP.png")
                                 .getImage()
                                 .getScaledInstance(1000, 480, Image.SCALE_DEFAULT)
                         );

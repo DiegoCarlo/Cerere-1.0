@@ -14,7 +14,7 @@ import toFile.dataType.Ordinals.OrdinableObject;
  */
 public class Cliente extends OrdinableObject
 {
-    private FrequentMinute frequentMinute;
+    public FrequentMinute frequentMinute;
 
     /**
      * 

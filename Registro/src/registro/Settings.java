@@ -48,6 +48,7 @@ public class Settings
     public static final String PRODOTTI_ELIMINATI = DATA_BASE_DIRECTORY + "/Prodotti Eliminati" + EXT;
     public static final String TARE = DATA_BASE_DIRECTORY + "/Tare" + EXT;
     public static final String FREQUENCY = DATA_BASE_DIRECTORY + "/Frequenze" + EXT;
+    public static final String PESATE_ELIMINATE = DATA_BASE_DIRECTORY + "/Pesate Eliminate" + EXT;
     public static final String SETTINGS = "Settings" + EXT;
     
     public static final String SPLITTER_LINE = "\n";
@@ -60,6 +61,9 @@ public class Settings
     public static int font = 10;
     public static int fontMedium = 11;
     public static int fontBig = 12;
+    public static int orderClienti = 0;
+    public static int orderProdotti = 0;
+    public static int orderTare = 0;
 
     public Settings(int maxWeightMinuteAverage, int font, int fontMedium, int fontBig)
     {
@@ -127,7 +131,7 @@ public class Settings
                 String[] split3 = s.split(SPLITTER_VAR);
                 split[j++][0] = split3[0];
             }
-            int i = 18;
+            int i = 19;
             int maxWeightMinuteAverage = Integer.parseInt(split[++i][0]);
             int font = Integer.parseInt(split[++i][0]);
             int fontMedium = Integer.parseInt(split[++i][0]);

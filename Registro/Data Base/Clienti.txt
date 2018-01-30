@@ -1,7 +1,4 @@
 56~56
-40~39~Bar Porticone~720~1
-39~38~Bar Ricevitoria di Micheletti~720~1
-2~2~Bar della Borsa di Sanna Giovanni~720~1
 4~4~Bell'Epoque~720~1
 13~13~Birreria la Pulce di Lenzini Luca~720~1
 9~9~Caffetteria Gran Cafè di Siddha S.N.C.~720~1

@@ -35,6 +35,7 @@ public class DataBase
     public ClientsFrequencyList frequency;
     
     public PesateArray pesate;
+    public PesateArray removedPesate;
 
     public DataBase()
     {
@@ -47,6 +48,7 @@ public class DataBase
         frequency = new ClientsFrequencyList();
 
         pesate = new PesateArray(0);
+        removedPesate = new PesateArray(0);
     }
     public void log(String msg)
     {
@@ -68,6 +70,8 @@ public class DataBase
         loadFrequency();
         progressionBar.progress("Carico le Pesate");
         loadPesate(Utility.getYearMonth(GregorianCalendar.getInstance()));
+        progressionBar.progress("Carico le Pesate...");
+        loadRemovedPesate();
         
         
     }
@@ -79,6 +83,7 @@ public class DataBase
         saveRemovedProdotti();
         saveFrequency();
         savePesate(Utility.getYearMonth(GregorianCalendar.getInstance()));
+        saveRemovedPesate();
     }
    
     public void loadClienti()
@@ -169,7 +174,7 @@ public class DataBase
                 long id = Long.parseLong(idCardinal[0]);
                 long cardinal = Long.parseLong(idCardinal[1]);
                 prodotti = new OrdinableArray(id, cardinal);
-                for(int i=1; i<split.length; i++)
+                for(int i=2; i<split.length; i++)
                 {
                     Prodotto p = Prodotto.fromFile(split[i].split(Settings.SPLITTER_VAR));
                     prodotti.add(p);
@@ -300,7 +305,7 @@ public class DataBase
             {
                 long id = Long.parseLong(split[0]);
                 pesate = new PesateArray(id);
-                for(int i=1; i<split.length; i++)
+                for(int i=2; i<split.length; i++)
                 {
                     Pesata p = Pesata.fromFile(split[i].split(Settings.SPLITTER_VAR));
                     pesate.add(p);
@@ -324,5 +329,40 @@ public class DataBase
             scrittura += p.toFile(Settings.SPLITTER_VAR) + Settings.SPLITTER_LINE;
         }
         IO.writeStringFile(Settings.MESI_PESATE_DIRECTORY + "/" + fileName + Settings.EXT, scrittura);
+    }
+    public void loadRemovedPesate()
+    {
+        String lettura = IO.readStringFile(Settings.PESATE_ELIMINATE);
+        if(lettura != null)
+        {
+            String[] split = lettura.split(Settings.SPLITTER_LINE);
+            try
+            {
+                long id = Long.parseLong(split[0]);
+                pesate = new PesateArray(id);
+                for(int i=2; i<split.length; i++)
+                {
+                    Pesata p = Pesata.fromFile(split[i].split(Settings.SPLITTER_VAR));
+                    pesate.add(p);
+                }
+            }
+            catch(NumberFormatException | ArrayIndexOutOfBoundsException n)
+            {
+                n.printStackTrace();
+            }
+        }
+        else
+        {
+            pesate = new PesateArray(0);
+        }
+    }
+    public void saveRemovedPesate()
+    {
+        String scrittura = pesate.getId() + Settings.SPLITTER_LINE;
+        for(Pesata p: pesate)
+        {
+            scrittura += p.toFile(Settings.SPLITTER_VAR) + Settings.SPLITTER_LINE;
+        }
+        IO.writeStringFile(Settings.PESATE_ELIMINATE, scrittura);
     }
 }

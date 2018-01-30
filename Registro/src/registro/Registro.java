@@ -5,6 +5,7 @@
  */
 package registro;
 
+import Bilancia.Bilancia;
 import Interface.Interfaccia;
 import Interface.ProgressionBar;
 import javax.swing.UIManager;
@@ -20,6 +21,7 @@ public class Registro
 {
     public static Settings settings;
     public static DataBase dataBase;
+    public static Bilancia bilancia;
     
     public static ProgressionBar progressionBar;
     public static Interfaccia interfaccia;
@@ -50,7 +52,7 @@ public class Registro
         dataBase = new DataBase();
         
         dataBase.load(progressionBar);
-        //dataBase.save();
+        dataBase.save();
         progressionBar.progress("Carico l'Interfaccia");
         interfaccia = new Interfaccia();
         

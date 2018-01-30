@@ -14,7 +14,7 @@ import toFile.dataType.Ordinals.OrdinableObject;
  */
 public class Prodotto extends OrdinableObject
 {
-    private UnitOfMeasure unitOfMeasure;
+    public UnitOfMeasure unitOfMeasure;
 
     /**
      * the product r
@@ -61,5 +61,12 @@ public class Prodotto extends OrdinableObject
         }
         return null;
     }
+
+    @Override
+    public String toString()
+    {
+        return getName();
+    }
+    
 }
 

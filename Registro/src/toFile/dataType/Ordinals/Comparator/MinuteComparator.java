@@ -6,29 +6,31 @@
 package toFile.dataType.Ordinals.Comparator;
 
 import java.util.Comparator;
+import toFile.dataType.Base.Cliente;
 import toFile.dataType.Ordinals.OrdinableObject;
 
 /**
  *
  * @author DiegoCG
  */
-public class CardinalComparator implements Comparator<OrdinableObject>
+public class MinuteComparator implements Comparator<OrdinableObject>
 {
+
     public Behavior behavior;
     
-    public CardinalComparator(Behavior behavior)
+    public MinuteComparator(Behavior behavior)
     {
         this.behavior = behavior;
     }
     public int compare(OrdinableObject one, OrdinableObject two)
     {
-        return ordina(one.getCardinal(), two.getCardinal());
+        return ordina(((Cliente)one).frequentMinute.getAverageMinute(), ((Cliente)two).frequentMinute.getAverageMinute());
     }
 
-    private int ordina(long uno, long due)
+    private int ordina(int uno, int due)
     {
         int valueReturn = 1;
-        if(behavior == behavior.DECREASING)
+        if(behavior == behavior.INCREASING)
         {
             valueReturn = - valueReturn;
         }

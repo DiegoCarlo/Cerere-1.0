@@ -15,6 +15,7 @@ import toFile.dataType.Ordinals.OrdinableObject;
 public class AlphabeticalComparator implements Comparator<OrdinableObject>
 {
     Behavior behavior;
+    
     public AlphabeticalComparator(Behavior behavior)
     {
         this.behavior = behavior;
@@ -37,7 +38,7 @@ public class AlphabeticalComparator implements Comparator<OrdinableObject>
         }
         
         int returnValue = 1;
-        if(behavior == Behavior.INCREASING)
+        if(behavior == Behavior.DECREASING)
         {
             returnValue = - returnValue;
         }
