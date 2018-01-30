@@ -1,0 +1,23 @@
+﻿Data Base~DATA_BASE_DIRECTORY
+Salvataggi~SALVATAGGI_DIRECTORY
+Salvataggi/Settimanali~SETTIMANALI_DIRECTORY
+Data Base/Mensili~MESI_PESATE_DIRECTORY
+.txt~EXT
+Data Base/Clienti.txt~CLIENTI
+Data Base/Clienti Eliminati.txt~CLIENTI_ELIMINATI
+Data Base/Prodotti.txt~PRODOTTI
+Data Base/Prodotti Eliminati.txt~PRODOTTI_ELIMINATI
+Data Base/Tare.txt~TARE
+Data Base/Frequenze.txt~FREQUENCY
+Settings.txt~SETTINGS
+
+~SPLITTER_LINE
+~~SPLITTER_VAR
+§~SPLITTER_ARRAY
+
+~NEW_LINE
+	~TAB
+8~maxWeightMinuteAverage
+20~font
+25~fontMedium
+30~fontBig

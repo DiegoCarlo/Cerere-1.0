@@ -111,4 +111,16 @@ public class OrdinableArray extends ArrayList<OrdinableObject>
             one.swapCardinal(two);
         }
     }
+
+    public boolean exist(String text)
+    {
+        for(OrdinableObject o: this)
+        {
+            if(o.getName().compareTo(text) == 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

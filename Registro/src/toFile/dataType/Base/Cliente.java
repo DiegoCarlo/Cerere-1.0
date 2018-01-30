@@ -62,4 +62,9 @@ public class Cliente extends OrdinableObject
         return null;
     }
     
+    public String toString()
+    {
+        return getName();
+    }
+    
 }

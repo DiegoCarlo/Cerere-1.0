@@ -7,7 +7,6 @@ package toFile.dataType.Base;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import registro.Settings;
 
 /**
  * weighted average of the minutes in which the customer will be used
@@ -45,9 +44,9 @@ public class FrequentMinute implements Serializable
      */
     public void update(Calendar data)
     {
-        int minute = data.get(Calendar.HOUR_OF_DAY) *60 + data.get(Calendar.MINUTE);
+        int minute = data.get(Calendar.HOUR_OF_DAY) * 60 + data.get(Calendar.MINUTE);
         averageMinute  = (averageMinute * weight + minute) / (weight + 1);
-        if(weight < Settings.maxWeight)
+        if(weight < registro.Registro.settings.maxWeightMinuteAverage)
         {
             weight ++;
         }
