@@ -61,7 +61,7 @@ public class Tara extends OrdinableObject
     @Override
     public String toString()
     {
-        return getName() + quantity; //To change body of generated methods, choose Tools | Templates.
+        return String.format("%.3f", quantity) + " kg, " + getName();
     }
     
 }

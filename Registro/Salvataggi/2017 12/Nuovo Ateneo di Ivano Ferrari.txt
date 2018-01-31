@@ -1,0 +1,35 @@
+Nuovo Ateneo di Ivano Ferrari
+Giorno	Hamburger	FocTond Sfilat Ciab	Focaccia	Pizza Margherita	Brioches	Focaccia Farcita	Pizza Farcita	Cornetto G
+1								
+2								
+3		12	2	3				10
+4								8
+5			3	6	8			
+6								
+7								
+8			6	6				12
+9		10	6	6	12			
+10			3	3	11			
+11	5	10	3	3	10			
+12			2	2				12
+13			4	6	10			
+14								
+15		10	4	4	14			
+16		10	4	4	12			
+17			2	4	12			
+18			3	3	12	2		
+19		10	3	3	12			
+20		10			10			
+21								
+22			3	3		3		
+23	5	10	3	6	12	3		
+24			4	5			3	
+25		10	3	6	12	3		
+26		10			12			
+27	5	10	3	3	10			
+28								
+29								
+30								
+31								
+
+	15	112	61	76	169	11	3	42

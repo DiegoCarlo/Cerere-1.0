@@ -56,7 +56,9 @@ public class Utility
                     (t == 'ò') ||
                     (t == 'ù') ||
                     (t == 'ì') ||
-                    (t == '&')
+                    (t == '&') ||
+                    (t == '+') ||
+                    (t == '-')
                     )
             {
                 result += t;
@@ -96,5 +98,37 @@ public class Utility
                 time.get(Calendar.HOUR_OF_DAY) + ":" +
                 time.get(Calendar.MINUTE);
                 
+    }
+
+    public static String safeNumber(String string)
+    {
+        String result = "";
+        char[] temp = string.replaceAll(",", ".").toCharArray();
+        boolean trovato = false;
+        for(char t: temp)
+        {
+            if(
+                    ('0' <= t && t <= '9') ||
+                    (t == ',') ||
+                    (t == '.')
+                    )
+            {
+                if(t == '.')
+                {
+                    if(!trovato)
+                    {
+                        trovato = true;
+                        result += t;
+                    }
+                }
+                else
+                {
+                    result += t;
+                }
+            }
+        }
+        
+        
+        return result;
     }
 }

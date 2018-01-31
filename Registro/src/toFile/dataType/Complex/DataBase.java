@@ -54,6 +54,15 @@ public class DataBase
     public PesateArray pesate;
     public PesateArray removedPesate;
 
+    // spaziatore
+    static final String s1 = "~";
+    // separatore 2
+    static final String s2 = "§";
+    // new line
+    static final String n = "\n";
+    static final String t = "\t";
+    static final String nl = "\r\n";
+    
     public DataBase()
     {
         clienti = new OrdinableArray(0, 0);
@@ -252,7 +261,7 @@ public class DataBase
     {
         String scrittura = removedProdotti.getId() + Settings.SPLITTER_VAR + removedProdotti.getCardinale() + Settings.SPLITTER_LINE;
         scrittura += "id cardinal name unitOfMeesasure" + Settings.SPLITTER_LINE;
-        for(OrdinableObject o: prodotti)
+        for(OrdinableObject o: removedProdotti)
         {
             Prodotto p = (Prodotto)o;
             scrittura += p.toFile(Settings.SPLITTER_VAR) + Settings.SPLITTER_LINE;
@@ -261,7 +270,7 @@ public class DataBase
     }
     public void loadTare()
     {
-        String lettura = IO.readStringFile(Settings.DATA_BASE_DIRECTORY + Settings.TARE + Settings.EXT);
+        String lettura = IO.readStringFile(Settings.TARE);
         if(lettura != null)
         {
             String[] split = lettura.split(Settings.SPLITTER_LINE);
@@ -587,6 +596,381 @@ public class DataBase
             
             Collections.sort(prodotti, new FrequencyProductComparator());
         }
+    }
+
+    
+    public OrdinableArray getAllClients()
+    {
+        OrdinableArray o = new OrdinableArray(0, 0);
+        for(OrdinableObject c: clienti)
+        {
+            o.add(c);
+        }
+        for(OrdinableObject c: removedClienti)
+        {
+            o.add(c);
+        }
+        return o;
+    }
+    public OrdinableArray getAllProducts()
+    {
+        OrdinableArray o = new OrdinableArray(0, 0);
+        for(OrdinableObject c: prodotti)
+        {
+            o.add(c);
+        }
+        for(OrdinableObject c: removedProdotti)
+        {
+            o.add(c);
+        }
+        return o;
+    }
+    
+    public void saveFileTotali(Calendar cal)
+    {
+        Registro.progressionBar = new ProgressionBar(clienti.size());
+        Registro.progressionBar.setVisible(true);
+        String riassunto = "";
+        
+        OrdinableArray clienti = getAllClients();
+        
+        OrdinableArray prodotti = getAllProducts();
+        
+        
+        for(OrdinableObject o: clienti)
+        {
+            Cliente c = (Cliente)o;
+            ArrayList<Long> idPesate = getPesateClienteMese(c.getId(), cal, Behavior.INCREASING);
+            if(idPesate.size() > 0)
+            {
+                // rintraccio tutte le pesate del cliente
+                //log("carico le pesate \n Giorno");
+                ArrayList<Pesata> listaPesate = new ArrayList<>();
+                for(long idPesata: idPesate)
+                {
+                    Pesata p = (Pesata)pesate.get(idPesata);
+                    listaPesate.add(p);
+                    //log(p.data.get(Calendar.DAY_OF_MONTH)+"\t"+p.idProdotto +"\t"+p.quantitaFisica);
+                }
+
+                // rintraccio tutti i tipi di prodotti pesati
+                ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+                for(Pesata pe: listaPesate)
+                {
+                    boolean presente = false;
+                    for(Prodotto pr: listaProdotti)
+                    {
+                        if((pe).idProdotto == pr.getId())
+                        {
+                            presente = true;
+                            break;
+                        }
+                    }
+                    if(!presente)
+                    {
+                        listaProdotti.add((Prodotto)prodotti.get((pe).idProdotto));
+                    }
+                }
+
+                // creo l'intestazione delle colonne con i nomi dei prodotti
+                String[] nomiProdotti = new String[listaProdotti.size()];
+                int f=0;
+                for(Prodotto pr: listaProdotti)
+                {
+                    nomiProdotti[f] = pr.getName();
+                    //System.out.println(nomiProdotti[f]);
+                    f++;
+                }
+
+                int numeroGiorniDelMese = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                //numeroGiorniDelMese += 2; // linee per i totali
+
+                Object[][] dati = new Object[numeroGiorniDelMese][nomiProdotti.length];
+
+                float[] totali = new float[listaProdotti.size()];
+                Arrays.fill(totali, 0);
+
+                //log("avvio il popolamento della tabella");
+                for(int i=0; i<numeroGiorniDelMese; i++)
+                {
+                    //log(i+"");
+                    for(int j=0; j<nomiProdotti.length; j++)
+                    {
+                        Prodotto pr = listaProdotti.get(j);
+                        //log("cerco le pesate riferite a:");
+                        //log("id: "+ pr.getId() + " "+pr.getNome());
+                        float totaleGiorno = 0;
+                        for(Pesata pe: listaPesate)
+                        {
+                            //log("giorno da trovare: " + (i+1) + " giorno pesata: "+ pe.data.get(Calendar.DAY_OF_MONTH));
+                            //log("Pesata idProdotto"+ pe.idProdotto + "/t"+ pe.quantitaFisica);
+                            if(
+                                    pe.time.get(Calendar.DAY_OF_MONTH) == i+1 &&
+                                    pe.idProdotto == pr.getId())
+                            {
+                                totaleGiorno += pe.quantita;
+                                totali[j] += pe.quantita;
+                            }
+                        }
+                        //log("totale giorno: "+totaleGiorno);
+                        //log("totale attuale: "+totali[j]);
+
+
+                        if(totaleGiorno != 0)
+                        {    
+                            String format = "%.3f";
+                            if(pr.unitOfMeasure == UnitOfMeasure.QUANTITY)
+                            {
+                               format = "%.0f";
+                            }
+                            dati[i][j] = String.format(format, totaleGiorno);
+                        }
+                        else
+                        {
+                            dati[i][j] = "";
+                        }
+                    }
+                }
+
+                riassunto += c.getName() + nl;
+                String scrittura = c.getName()+ nl;
+                scrittura += "Giorno";
+                for(int i=0; i<nomiProdotti.length; i++)
+                {
+                    scrittura += t + nomiProdotti[i];
+                    riassunto += t + nomiProdotti[i];
+                }
+
+                riassunto += nl;
+                scrittura += nl;
+                for(int i=0; i<numeroGiorniDelMese; i++)
+                {
+                    scrittura += (i+1);
+                    for(int j=0; j<nomiProdotti.length; j++)
+                    {
+                        scrittura += t + dati[i][j];
+                    }
+                    scrittura += nl;
+                }
+                scrittura += nl;
+                for(int i=0; i<totali.length; i++)
+                {
+                    Prodotto pr = listaProdotti.get(i);
+                    String format = "%.3f";
+                    if(pr.unitOfMeasure == UnitOfMeasure.QUANTITY)
+                    {
+                       format = "%.0f";
+                    }
+                    riassunto += t + String.format(format, totali[i]);
+                    scrittura += t + String.format(format, totali[i]);
+                }
+
+                riassunto += nl + nl + nl;
+
+                Boolean results = IO.creaPath(Settings.SALVATAGGI_DIRECTORY);
+                
+                
+                String tot = Settings.SALVATAGGI_DIRECTORY + "/"+ Utility.getYearMonth(cal);
+                results = IO.creaPath(tot);
+                
+                IO.writeStringFile(tot+"/"+c.getName()+".txt", scrittura);
+                Registro.progressionBar.progress(c.getName());
+                
+            }
+        }
+        String tot = Settings.SALVATAGGI_DIRECTORY + "/"+ Utility.getYearMonth(cal);
+        
+        IO.writeStringFile(tot + "/" + Utility.getYearMonth(cal) + " Riassunto.txt", riassunto);
+        
+        Registro.progressionBar.close();
+    }
+
+    public void saveTotaliSettimana(long idCliente, Calendar firstDay, Calendar lastDay)
+    {
+        Registro.progressionBar = new ProgressionBar(4);
+        Registro.progressionBar.setVisible(true);
+        
+        ArrayList<Pesata> listaPesate = new ArrayList<>();
+        if(firstDay.get(Calendar.MONTH) == lastDay.get(Calendar.MONTH))
+        {
+            ArrayList<Long> idPesate = getPesateClienteMese(idCliente, firstDay, Behavior.DECREASING);
+            for(long idPesata: idPesate)
+            {
+                Pesata pesata = pesate.get(idPesata);
+                if(
+                        firstDay.get(Calendar.DAY_OF_MONTH) <= pesata.time.get(Calendar.DAY_OF_MONTH) &&
+                        pesata.time.get(Calendar.DAY_OF_MONTH) <= lastDay.get(Calendar.DAY_OF_MONTH) 
+                        )
+                {
+                    listaPesate.add(pesata);
+                }
+            }
+        }
+        else
+        {
+            ArrayList<Long> idPesate = getPesateClienteMese(idCliente, firstDay, Behavior.DECREASING);
+            for(long idPesata: idPesate)
+            {
+                Pesata pesata = (Pesata)pesate.get(idPesata);
+                if(
+                        firstDay.get(Calendar.DAY_OF_MONTH) <= pesata.time.get(Calendar.DAY_OF_MONTH) &&
+                        pesata.time.get(Calendar.DAY_OF_MONTH) <= lastDay.get(Calendar.DAY_OF_MONTH) 
+                        )
+                {
+                    listaPesate.add(pesata);
+                }
+            }
+            idPesate = getPesateClienteMese(idCliente, lastDay, Behavior.DECREASING);
+            for(long idPesata: idPesate)
+            {
+                Pesata pesata = (Pesata)pesate.get(idPesata);
+                if(
+                        firstDay.get(Calendar.DAY_OF_MONTH) <= pesata.time.get(Calendar.DAY_OF_MONTH) &&
+                        pesata.time.get(Calendar.DAY_OF_MONTH) <= lastDay.get(Calendar.DAY_OF_MONTH) 
+                        )
+                {
+                    listaPesate.add(pesata);
+                }
+            }
+        }
+        Registro.progressionBar.progress();
+       
+        if(listaPesate.size() > 0)
+        {
+// rintraccio tutti i tipi di prodotti pesati
+            ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+            for(Pesata pe: listaPesate)
+            {
+                boolean presente = false;
+                for(Prodotto pr: listaProdotti)
+                {
+                    if((pe).idProdotto == pr.getId())
+                    {
+                        presente = true;
+                        break;
+                    }
+                }
+                if(!presente)
+                {
+                    listaProdotti.add((Prodotto)prodotti.get((pe).idProdotto));
+                }
+            }
+
+            // creo l'intestazione delle colonne con i nomi dei prodotti
+            String[] nomiProdotti = new String[listaProdotti.size()];
+            int f=0;
+            for(Prodotto pr: listaProdotti)
+            {
+                nomiProdotti[f] = pr.getName();
+                //System.out.println(nomiProdotti[f]);
+                f++;
+            }
+
+            int numeroGiorniDelMese = lastDay.get(Calendar.DAY_OF_MONTH)-firstDay.get(Calendar.DAY_OF_MONTH);
+            //numeroGiorniDelMese += 2; // linee per i totali
+
+            Object[][] dati = new Object[numeroGiorniDelMese][nomiProdotti.length];
+
+            float[] totali = new float[listaProdotti.size()];
+            Arrays.fill(totali, 0);
+
+            //log("avvio il popolamento della tabella");
+            for(int i=0; i<numeroGiorniDelMese; i++)
+            {
+                //log(i+"");
+                for(int j=0; j<nomiProdotti.length; j++)
+                {
+                    Prodotto pr = listaProdotti.get(j);
+                    //log("cerco le pesate riferite a:");
+                    //log("id: "+ pr.getId() + " "+pr.getNome());
+                    float totaleGiorno = 0;
+                    for(Pesata pe: listaPesate)
+                    {
+                        //log("giorno da trovare: " + (i+1) + " giorno pesata: "+ pe.data.get(Calendar.DAY_OF_MONTH));
+                        //log("Pesata idProdotto"+ pe.idProdotto + "/t"+ pe.quantitaFisica);
+                        if(
+                                pe.time.get(Calendar.DAY_OF_MONTH) == i+firstDay.get(Calendar.DAY_OF_MONTH) &&
+                                pe.idProdotto == pr.getId())
+                        {
+                            totaleGiorno += pe.quantita;
+                            totali[j] += pe.quantita;
+                        }
+                    }
+                    //log("totale giorno: "+totaleGiorno);
+                    //log("totale attuale: "+totali[j]);
+
+
+                    if(totaleGiorno != 0)
+                    {    
+                        String format = "%.3f";
+                        if(pr.unitOfMeasure == UnitOfMeasure.QUANTITY)
+                        {
+                           format = "%.0f";
+                        }
+                        dati[i][j] = String.format(format, totaleGiorno);
+                    }
+                    else
+                    {
+                        dati[i][j] = "";
+                    }
+                }
+            }
+            Cliente c = (Cliente)clienti.get(idCliente);
+            String scrittura = c.getName()+ nl;
+            scrittura += "Giorno";
+            for(int i=0; i<nomiProdotti.length; i++)
+            {
+                scrittura += t + nomiProdotti[i];
+            }
+
+            scrittura += nl;
+            
+            int numeroGiorniDelMese1 = firstDay.getActualMaximum(Calendar.DAY_OF_MONTH);
+            for(int i=0; i<numeroGiorniDelMese; i++)
+            {
+                
+                if(firstDay.get(Calendar.DAY_OF_MONTH) + i <= numeroGiorniDelMese1)
+                {
+                    scrittura += (firstDay.get(Calendar.DAY_OF_MONTH) + i);
+                }
+                else
+                {
+                    scrittura += (lastDay.get(Calendar.DAY_OF_MONTH) + i);
+                }
+                for(int j=0; j<nomiProdotti.length; j++)
+                {
+                    scrittura += t + dati[i][j];
+                }
+                scrittura += nl;
+            }
+            scrittura += nl;
+            for(int i=0; i<totali.length; i++)
+            {
+                Prodotto pr = listaProdotti.get(i);
+                String format = "%.3f";
+                if(pr.unitOfMeasure == UnitOfMeasure.QUANTITY)
+                {
+                   format = "%.0f";
+                }
+                scrittura += t + String.format(format, totali[i]);
+            }
+
+
+            Boolean results = IO.creaPath(Settings.SETTIMANALI_DIRECTORY);
+            Registro.progressionBar.progress();
+            //log(pathPesateMensili + " " + results);
+            String nomeFile = c.getName()+ " " +
+                    firstDay.get(Calendar.DAY_OF_MONTH) + "-" +
+                    (1 + firstDay.get(Calendar.MONTH)) + " " +
+                    lastDay.get(Calendar.DAY_OF_MONTH) + "-" +
+                    (1 + lastDay.get(Calendar.MONTH)) + ".txt";
+            Registro.progressionBar.progress();
+            //log(pathPesateMensili + " " + results);
+            IO.writeStringFile(Settings.SETTIMANALI_DIRECTORY+"/"+nomeFile, scrittura);
+            Registro.progressionBar.progress();
+            
+        }
+        Registro.progressionBar.close();
     }
 
 }

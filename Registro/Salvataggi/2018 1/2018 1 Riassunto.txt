@@ -1,0 +1,15 @@
+ZCliente per i TEST
+	Evolutivo	Colombe	Expo	Ciabatte	Focaccia	Brioches	Cornetto P	Gastronomico	Chiacchiere di Armando
+	10,665	14,381	7,622	5,832	7	8	9	9,249	7,001
+
+
+test 3
+	Colombe
+	7,888
+
+
+test 1
+	pt22
+	0,486
+
+

@@ -75,7 +75,12 @@ public class Registro
         
         progressionBar.close();
     }
-    private static void loadSettings()
+    
+    public static void saveSettings()
+    {
+        IO.writeStringFile(Settings.SETTINGS, settings.toFile());
+    }
+    public static void loadSettings()
     {
         String var = IO.readStringFile(Settings.SETTINGS);
         

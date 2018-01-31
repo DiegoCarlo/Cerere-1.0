@@ -112,15 +112,61 @@ public class OrdinableArray extends ArrayList<OrdinableObject>
         }
     }
 
-    public boolean exist(String text)
+    public OrdinableObject exist(String text)
     {
         for(OrdinableObject o: this)
         {
             if(o.getName().compareTo(text) == 0)
             {
-                return true;
+                return o;
             }
         }
-        return false;
+        return null;
+    }
+
+    public void swapCardinal(long id, Behavior behavior)
+    {
+        OrdinableObject x = get(id);
+        long cardinaleT;
+        OrdinableObject t =  null;
+        long cardinaleTVicino = 0;
+
+        if(behavior == Behavior.DECREASING)
+        {
+            for(int i=0; i<size(); i++)
+            {
+                OrdinableObject c = get(i);
+                cardinaleT = c.getCardinal();
+                if(x.getCardinal()> cardinaleT)
+                {
+                    if(cardinaleTVicino <= cardinaleT)
+                    {
+                        cardinaleTVicino = cardinaleT;
+                        t = c;
+                    }
+                }
+            }
+        }
+        else
+        {
+            cardinaleTVicino = Long.MAX_VALUE;
+            for(int i=0; i<size(); i++)
+            {
+                OrdinableObject c = get(i);
+                cardinaleT = c.getCardinal();
+                if(x.getCardinal() < cardinaleT)
+                {
+                    if(cardinaleTVicino > cardinaleT)
+                    {
+                        cardinaleTVicino = cardinaleT;
+                        t = c;
+                    }
+                }
+            }
+        }
+        if(t != null)
+        {
+            x.swapCardinal(t);
+        }
     }
 }

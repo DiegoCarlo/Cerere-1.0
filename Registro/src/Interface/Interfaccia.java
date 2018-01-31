@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -32,6 +33,7 @@ import toFile.dataType.Base.Cliente;
 import toFile.dataType.Base.FrequentMinute;
 import toFile.dataType.Base.Pesata;
 import toFile.dataType.Base.Prodotto;
+import toFile.dataType.Base.Tara;
 import toFile.dataType.Base.UnitOfMeasure;
 import toFile.dataType.Ordinals.ActiveOrdering;
 import toFile.dataType.Ordinals.Comparator.AlphabeticalComparator;
@@ -69,6 +71,10 @@ public class Interfaccia extends javax.swing.JFrame
     int activeWeightRequest;
     float totalePesate = 0;
     
+    Settings settings = Registro.settings;
+    
+    boolean inizialization = true;
+    
     PesateArray bilanciaArrayPesate = new PesateArray(0);
     
     ActiveOrdering oClienti = new ActiveOrdering(new Order[]
@@ -100,17 +106,33 @@ public class Interfaccia extends javax.swing.JFrame
     public Interfaccia()
     {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        font = new Font("Sans-serif", 0, Settings.font);
-        fontMedium = new Font("Sans-serif", 0, Settings.fontMedium);
-        fontBig = new Font("Sans-serif", 0, Settings.fontBig);
+        font = new Font("Sans-serif", 0, settings.font);
+        fontMedium = new Font("Sans-serif", 0, settings.fontMedium);
+        fontBig = new Font("Sans-serif", 0, settings.fontBig);
         initComponents();
         initComponents2();
         setAllFonts();
         updateLogo();
+        
+        updateOrder();
+        
         orderClienti();
         orderProdotti();
+        orderTare();
+        inizialization = false;
+        jTabbedPane.setEnabledAt(8, false);
     }
-    
+    private void updateOrder()
+    {
+        oClienti.setInitial(settings.orderClienti);
+        jComboBoxClienti.setSelectedIndex(settings.orderClienti);
+        
+        oProdotti.setInitial(settings.orderProdotti);
+        jComboBoxProdotti.setSelectedIndex(settings.orderProdotti);
+        
+        oTare.setInitial(settings.orderTare);
+        jComboBoxTare.setSelectedIndex(settings.orderTare);
+    }
     private void log(String msg)
     {
         registro.Registro.log(msg);
@@ -156,22 +178,24 @@ public class Interfaccia extends javax.swing.JFrame
         
         updateLogo();
         
-        jScrollPaneBilanciaClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneBilanciaProdotti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneBilanciaScontrino.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneBilanciaClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPanePesateClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPanePesateCambiaClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPanePesate.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneTotaliClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneTotali.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneProdotti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneTare.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneOpzioni.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneRemovedClienti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneRemovedProdotti.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
-        jScrollPaneRemovedPesate.getVerticalScrollBar().setPreferredSize(new Dimension(Settings.widthScrollBar, 0));
+        
+        
+        jScrollPaneBilanciaClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneBilanciaProdotti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneBilanciaScontrino.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneBilanciaClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPanePesateClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPanePesateCambiaClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPanePesate.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneTotaliClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneTotali.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneProdotti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneTare.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneOpzioni.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneRemovedClienti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneRemovedProdotti.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
+        jScrollPaneRemovedPesate.getVerticalScrollBar().setPreferredSize(new Dimension(settings.widthScrollBar, 0));
         
         jListBilanciaClienti.setBackground(coloreClienti);
         jListClienti.setBackground(coloreClienti);
@@ -181,12 +205,15 @@ public class Interfaccia extends javax.swing.JFrame
         jListRemovedClienti.setBackground(coloreClienti);
         
         jListProdotti.setBackground(coloreProdotti);
-        jList1.setBackground(coloreProdotti);
+        jListRemovedProdotti.setBackground(coloreProdotti);
         jListBilanciaProdotti.setBackground(coloreProdotti);
         
         jListPesate.setBackground(colorePesate);
         jListRemovedPesate.setBackground(colorePesate);
         
+        updatejComboBox(jComboBoxClienti, oClienti);
+        updatejComboBox(jComboBoxProdotti, oProdotti);
+        updatejComboBox(jComboBoxTare, oTare);
     }
     private void setAllFonts()
     {
@@ -296,22 +323,21 @@ public class Interfaccia extends javax.swing.JFrame
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
         jLabelBilanciaLogo.setIcon(logoBilancia);*/
-        /*// Pesate
+        // Pesate
         int larghezza = jButtonPesateRistampaScontrino.getWidth();
         int altezza = (int)((float)larghezza * (float)0.48);
         ImageIcon logoPesate = new ImageIcon();
         logoPesate = new ImageIcon(
-                        new ImageIcon("Icone\\Logo VDP.png")
+                        new ImageIcon("Icons\\Logo VDP.png")
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
         jLabelPesateLogo.setIcon(logoPesate);
-        
-       */
+
         // Clienti
         ImageIcon logoClienti = new ImageIcon();
-        int larghezza = jPanelClientiInserimento.getWidth();
-        int altezza = (int)((float)larghezza * (float)0.48);
+        larghezza = jPanelClientiInserimento.getWidth();
+        altezza = (int)((float)larghezza * (float)0.48);
         logoClienti = new ImageIcon(
                         new ImageIcon("Icons\\Logo VDP.png")
                                 .getImage()
@@ -331,19 +357,19 @@ public class Interfaccia extends javax.swing.JFrame
                         );
         jLabelProdottiLogo.setIcon(logoProdotti);
         jLabelProdottiLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        /*
+        
         // Tare
         ImageIcon logoTare = new ImageIcon();
-        larghezza = jPanel11.getWidth();
+        larghezza = jPanelTareInserimento.getWidth();
         altezza = (int)((float)larghezza * (float)0.48);
         logoTare = new ImageIcon(
-                        new ImageIcon("Icone\\Logo VDP.png")
+                        new ImageIcon("Icons\\Logo VDP.png")
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
         jLabelTareLogo.setIcon(logoTare);
-*/
-        // Tare
+
+        // Totali
         ImageIcon logoTotali = new ImageIcon();
         larghezza = jButtonSaveTotali.getWidth();
         altezza = (int)((float)larghezza * (float)0.48);
@@ -381,6 +407,7 @@ public class Interfaccia extends javax.swing.JFrame
                     updatejPanelProdotti();
                     break;
                 case 5:
+                    updatejPanelTare();
                     activeWeightRequest = 5;
                     break;
                 case 7:
@@ -388,6 +415,25 @@ public class Interfaccia extends javax.swing.JFrame
                     break;
             }
         }
+    }
+    private void setEnableNotBilancia(boolean enable)
+    {
+        
+        jListBilanciaClienti.setEnabled(enable);
+        jTabbedPane.setEnabledAt(1, enable);
+        jTabbedPane.setEnabledAt(2, enable);
+        jTabbedPane.setEnabledAt(3, enable);
+        jTabbedPane.setEnabledAt(4, enable);
+        jTabbedPane.setEnabledAt(5, enable);
+        jTabbedPane.setEnabledAt(6, enable);
+        jTabbedPane.setEnabledAt(7, enable);
+        jButtoBilanciaClienti.setEnabled(enable);
+    }
+    private void updatejPanelTare()
+    {
+        jTextFieldTareSalva.setText("");
+        jTextFieldTareModifica.setText("");
+        updatejList(jListTare, dataBase.tare);
     }
     public void updateTara(float lettura)
     {
@@ -440,6 +486,20 @@ public class Interfaccia extends javax.swing.JFrame
             log("errore updatePeso");
         }
     }
+    private void updatejComboBox(JComboBox jc, ActiveOrdering orders)
+    {
+        jc.removeAllItems();
+        Order[] lista = orders.getType();
+        if(lista.length > 0)
+        {
+            for(int i=0; i<lista.length; i++)
+            {
+                jc.addItem(lista[i].toString());
+            }
+        }
+        jc.setSelectedIndex(orders.getIndex());
+    }
+    
     public void updateTotali()
     {
         updatejList(jListTotaliClienti, dataBase.clienti);
@@ -583,6 +643,7 @@ public class Interfaccia extends javax.swing.JFrame
     private void orderClienti()
     {
         Order o = oClienti.get();
+        boolean abilita = false;
         switch(o)
         {
             case ALPHABETIC:
@@ -590,19 +651,41 @@ public class Interfaccia extends javax.swing.JFrame
                 break;
             case CARDINAL:
                 Collections.sort(dataBase.clienti, new CardinalComparator(Behavior.INCREASING));
+                abilita = true;
                 break;
             case HOUR:
                 Collections.sort(dataBase.clienti, new MinuteComparator(Behavior.INCREASING));
                 break;
         }
+        jButtonClientiSu.setEnabled(abilita);
+        jButtonClientiGiu.setEnabled(abilita);
         jButtonClientiOrdine.setText(o.toString());
         jButtoBilanciaClienti.setText(o.toString());
         jButtonPesateOrdinamentoClienti.setText(o.toString());
         jButtonTotaliOrdinamento.setText(o.toString());
     }
+    private void orderTare()
+    {
+        Order o = oTare.get();
+        boolean abilita = false;
+        switch(o)
+        {
+            case ALPHABETIC:
+                Collections.sort(dataBase.tare, new AlphabeticalComparator(Behavior.INCREASING));
+                break;
+            case CARDINAL:
+                Collections.sort(dataBase.tare, new CardinalComparator(Behavior.INCREASING));
+                abilita = true;
+                break;
+        }
+        jButtonTareSu.setEnabled(abilita);
+        jButtonTareGiu.setEnabled(abilita);
+        jButtonTareOrdine.setText(o.toString());
+    }
     private void orderProdotti()
     {
         Order o = oProdotti.get();
+        boolean abilita = false;
         switch(o)
         {
             case ALPHABETIC:
@@ -610,14 +693,92 @@ public class Interfaccia extends javax.swing.JFrame
                 break;
             case CARDINAL:
                 Collections.sort(dataBase.prodotti, new CardinalComparator(Behavior.INCREASING));
+                abilita = true;
                 break;
             case FREQUENCY:
                 updateClientFrequency();
                 break;
         }
+        jButtonProdottiSu.setEnabled(abilita);
+        jButtonProdottiGiu.setEnabled(abilita);
         jButtonBilanciaProdotti.setText(o.toString());
         jButtonProdottiOrdine.setText(o.toString());
         //jButtonTotaliOrdinamento.setText(o.toString());
+    }
+    private void swapCardinalClienti(Behavior behavior)
+    {
+        int indice = jListClienti.getSelectedIndex();
+        if(indice != -1)
+        {
+            dataBase.clienti.swapCardinal(
+                    ((OrdinableObject)jListClienti.getSelectedValue()).getId(),
+                    behavior
+            );
+            oClienti.set(Order.CARDINAL);
+            orderClienti();
+            dataBase.saveClienti();
+            updatejList(jListClienti, dataBase.clienti);
+            
+            if(behavior == Behavior.DECREASING && indice >= 1)
+            {
+                indice = indice - 1;
+            }
+            if(behavior == Behavior.INCREASING && indice < jListClienti.getModel().getSize()-1)
+            {
+                indice = indice + 1;
+            }
+            jListClienti.setSelectedIndex(indice);
+        }
+    }
+    private void swapCardinalProdotti(Behavior behavior)
+    {
+        int indice = jListProdotti.getSelectedIndex();
+        if(indice != -1)
+        {
+            dataBase.prodotti.swapCardinal(
+                    ((OrdinableObject)jListProdotti.getSelectedValue()).getId(),
+                    behavior
+            );
+            oProdotti.set(Order.CARDINAL);
+            orderProdotti();
+            dataBase.saveProdotti();
+            updatejList(jListProdotti, dataBase.prodotti);
+            
+            if(behavior == Behavior.DECREASING && indice >= 1)
+            {
+                indice = indice - 1;
+            }
+            if(behavior == Behavior.INCREASING && indice < jListProdotti.getModel().getSize()-1)
+            {
+                indice = indice + 1;
+            }
+            jListProdotti.setSelectedIndex(indice);
+        }
+    }
+    private void swapCardinalTare(Behavior behavior)
+    {
+        int indice = jListTare.getSelectedIndex();
+        if(indice != -1)
+        {
+            dataBase.tare.swapCardinal(
+                    ((OrdinableObject)jListTare.getSelectedValue()).getId(),
+                    behavior
+            );
+            oTare.set(Order.CARDINAL);
+            orderTare();
+            dataBase.saveTare();
+            updatejList(jListTare, dataBase.tare);
+            
+            if(behavior == Behavior.DECREASING && indice >= 1)
+            {
+                indice = indice - 1;
+            }
+            if(behavior == Behavior.INCREASING && indice < jListTare.getModel().getSize()-1)
+            {
+                indice = indice + 1;
+            }
+            jListTare.setSelectedIndex(indice);
+        }
     }
     private void updateClientFrequency()
     {
@@ -636,7 +797,7 @@ public class Interfaccia extends javax.swing.JFrame
         {
             netto = 0;
         }
-        if(prodotto.unitOfMeasure == UnitOfMeasure.QUANTITY)
+        if(prodotto != null && prodotto.unitOfMeasure == UnitOfMeasure.QUANTITY)
         {
             netto = netto*10+t;
             jTextFieldBilanciaNetto.setText(String.format("%.0f", netto));
@@ -651,7 +812,6 @@ public class Interfaccia extends javax.swing.JFrame
         int totaleNumero = 0;
         int sommePeso = 0;
         int sommeNumero = 0;
-        int totale = 0;
         long idCl = -1;
         Calendar data = GregorianCalendar.getInstance();
         for(int i=0; i<pesate.size(); i++)
@@ -776,7 +936,7 @@ public class Interfaccia extends javax.swing.JFrame
             {
                 Pesata pe = dataBase.pesate.get(idPesateClienteMese.get(i));
                 String quantita = "";
-                Prodotto pr = (Prodotto)dataBase.prodotti.get(pe.idProdotto);
+                Prodotto pr = (Prodotto)dataBase.getAllProducts().get(pe.idProdotto);
                 if(pr.unitOfMeasure == UnitOfMeasure.KILOGRAMMO)
                 {
                     quantita = String.format("%.3f", pe.quantita);
@@ -821,13 +981,9 @@ public class Interfaccia extends javax.swing.JFrame
     }
     private void updatejPanelRemoved()
     {
-        updatejListRemovedClienti();
-        updatejListRemovedProdotti();
+        updatejList(jListRemovedClienti, dataBase.removedClienti);
+        updatejList(jListRemovedProdotti, dataBase.removedProdotti);
         updatejListRemovedPesate();
-    }
-    private void updatejListRemovedProdotti()
-    {
-        
     }
     private void updatejListRemovedPesate()
     {
@@ -860,22 +1016,13 @@ public class Interfaccia extends javax.swing.JFrame
             public Object getElementAt(int i) { return in.get(i); }
         });
     }
-    private void updatejListRemovedClienti()
-    {
-        jListRemovedClienti.setModel(new javax.swing.AbstractListModel<OrdinableObject>()
-        {
-            ArrayList<OrdinableObject> oa = dataBase.removedClienti;
-            public int getSize() { return oa.size(); }
-            public OrdinableObject getElementAt(int i) { return oa.get(i); }
-        });
-    }
     private boolean bilanciaIsActive()
     {
         return jListBilanciaClienti.isEnabled();
     }
     public boolean getSimBilancia()
     {
-        return !jToggleButtonDemoBilancia.isSelected();
+        return jToggleButtonDemoBilancia.isSelected();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -974,7 +1121,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelClientiLista = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jButtonClientiOrdine = new javax.swing.JButton();
-        jButtonClientiiSu = new javax.swing.JButton();
+        jButtonClientiSu = new javax.swing.JButton();
         jButtonClientiGiu = new javax.swing.JButton();
         jLabelClientiStats = new javax.swing.JLabel();
         jButtonClientiElimina = new javax.swing.JButton();
@@ -1003,31 +1150,32 @@ public class Interfaccia extends javax.swing.JFrame
         jScrollPaneProdotti = new javax.swing.JScrollPane();
         jListProdotti = new javax.swing.JList<>();
         jPanelTare = new javax.swing.JPanel();
-        jPanelClientiInserimento2 = new javax.swing.JPanel();
+        jPanelTareInserimento = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabelClientiModifica2 = new javax.swing.JLabel();
-        jTextFieldClientiModifica2 = new javax.swing.JTextField();
-        jButtonClientiModifica2 = new javax.swing.JButton();
+        jTextFieldTareModifica = new javax.swing.JTextField();
+        jButtonTareModifica = new javax.swing.JButton();
         jLabelTareModifica = new javax.swing.JLabel();
-        jLabelClientiLogo2 = new javax.swing.JLabel();
+        jLabelTareLogo = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabelClientiSalva2 = new javax.swing.JLabel();
-        jTextFieldClientiSalva2 = new javax.swing.JTextField();
-        jButtonClientiSalva2 = new javax.swing.JButton();
+        jTextFieldTareSalva = new javax.swing.JTextField();
+        jButtonTareSalva = new javax.swing.JButton();
         jLabelTare = new javax.swing.JLabel();
         jPanelClientiLista2 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jButtonClientiOrdine2 = new javax.swing.JButton();
-        jButtonClientiSu2 = new javax.swing.JButton();
-        jButtonClientiGiu2 = new javax.swing.JButton();
-        jButtonClientiElimina2 = new javax.swing.JButton();
+        jButtonTareOrdine = new javax.swing.JButton();
+        jButtonTareSu = new javax.swing.JButton();
+        jButtonTareGiu = new javax.swing.JButton();
+        jLabelTareStats = new javax.swing.JLabel();
+        jButtonTareElimina = new javax.swing.JButton();
         jScrollPaneTare = new javax.swing.JScrollPane();
-        jListClienti2 = new javax.swing.JList<>();
+        jListTare = new javax.swing.JList<>();
         jPanelOptions = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBoxClienti = new javax.swing.JComboBox<>();
+        jComboBoxProdotti = new javax.swing.JComboBox<>();
+        jComboBoxTare = new javax.swing.JComboBox<>();
         jScrollPaneOpzioni = new javax.swing.JScrollPane();
         jTextAreaOpzioni = new javax.swing.JTextArea();
         jToggleButtonDemoBilancia = new javax.swing.JToggleButton();
@@ -1036,20 +1184,35 @@ public class Interfaccia extends javax.swing.JFrame
         jSpinnerFontMedium = new javax.swing.JSpinner();
         jSpinnerFontBig = new javax.swing.JSpinner();
         sviluppatore = new javax.swing.JToggleButton();
+        jPanel19 = new javax.swing.JPanel();
         jPanelRemoved = new javax.swing.JPanel();
+        jSplitPane4 = new javax.swing.JSplitPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPaneRemovedClienti = new javax.swing.JScrollPane();
         jListRemovedClienti = new javax.swing.JList<>();
         jButtonRemovedClienti = new javax.swing.JButton();
+        jSplitPane5 = new javax.swing.JSplitPane();
         jPanel5 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jScrollPaneRemovedProdotti = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListRemovedProdotti = new javax.swing.JList<>();
         jPanel6 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jScrollPaneRemovedPesate = new javax.swing.JScrollPane();
         jListRemovedPesate = new javax.swing.JList<>();
         jButton12 = new javax.swing.JButton();
+        jPanel25 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
+        jButtoBilanciaClienti1 = new javax.swing.JButton();
+        jScrollPaneBilanciaClienti1 = new javax.swing.JScrollPane();
+        jListBilanciaClienti1 = new javax.swing.JList<>();
+        jPanel27 = new javax.swing.JPanel();
+        jButtonBilanciaProdotti1 = new javax.swing.JButton();
+        jScrollPaneBilanciaProdotti1 = new javax.swing.JScrollPane();
+        jListBilanciaProdotti1 = new javax.swing.JList<>();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        jTextField1 = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Voglia di Pane");
@@ -1116,7 +1279,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jButtonBilanciaProdotti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneBilanciaProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
+                .addComponent(jScrollPaneBilanciaProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
         );
 
         jSplitPaneBilancia.setRightComponent(jPanel9);
@@ -1153,7 +1316,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jButtoBilanciaClienti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneBilanciaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
+                .addComponent(jScrollPaneBilanciaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
         );
 
         jSplitPaneBilancia.setLeftComponent(jPanel10);
@@ -1530,7 +1693,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanelBilanciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPaneBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelBilancia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Bilancia", jPanelBilancia);
@@ -1619,6 +1782,8 @@ public class Interfaccia extends javax.swing.JFrame
         });
         jScrollPanePesate.setViewportView(jListPesate);
 
+        jLabelPesateStats.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -1641,7 +1806,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addComponent(jScrollPanePesate, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                        .addComponent(jScrollPanePesate, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1691,7 +1856,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
                 .addComponent(jButtonPesateOrdinamentoClienti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
+                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(jPanel23);
@@ -1720,7 +1885,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
-                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonPesateCambiaCliente))
         );
@@ -1807,11 +1972,12 @@ public class Interfaccia extends javax.swing.JFrame
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         jSplitPane3.setRightComponent(jPanel22);
 
+        jListTotaliClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListTotaliClienti.setFont(font);
         jListTotaliClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
@@ -1822,6 +1988,7 @@ public class Interfaccia extends javax.swing.JFrame
         });
         jScrollPaneTotaliClienti.setViewportView(jListTotaliClienti);
 
+        jButtonTotaliOrdinamento.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTotaliOrdinamento.setText("jButton10");
         jButtonTotaliOrdinamento.setFont(font);
         jButtonTotaliOrdinamento.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1847,6 +2014,7 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
+        jButtonTotaliSalvaSettimana.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTotaliSalvaSettimana.setText("Salva Sett");
         jButtonTotaliSalvaSettimana.setFont(font);
         jButtonTotaliSalvaSettimana.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1857,6 +2025,7 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
+        jButtonSaveTotali.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonSaveTotali.setText("Salva Tutti");
         jButtonSaveTotali.setFont(fontBig);
         jButtonSaveTotali.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1892,7 +2061,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(jButtonTotaliOrdinamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneTotaliClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTotaliClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonTotaliSalvaSettimana)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2048,11 +2217,25 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonClientiiSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiiSu.setText("Su");
+        jButtonClientiSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonClientiSu.setText("Su");
+        jButtonClientiSu.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonClientiSuMouseClicked(evt);
+            }
+        });
 
         jButtonClientiGiu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiGiu.setText("Giù");
+        jButtonClientiGiu.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonClientiGiuMouseClicked(evt);
+            }
+        });
 
         jLabelClientiStats.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
 
@@ -2066,7 +2249,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelClientiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonClientiiSu)
+                .addComponent(jButtonClientiSu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonClientiGiu)
                 .addContainerGap())
@@ -2079,7 +2262,7 @@ public class Interfaccia extends javax.swing.JFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonClientiOrdine)
-                            .addComponent(jButtonClientiiSu)
+                            .addComponent(jButtonClientiSu)
                             .addComponent(jButtonClientiGiu))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabelClientiStats, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2119,7 +2302,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelClientiListaLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addComponent(jScrollPaneClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonClientiElimina))
         );
@@ -2136,7 +2319,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelClientiLayout.setVerticalGroup(
             jPanelClientiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelClientiLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelClientiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addComponent(jPanelClientiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Clienti", jPanelClienti);
@@ -2295,9 +2478,23 @@ public class Interfaccia extends javax.swing.JFrame
 
         jButtonProdottiSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiSu.setText("Su");
+        jButtonProdottiSu.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonProdottiSuMouseClicked(evt);
+            }
+        });
 
         jButtonProdottiGiu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiGiu.setText("Giù");
+        jButtonProdottiGiu.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonProdottiGiuMouseClicked(evt);
+            }
+        });
 
         jLabelProdottiStats.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
 
@@ -2364,7 +2561,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelProdottiListaLayout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addComponent(jScrollPaneProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonProdottiElimina))
         );
@@ -2381,37 +2578,44 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelProdottiLayout.setVerticalGroup(
             jPanelProdottiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelProdottiLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelProdottiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addComponent(jPanelProdottiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Prodotti", jPanelProdotti);
 
-        jPanelClientiInserimento2.setPreferredSize(new java.awt.Dimension(330, 550));
+        jPanelTareInserimento.setPreferredSize(new java.awt.Dimension(330, 550));
 
         jLabelClientiModifica2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabelClientiModifica2.setText("Modifica il cliente");
+        jLabelClientiModifica2.setText("Modifica la Tara");
 
-        jTextFieldClientiModifica2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jTextFieldClientiModifica2.addKeyListener(new java.awt.event.KeyAdapter()
+        jTextFieldTareModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jTextFieldTareModifica.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
             {
-                jTextFieldClientiModifica2KeyReleased(evt);
+                jTextFieldTareModificaKeyReleased(evt);
             }
         });
 
-        jButtonClientiModifica2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiModifica2.setText("Modifica");
-        jButtonClientiModifica2.addMouseListener(new java.awt.event.MouseAdapter()
+        jButtonTareModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonTareModifica.setText("Modifica");
+        jButtonTareModifica.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jButtonClientiModifica2MouseClicked(evt);
+                jButtonTareModificaMouseClicked(evt);
             }
         });
 
         jLabelTareModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelTareModifica.setText("jLabel2");
+        jLabelTareModifica.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabelTareModificaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -2420,8 +2624,8 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldClientiModifica2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonClientiModifica2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldTareModifica, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonTareModifica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabelClientiModifica2)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -2434,38 +2638,45 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabelClientiModifica2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldClientiModifica2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldTareModifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelTareModifica)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonClientiModifica2)
+                .addComponent(jButtonTareModifica)
                 .addContainerGap())
         );
 
         jLabelClientiSalva2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabelClientiSalva2.setText("Inserimento di nuovo Cliente");
+        jLabelClientiSalva2.setText("Inserimento di una nuova Tara");
 
-        jTextFieldClientiSalva2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jTextFieldClientiSalva2.addKeyListener(new java.awt.event.KeyAdapter()
+        jTextFieldTareSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jTextFieldTareSalva.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
             {
-                jTextFieldClientiSalva2KeyReleased(evt);
+                jTextFieldTareSalvaKeyReleased(evt);
             }
         });
 
-        jButtonClientiSalva2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiSalva2.setText("Salva");
-        jButtonClientiSalva2.addMouseListener(new java.awt.event.MouseAdapter()
+        jButtonTareSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonTareSalva.setText("Salva");
+        jButtonTareSalva.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jButtonClientiSalva2MouseClicked(evt);
+                jButtonTareSalvaMouseClicked(evt);
             }
         });
 
         jLabelTare.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelTare.setText("jLabel1");
+        jLabelTare.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabelTareMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -2474,11 +2685,11 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldClientiSalva2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonClientiSalva2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldTareSalva, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonTareSalva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jLabelClientiSalva2)
-                        .addGap(0, 64, Short.MAX_VALUE))
+                        .addGap(0, 46, Short.MAX_VALUE))
                     .addComponent(jLabelTare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2488,47 +2699,63 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabelClientiSalva2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldClientiSalva2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldTareSalva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTare)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonClientiSalva2)
+                .addComponent(jButtonTareSalva)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanelClientiInserimento2Layout = new javax.swing.GroupLayout(jPanelClientiInserimento2);
-        jPanelClientiInserimento2.setLayout(jPanelClientiInserimento2Layout);
-        jPanelClientiInserimento2Layout.setHorizontalGroup(
-            jPanelClientiInserimento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelTareInserimentoLayout = new javax.swing.GroupLayout(jPanelTareInserimento);
+        jPanelTareInserimento.setLayout(jPanelTareInserimentoLayout);
+        jPanelTareInserimentoLayout.setHorizontalGroup(
+            jPanelTareInserimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabelClientiLogo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelTareLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanelClientiInserimento2Layout.setVerticalGroup(
-            jPanelClientiInserimento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelClientiInserimento2Layout.createSequentialGroup()
+        jPanelTareInserimentoLayout.setVerticalGroup(
+            jPanelTareInserimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTareInserimentoLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelClientiLogo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTareLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButtonClientiOrdine2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiOrdine2.setText("Ordine");
-        jButtonClientiOrdine2.addMouseListener(new java.awt.event.MouseAdapter()
+        jButtonTareOrdine.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonTareOrdine.setText("Ordine");
+        jButtonTareOrdine.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jButtonClientiOrdine2MouseClicked(evt);
+                jButtonTareOrdineMouseClicked(evt);
             }
         });
 
-        jButtonClientiSu2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiSu2.setText("Su");
+        jButtonTareSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonTareSu.setText("Su");
+        jButtonTareSu.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonTareSuMouseClicked(evt);
+            }
+        });
 
-        jButtonClientiGiu2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiGiu2.setText("Giù");
+        jButtonTareGiu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonTareGiu.setText("Giù");
+        jButtonTareGiu.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonTareGiuMouseClicked(evt);
+            }
+        });
+
+        jLabelTareStats.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -2536,332 +2763,513 @@ public class Interfaccia extends javax.swing.JFrame
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonClientiOrdine2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonClientiSu2)
+                .addComponent(jButtonTareOrdine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonClientiGiu2)
+                .addComponent(jLabelTareStats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTareSu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTareGiu)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonClientiOrdine2)
-                    .addComponent(jButtonClientiSu2)
-                    .addComponent(jButtonClientiGiu2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonTareOrdine)
+                            .addComponent(jButtonTareSu)
+                            .addComponent(jButtonTareGiu))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabelTareStats, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jButtonClientiElimina2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jButtonClientiElimina2.setText("Elimina");
-        jButtonClientiElimina2.addMouseListener(new java.awt.event.MouseAdapter()
+        jButtonTareElimina.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButtonTareElimina.setText("Elimina");
+        jButtonTareElimina.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jButtonClientiElimina2MouseClicked(evt);
+                jButtonTareEliminaMouseClicked(evt);
             }
         });
 
-        jListClienti2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jListClienti2.setModel(new javax.swing.AbstractListModel<OrdinableObject>()
+        jListTare.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jListTare.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
             {
-                ArrayList<OrdinableObject> oa = dataBase.clienti;
+                jListTareValueChanged(evt);
+            }
+        });
+        jScrollPaneTare.setViewportView(jListTare);
+
+        javax.swing.GroupLayout jPanelClientiLista2Layout = new javax.swing.GroupLayout(jPanelClientiLista2);
+        jPanelClientiLista2.setLayout(jPanelClientiLista2Layout);
+        jPanelClientiLista2Layout.setHorizontalGroup(
+            jPanelClientiLista2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonTareElimina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+        );
+        jPanelClientiLista2Layout.setVerticalGroup(
+            jPanelClientiLista2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelClientiLista2Layout.createSequentialGroup()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTareElimina))
+        );
+
+        javax.swing.GroupLayout jPanelTareLayout = new javax.swing.GroupLayout(jPanelTare);
+        jPanelTare.setLayout(jPanelTareLayout);
+        jPanelTareLayout.setHorizontalGroup(
+            jPanelTareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTareLayout.createSequentialGroup()
+                .addComponent(jPanelTareInserimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelClientiLista2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelTareLayout.setVerticalGroup(
+            jPanelTareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelClientiLista2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelTareInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+        );
+
+        jTabbedPane.addTab("Tare", jPanelTare);
+
+        jComboBoxClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jComboBoxClienti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxClienti.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                jComboBoxClientiItemStateChanged(evt);
+            }
+        });
+
+        jComboBoxProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jComboBoxProdotti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProdotti.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                jComboBoxProdottiItemStateChanged(evt);
+            }
+        });
+
+        jComboBoxTare.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jComboBoxTare.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTare.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                jComboBoxTareItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxClienti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxProdotti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxTare, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBoxClienti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxProdotti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxTare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTextAreaOpzioni.setColumns(20);
+        jTextAreaOpzioni.setRows(5);
+        jTextAreaOpzioni.setLineWrap(true);
+        jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);
+        jScrollPaneOpzioni.setViewportView(jTextAreaOpzioni);
+
+        jToggleButtonDemoBilancia.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jToggleButtonDemoBilancia.setText("Demo Bilancia");
+
+        jSpinnerFont.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+
+        jSpinnerFontMedium.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+
+        jSpinnerFontBig.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(219, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        sviluppatore.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        sviluppatore.setText("Sviluppatore");
+        sviluppatore.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                sviluppatoreStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 211, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanelOptionsLayout = new javax.swing.GroupLayout(jPanelOptions);
+        jPanelOptions.setLayout(jPanelOptionsLayout);
+        jPanelOptionsLayout.setHorizontalGroup(
+            jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelOptionsLayout.createSequentialGroup()
+                .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelOptionsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                            .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelOptionsLayout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelOptionsLayout.setVerticalGroup(
+            jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelOptionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneOpzioni)
+                    .addGroup(jPanelOptionsLayout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                        .addComponent(sviluppatore)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButtonDemoBilancia))
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane.addTab("Opzioni", jPanelOptions);
+
+        jSplitPane4.setDividerLocation(-1);
+        jSplitPane4.setDividerSize(15);
+        jSplitPane4.setResizeWeight(0.33);
+
+        jListRemovedClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jListRemovedClienti.setModel(new javax.swing.AbstractListModel<OrdinableObject>()
+            {
+                ArrayList<OrdinableObject> oa = dataBase.removedClienti;
                 public int getSize() { return oa.size(); }
                 public OrdinableObject getElementAt(int i) { return oa.get(i); }
 
             });
-            jListClienti2.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+            jScrollPaneRemovedClienti.setViewportView(jListRemovedClienti);
+
+            jButtonRemovedClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButtonRemovedClienti.setText("Ripristina Cliente");
+            jButtonRemovedClienti.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButtonRemovedClientiMouseClicked(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+            jPanel4.setLayout(jPanel4Layout);
+            jPanel4Layout.setHorizontalGroup(
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPaneRemovedClienti, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jButtonRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            );
+            jPanel4Layout.setVerticalGroup(
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addComponent(jScrollPaneRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButtonRemovedClienti))
+            );
+
+            jSplitPane4.setLeftComponent(jPanel4);
+
+            jSplitPane5.setDividerLocation(-1);
+            jSplitPane5.setDividerSize(15);
+            jSplitPane5.setResizeWeight(0.66);
+
+            jButton10.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButton10.setText("Ripristina Prodotto");
+            jButton10.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButton10MouseClicked(evt);
+                }
+            });
+
+            jListRemovedProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jScrollPaneRemovedProdotti.setViewportView(jListRemovedProdotti);
+
+            javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+            jPanel5.setLayout(jPanel5Layout);
+            jPanel5Layout.setHorizontalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPaneRemovedProdotti, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            );
+            jPanel5Layout.setVerticalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                    .addComponent(jScrollPaneRemovedProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton10))
+            );
+
+            jSplitPane5.setLeftComponent(jPanel5);
+
+            jButton11.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButton11.setText("Ripristina Pesata");
+            jButton11.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButton11MouseClicked(evt);
+                }
+            });
+
+            jListRemovedPesate.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jScrollPaneRemovedPesate.setViewportView(jListRemovedPesate);
+
+            jButton12.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButton12.setText("ELIMINA PESATE");
+            jButton12.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButton12MouseClicked(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+            jPanel6.setLayout(jPanel6Layout);
+            jPanel6Layout.setHorizontalGroup(
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPaneRemovedPesate)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton12))
+            );
+            jPanel6Layout.setVerticalGroup(
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addComponent(jScrollPaneRemovedPesate, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton11)
+                        .addComponent(jButton12)))
+            );
+
+            jSplitPane5.setRightComponent(jPanel6);
+
+            jSplitPane4.setRightComponent(jSplitPane5);
+
+            javax.swing.GroupLayout jPanelRemovedLayout = new javax.swing.GroupLayout(jPanelRemoved);
+            jPanelRemoved.setLayout(jPanelRemovedLayout);
+            jPanelRemovedLayout.setHorizontalGroup(
+                jPanelRemovedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelRemovedLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jSplitPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+                    .addContainerGap())
+            );
+            jPanelRemovedLayout.setVerticalGroup(
+                jPanelRemovedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelRemovedLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jSplitPane4)
+                    .addContainerGap())
+            );
+
+            jTabbedPane.addTab("Cestino", jPanelRemoved);
+
+            jButtoBilanciaClienti1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButtoBilanciaClienti1.setText("order");
+            jButtoBilanciaClienti1.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButtoBilanciaClienti1MouseClicked(evt);
+                }
+            });
+
+            jListBilanciaClienti1.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
+            jListBilanciaClienti1.addListSelectionListener(new javax.swing.event.ListSelectionListener()
             {
                 public void valueChanged(javax.swing.event.ListSelectionEvent evt)
                 {
-                    jListClienti2ValueChanged(evt);
+                    jListBilanciaClienti1ValueChanged(evt);
                 }
             });
-            jScrollPaneTare.setViewportView(jListClienti2);
+            jScrollPaneBilanciaClienti1.setViewportView(jListBilanciaClienti1);
 
-            javax.swing.GroupLayout jPanelClientiLista2Layout = new javax.swing.GroupLayout(jPanelClientiLista2);
-            jPanelClientiLista2.setLayout(jPanelClientiLista2Layout);
-            jPanelClientiLista2Layout.setHorizontalGroup(
-                jPanelClientiLista2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonClientiElimina2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+            jPanel26.setLayout(jPanel26Layout);
+            jPanel26Layout.setHorizontalGroup(
+                jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jButtoBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPaneBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
             );
-            jPanelClientiLista2Layout.setVerticalGroup(
-                jPanelClientiLista2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelClientiLista2Layout.createSequentialGroup()
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            jPanel26Layout.setVerticalGroup(
+                jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel26Layout.createSequentialGroup()
+                    .addComponent(jButtoBilanciaClienti1)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
+            );
+
+            jButtonBilanciaProdotti1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButtonBilanciaProdotti1.setText("order");
+            jButtonBilanciaProdotti1.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButtonBilanciaProdotti1MouseClicked(evt);
+                }
+            });
+
+            jListBilanciaProdotti1.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
+            jListBilanciaProdotti1.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+            {
+                public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+                {
+                    jListBilanciaProdotti1ValueChanged(evt);
+                }
+            });
+            jScrollPaneBilanciaProdotti1.setViewportView(jListBilanciaProdotti1);
+
+            javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+            jPanel27.setLayout(jPanel27Layout);
+            jPanel27Layout.setHorizontalGroup(
+                jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jButtonBilanciaProdotti1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPaneBilanciaProdotti1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+            );
+            jPanel27Layout.setVerticalGroup(
+                jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel27Layout.createSequentialGroup()
+                    .addComponent(jButtonBilanciaProdotti1)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButtonClientiElimina2))
+                    .addComponent(jScrollPaneBilanciaProdotti1))
             );
 
-            javax.swing.GroupLayout jPanelTareLayout = new javax.swing.GroupLayout(jPanelTare);
-            jPanelTare.setLayout(jPanelTareLayout);
-            jPanelTareLayout.setHorizontalGroup(
-                jPanelTareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelTareLayout.createSequentialGroup()
-                    .addComponent(jPanelClientiInserimento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanelClientiLista2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-            jPanelTareLayout.setVerticalGroup(
-                jPanelTareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelClientiLista2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelClientiInserimento2, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-            );
+            jTextField1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jTextField1.setText("jTextField1");
 
-            jTabbedPane.addTab("Tare", jPanelTare);
+            jButton13.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButton13.setText("jButton13");
 
-            jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-            jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-            jComboBox3.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-            javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-            jPanel17.setLayout(jPanel17Layout);
-            jPanel17Layout.setHorizontalGroup(
-                jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel17Layout.createSequentialGroup()
+            javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+            jPanel25.setLayout(jPanel25Layout);
+            jPanel25Layout.setHorizontalGroup(
+                jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel25Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap())
-            );
-            jPanel17Layout.setVerticalGroup(
-                jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel17Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-
-            jTextAreaOpzioni.setColumns(20);
-            jTextAreaOpzioni.setRows(5);
-            jTextAreaOpzioni.setLineWrap(true);
-            jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);
-            jScrollPaneOpzioni.setViewportView(jTextAreaOpzioni);
-
-            jToggleButtonDemoBilancia.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jToggleButtonDemoBilancia.setText("Demo Bilancia");
-
-            jSpinnerFont.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-
-            jSpinnerFontMedium.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-
-            jSpinnerFontBig.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-
-            javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-            jPanel7.setLayout(jPanel7Layout);
-            jPanel7Layout.setHorizontalGroup(
-                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(224, Short.MAX_VALUE))
-            );
-            jPanel7Layout.setVerticalGroup(
-                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-
-            sviluppatore.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            sviluppatore.setSelected(true);
-            sviluppatore.setText("Sviluppatore");
-
-            javax.swing.GroupLayout jPanelOptionsLayout = new javax.swing.GroupLayout(jPanelOptions);
-            jPanelOptions.setLayout(jPanelOptionsLayout);
-            jPanelOptionsLayout.setHorizontalGroup(
-                jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                    .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
-                                .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
-                    .addContainerGap())
-            );
-            jPanelOptionsLayout.setVerticalGroup(
-                jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPaneOpzioni)
-                        .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                            .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel25Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(96, 96, 96))
+                        .addGroup(jPanel25Layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
-                            .addComponent(sviluppatore)
+                            .addComponent(jTextField1)
+                            .addContainerGap())
+                        .addGroup(jPanel25Layout.createSequentialGroup()
+                            .addGap(127, 127, 127)
+                            .addComponent(jButton13)
+                            .addContainerGap(92, Short.MAX_VALUE))))
+            );
+            jPanel25Layout.setVerticalGroup(
+                jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel25Layout.createSequentialGroup()
+                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jToggleButtonDemoBilancia)))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(159, 159, 159)
+                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addContainerGap())
             );
 
-            jTabbedPane.addTab("Opzioni", jPanelOptions);
+            jTabbedPane.addTab("tab9", jPanel25);
 
-            jListRemovedClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jListRemovedClienti.setModel(new javax.swing.AbstractListModel<OrdinableObject>()
-                {
-                    ArrayList<OrdinableObject> oa = dataBase.removedClienti;
-                    public int getSize() { return oa.size(); }
-                    public OrdinableObject getElementAt(int i) { return oa.get(i); }
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jTabbedPane)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jTabbedPane)
+            );
 
-                });
-                jScrollPaneRemovedClienti.setViewportView(jListRemovedClienti);
-
-                jButtonRemovedClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-                jButtonRemovedClienti.setText("Ripristina Cliente");
-                jButtonRemovedClienti.addMouseListener(new java.awt.event.MouseAdapter()
-                {
-                    public void mouseClicked(java.awt.event.MouseEvent evt)
-                    {
-                        jButtonRemovedClientiMouseClicked(evt);
-                    }
-                });
-
-                javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-                jPanel4.setLayout(jPanel4Layout);
-                jPanel4Layout.setHorizontalGroup(
-                    jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                    .addComponent(jButtonRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                );
-                jPanel4Layout.setVerticalGroup(
-                    jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPaneRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonRemovedClienti))
-                );
-
-                jButton10.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-                jButton10.setText("Ripristina Prodotto");
-
-                jList1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-                jScrollPaneRemovedProdotti.setViewportView(jList1);
-
-                javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-                jPanel5.setLayout(jPanel5Layout);
-                jPanel5Layout.setHorizontalGroup(
-                    jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneRemovedProdotti)
-                );
-                jPanel5Layout.setVerticalGroup(
-                    jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jScrollPaneRemovedProdotti)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10))
-                );
-
-                jButton11.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-                jButton11.setText("Ripristina Pesata");
-                jButton11.addMouseListener(new java.awt.event.MouseAdapter()
-                {
-                    public void mouseClicked(java.awt.event.MouseEvent evt)
-                    {
-                        jButton11MouseClicked(evt);
-                    }
-                });
-
-                jListRemovedPesate.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-                jScrollPaneRemovedPesate.setViewportView(jListRemovedPesate);
-
-                jButton12.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-                jButton12.setText("ELIMINA PESATE");
-                jButton12.addMouseListener(new java.awt.event.MouseAdapter()
-                {
-                    public void mouseClicked(java.awt.event.MouseEvent evt)
-                    {
-                        jButton12MouseClicked(evt);
-                    }
-                });
-
-                javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-                jPanel6.setLayout(jPanel6Layout);
-                jPanel6Layout.setHorizontalGroup(
-                    jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneRemovedPesate, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12))
-                );
-                jPanel6Layout.setVerticalGroup(
-                    jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPaneRemovedPesate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton11)
-                            .addComponent(jButton12)))
-                );
-
-                javax.swing.GroupLayout jPanelRemovedLayout = new javax.swing.GroupLayout(jPanelRemoved);
-                jPanelRemoved.setLayout(jPanelRemovedLayout);
-                jPanelRemovedLayout.setHorizontalGroup(
-                    jPanelRemovedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRemovedLayout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                );
-                jPanelRemovedLayout.setVerticalGroup(
-                    jPanelRemovedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                );
-
-                jTabbedPane.addTab("Cestino", jPanelRemoved);
-
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                getContentPane().setLayout(layout);
-                layout.setHorizontalGroup(
-                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane)
-                );
-                layout.setVerticalGroup(
-                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane)
-                );
-
-                pack();
-                setLocationRelativeTo(null);
-            }// </editor-fold>//GEN-END:initComponents
+            pack();
+            setLocationRelativeTo(null);
+        }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_jTabbedPaneStateChanged
     {//GEN-HEADEREND:event_jTabbedPaneStateChanged
@@ -2872,7 +3280,7 @@ public class Interfaccia extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButtonClientiSalvaMouseClicked
         if(!jTextFieldClientiSalva.getText().isEmpty())
         {
-            if(!dataBase.clienti.exist(jTextFieldClientiSalva.getText()))
+            if(dataBase.clienti.exist(jTextFieldClientiSalva.getText()) == null)
             {
                 Cliente c = new Cliente(
                         dataBase.clienti.getNewId(),
@@ -2885,6 +3293,8 @@ public class Interfaccia extends javax.swing.JFrame
                         )
                 );
                 dataBase.clienti.add(c);
+                
+                orderClienti();
                 infoBox("Inserimento nuovo Cliente", jTextFieldClientiSalva.getText() + " è stato inserito");
                 
                 dataBase.saveClienti();
@@ -2930,7 +3340,7 @@ public class Interfaccia extends javax.swing.JFrame
         {
             if(!jTextFieldClientiModifica.getText().isEmpty())
             {
-                if(!dataBase.clienti.exist(jTextFieldClientiModifica.getText()))
+                if(dataBase.clienti.exist(jTextFieldClientiModifica.getText()) == null)
                 {
                     OrdinableObject c = jListClienti.getSelectedValue();
                     Cliente cl = (Cliente)dataBase.clienti.get(c.getId());
@@ -3009,6 +3419,7 @@ public class Interfaccia extends javax.swing.JFrame
             {
                 infoBox("Ripristino Cliente", name + "\nè stato ripristinato");
                 dataBase.clienti.add(cl);
+                orderClienti();
                 dataBase.saveClienti();
                 dataBase.saveRemovedClienti();
                 updatejPanelRemoved();
@@ -3043,16 +3454,17 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jTextFieldBilanciaNettoKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldBilanciaNettoKeyReleased
     {//GEN-HEADEREND:event_jTextFieldBilanciaNettoKeyReleased
-        /*try
+        try
         {
-            float valore = Float.parseFloat(jTextFieldQuantitaRichiesta.getText());
-            quantita = valore;
+            jTextFieldBilanciaNetto.setText(Utility.safeNumber(jTextFieldBilanciaNetto.getText()));
+            float valore = Float.parseFloat(jTextFieldBilanciaNetto.getText());
+            netto = valore;
         }
         catch(NumberFormatException e)
         {
-            quantita = 0;
-            System.out.println(e.toString());
-        }*/
+            netto = 0;
+            log(e.toString());
+        }
     }//GEN-LAST:event_jTextFieldBilanciaNettoKeyReleased
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton7MouseClicked
@@ -3121,21 +3533,22 @@ public class Interfaccia extends javax.swing.JFrame
                 netto,
                 GregorianCalendar.getInstance()));
             
-            jListBilanciaClienti.setEnabled(false);
+            setEnableNotBilancia(false);
+            
             netto = 0;
             jTextFieldBilanciaNetto.setText("");
             updatejListBilanciaScontrino();
         }
     }//GEN-LAST:event_jButtonBilanciaAggiungiMouseClicked
 
+    
     private void jTextFieldBilanciaTaraMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTextFieldBilanciaTaraMouseClicked
     {//GEN-HEADEREND:event_jTextFieldBilanciaTaraMouseClicked
-        /*log("jTextFieldBilanciaTaraMouseClicked");
         InterfacciaTara interfacciaTara = new InterfacciaTara(font, fontBig);
-        oTare.set(Ordinamento.CARDINALE);
-        ordinaTare();
+        oTare.set(Order.CARDINAL);
+        orderTare();
         this.setEnabled(false);
-        interfacciaTara.setVisible(true);*/
+        interfacciaTara.setVisible(true);
     }//GEN-LAST:event_jTextFieldBilanciaTaraMouseClicked
 
     private void jTextFieldBilanciaTaraKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldBilanciaTaraKeyReleased
@@ -3157,7 +3570,7 @@ public class Interfaccia extends javax.swing.JFrame
             updatejListBilanciaScontrino();
             if(bilanciaArrayPesate.isEmpty())
             {
-                jListBilanciaClienti.setEnabled(true);
+                setEnableNotBilancia(true);
             }
         }
     }//GEN-LAST:event_jButtonBilanciaEliminaMouseClicked
@@ -3206,7 +3619,7 @@ public class Interfaccia extends javax.swing.JFrame
                     updatejListBilanciaScontrino();
                     Registro.progressionBar.progress();
 
-                    jListBilanciaClienti.setEnabled(true);
+                    setEnableNotBilancia(true);
                     float tara = 0;
                     updateTara(tara);
                     Registro.progressionBar.progress();
@@ -3261,6 +3674,11 @@ public class Interfaccia extends javax.swing.JFrame
                 {
                     cliente = (Cliente)c;
                     jLabelBilanciaCliente.setText(Utility.getMax(maxCharBilancia, c.getName()));
+                    if(oProdotti.get() == Order.FREQUENCY)
+                    {
+                        updateClientFrequency();
+                        updatejList(jListBilanciaProdotti, dataBase.prodotti);
+                    }
                 }
             }
         }
@@ -3298,24 +3716,57 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jTextFieldProdottiModificaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldProdottiModificaKeyReleased
     {//GEN-HEADEREND:event_jTextFieldProdottiModificaKeyReleased
-        // TODO add your handling code here:
+        jTextFieldProdottiModifica.setText(Utility.safeName(jTextFieldProdottiModifica.getText()));
     }//GEN-LAST:event_jTextFieldProdottiModificaKeyReleased
 
     private void jButtonProdottiModificaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonProdottiModificaMouseClicked
     {//GEN-HEADEREND:event_jButtonProdottiModificaMouseClicked
-        // TODO add your handling code here:
+        if(jListProdotti.getSelectedIndex() != -1)
+        {
+            if(!jTextFieldProdottiModifica.getText().isEmpty())
+            {
+                Prodotto esistente = (Prodotto)dataBase.prodotti.exist(jTextFieldProdottiModifica.getText());
+                UnitOfMeasure unitOfMeasure = UnitOfMeasure.QUANTITY;
+                if(jToggleButtonProdottiModifyUnit.isSelected())
+                {
+                    unitOfMeasure = UnitOfMeasure.KILOGRAMMO;
+                }
+                if(!(esistente != null && esistente.unitOfMeasure == unitOfMeasure))
+                {
+                    OrdinableObject c = jListProdotti.getSelectedValue();
+                    Prodotto p = (Prodotto)dataBase.prodotti.get(c.getId());
+                    p.setName(jTextFieldProdottiModifica.getText());
+                    p.unitOfMeasure = unitOfMeasure;
+                    dataBase.saveProdotti();
+                    updatejList(jListProdotti, dataBase.prodotti);
+                    jTextFieldProdottiModifica.setText("");
+                }
+                else
+                {
+                    infoBox("ATTENZIONE", "Cliente già esistente", Color.red);
+                }
+            }
+            else
+            {
+                infoBox("ATTENZIONE", "Nessun nome inserito", Color.red);
+            }
+        }
+        else
+        {
+            infoBox("ATTENZIONE", "Seleziona prima un cliente dalla lista", Color.red);
+        }
     }//GEN-LAST:event_jButtonProdottiModificaMouseClicked
 
     private void jTextFieldProdottiSalvaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldProdottiSalvaKeyReleased
     {//GEN-HEADEREND:event_jTextFieldProdottiSalvaKeyReleased
-        // TODO add your handling code here:
+        jTextFieldProdottiSalva.setText(Utility.safeName(jTextFieldProdottiSalva.getText()));
     }//GEN-LAST:event_jTextFieldProdottiSalvaKeyReleased
 
     private void jButtonProdottiSalvaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonProdottiSalvaMouseClicked
     {//GEN-HEADEREND:event_jButtonProdottiSalvaMouseClicked
         if(!jTextFieldProdottiSalva.getText().isEmpty())
         {
-            if(!dataBase.prodotti.exist(jTextFieldProdottiSalva.getText()))
+            if(dataBase.prodotti.exist(jTextFieldProdottiSalva.getText()) == null)
             {
                 UnitOfMeasure unitOfMeasure = UnitOfMeasure.QUANTITY;
                 if(jToggleButtonProdottiSaveUnit.isSelected())
@@ -3329,6 +3780,8 @@ public class Interfaccia extends javax.swing.JFrame
                         unitOfMeasure
                 );
                 dataBase.prodotti.add(c);
+                
+                orderProdotti();
                 infoBox("Inserimento nuovo Prodotto", jTextFieldProdottiSalva.getText() + " è stato inserito");
                 
                 dataBase.saveProdotti();
@@ -3349,18 +3802,42 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jButtonProdottiOrdineMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonProdottiOrdineMouseClicked
     {//GEN-HEADEREND:event_jButtonProdottiOrdineMouseClicked
-        if(oProdotti.getNext() == Order.FREQUENCY)
+        Order order = oProdotti.getNext();
+        if(order == Order.FREQUENCY)
         {
             oProdotti.getNext();
         }
-        oProdotti.getNext();
         orderProdotti();
         updatejList(jListProdotti, dataBase.prodotti);
     }//GEN-LAST:event_jButtonProdottiOrdineMouseClicked
 
     private void jButtonProdottiEliminaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonProdottiEliminaMouseClicked
     {//GEN-HEADEREND:event_jButtonProdottiEliminaMouseClicked
-        // TODO add your handling code here:
+        if(jListProdotti.getSelectedIndex() != -1)
+        {
+            OrdinableObject cl = jListProdotti.getSelectedValue();
+             
+            String name = cl.getName();
+            
+            boolean esito = dataBase.prodotti.remove(cl.getId());
+            
+            if(esito)
+            {
+                infoBox("Eliminazione Prodotto", name + "\nè stato eliminato");
+                dataBase.removedProdotti.add(cl);
+                dataBase.saveProdotti();
+                dataBase.saveRemovedProdotti();
+                updatejPanelProdotti();
+            }
+            else
+            {
+                infoBox("ATTENZIONE", "Non è stato possibile eliminare\n" + name, Color.red);
+            }
+        }
+        else
+        {
+            infoBox("ATTENZIONE", "Seleziona prima un prodotto dalla lista", Color.red);
+        }
     }//GEN-LAST:event_jButtonProdottiEliminaMouseClicked
 
     private void jListProdottiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListProdottiValueChanged
@@ -3387,40 +3864,112 @@ public class Interfaccia extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jListProdottiValueChanged
 
-    private void jTextFieldClientiModifica2KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldClientiModifica2KeyReleased
-    {//GEN-HEADEREND:event_jTextFieldClientiModifica2KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldClientiModifica2KeyReleased
+    private void jTextFieldTareModificaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldTareModificaKeyReleased
+    {//GEN-HEADEREND:event_jTextFieldTareModificaKeyReleased
+        jTextFieldTareModifica.setText(Utility.safeName(jTextFieldTareModifica.getText()));
+    }//GEN-LAST:event_jTextFieldTareModificaKeyReleased
 
-    private void jButtonClientiModifica2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonClientiModifica2MouseClicked
-    {//GEN-HEADEREND:event_jButtonClientiModifica2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClientiModifica2MouseClicked
+    private void jButtonTareModificaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareModificaMouseClicked
+    {//GEN-HEADEREND:event_jButtonTareModificaMouseClicked
+        if(jListTare.getSelectedIndex() != -1)
+        {
+            if(!jTextFieldTareModifica.getText().isEmpty())
+            {
+                Tara esistente = (Tara)dataBase.tare.exist(jTextFieldTareModifica.getText());
+                
+                if(!(esistente != null && esistente.quantity == lordo))
+                {
+                    OrdinableObject c = jListTare.getSelectedValue();
+                    Tara t = (Tara)dataBase.tare.get(c.getId());
+                    t.setName(jTextFieldTareModifica.getText());
+                    t.quantity = lordo;
+                    dataBase.saveTare();
+                    updatejPanelTare();
+                }
+                else
+                {
+                    infoBox("ATTENZIONE", "Tara già esistente", Color.red);
+                }
+            }
+            else
+            {
+                infoBox("ATTENZIONE", "Nessun nome inserito", Color.red);
+            }
+        }
+        else
+        {
+            infoBox("ATTENZIONE", "Seleziona prima una tara dalla lista", Color.red);
+        }
+    }//GEN-LAST:event_jButtonTareModificaMouseClicked
 
-    private void jTextFieldClientiSalva2KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldClientiSalva2KeyReleased
-    {//GEN-HEADEREND:event_jTextFieldClientiSalva2KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldClientiSalva2KeyReleased
+    private void jTextFieldTareSalvaKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldTareSalvaKeyReleased
+    {//GEN-HEADEREND:event_jTextFieldTareSalvaKeyReleased
+        jTextFieldTareSalva.setText(Utility.safeName(jTextFieldTareSalva.getText()));
+    }//GEN-LAST:event_jTextFieldTareSalvaKeyReleased
 
-    private void jButtonClientiSalva2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonClientiSalva2MouseClicked
-    {//GEN-HEADEREND:event_jButtonClientiSalva2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClientiSalva2MouseClicked
+    private void jButtonTareSalvaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareSalvaMouseClicked
+    {//GEN-HEADEREND:event_jButtonTareSalvaMouseClicked
+        if(!jTextFieldTareSalva.getText().isEmpty())
+        {
+            if(dataBase.tare.exist(jTextFieldTareSalva.getText()) == null)
+            {
+                Tara c = new Tara(
+                        dataBase.tare.getNewId(),
+                        dataBase.tare.getNewCardinale(),
+                        jTextFieldTareSalva.getText(),
+                        lordo
+                );
+                dataBase.tare.add(c);
+                orderTare();
+                infoBox("Inserimento nuova Tara", jTextFieldTareSalva.getText() + " è stata inserita");
+                
+                dataBase.saveTare();
+                
+                updatejPanelTare();
+            }
+            else
+            {
+                infoBox("ATTENZIONE", jTextFieldClientiSalva.getText() + "\n è già presente! Non è stata inserita", Color.red);
+            }
+        }
+        else
+        {
+            infoBox("ATTENZIONE", "Nessun nome inserito", Color.red);
+        }
+    }//GEN-LAST:event_jButtonTareSalvaMouseClicked
 
-    private void jButtonClientiOrdine2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonClientiOrdine2MouseClicked
-    {//GEN-HEADEREND:event_jButtonClientiOrdine2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClientiOrdine2MouseClicked
+    private void jButtonTareOrdineMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareOrdineMouseClicked
+    {//GEN-HEADEREND:event_jButtonTareOrdineMouseClicked
+        oTare.getNext();
+        orderTare();
+        updatejList(jListTare, dataBase.tare);     // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTareOrdineMouseClicked
 
-    private void jButtonClientiElimina2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonClientiElimina2MouseClicked
-    {//GEN-HEADEREND:event_jButtonClientiElimina2MouseClicked
+    private void jButtonTareEliminaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareEliminaMouseClicked
+    {//GEN-HEADEREND:event_jButtonTareEliminaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonClientiElimina2MouseClicked
+    }//GEN-LAST:event_jButtonTareEliminaMouseClicked
 
-    private void jListClienti2ValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListClienti2ValueChanged
-    {//GEN-HEADEREND:event_jListClienti2ValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jListClienti2ValueChanged
+    private void jListTareValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListTareValueChanged
+    {//GEN-HEADEREND:event_jListTareValueChanged
+        if(!evt.getValueIsAdjusting())
+        {
+            if(jListTare.getSelectedIndex() != -1)
+            {
+                OrdinableObject c = jListTare.getSelectedValue();
+                Tara t = (Tara)dataBase.tare.get(c.getId());
+                jTextFieldTareModifica.setText(t.getName());
+                if(sviluppatore.isSelected())
+                {
+                    jLabelTareStats.setText(
+                            t.getId() + " " +
+                            t.getCardinal() + " " +
+                            t.quantity
+                    );
+                }
+            }
+        }
+    }//GEN-LAST:event_jListTareValueChanged
 
     private void jListTotaliClientiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListTotaliClientiValueChanged
     {//GEN-HEADEREND:event_jListTotaliClientiValueChanged
@@ -3438,57 +3987,26 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jButtonSaveTotaliMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonSaveTotaliMouseClicked
     {//GEN-HEADEREND:event_jButtonSaveTotaliMouseClicked
-        /*Runnable runner = new Runnable()
+        Runnable runner = new Runnable()
         {
-            public void run()
-            {
+            public void run() {
                 Calendar data = Calendar.getInstance();
                 data.setTime(jXDatePickerTotali.getDate());
-                dataBase.salvaFileTotali(data);
-                String file = StarterClass.getResource().replace("Bollettario.jar", "");
-
+                dataBase.saveFileTotali(data);
             }
         };
         Thread t = new Thread(runner, "Code Executer");
         t.start();
-        /*
-        JLabel label = new JLabel("Apri la cartella dei salvataggi");
-        label.setFont(fontBig);
-        int reply = JOptionPane.showConfirmDialog(null, label, "Salvataggio Mensile", JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION)
-        {
-            String file = StarterClass.getResource().replace("Bollettario.jar", "");
-            file = file.substring(1);
-            if(file != null)
-            {
-                try
-                {
-
-                    Runtime.getRuntime().exec(
-                        new String[]
-                        {
-                            "explorer.exe",
-                            "/select,",
-                            "\"" + file+dataBase.pathSalvataggi+"\""
-                        });
-                        jTextAreaUltimaStampa.setText("explorer.exe /select,\"" + file+dataBase.pathSalvataggi+"/\"");
-                    }
-                    catch (IOException ex)
-                    {
-                        Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }*/
     }//GEN-LAST:event_jButtonSaveTotaliMouseClicked
 
     private void jButtonTotaliSalvaSettimanaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTotaliSalvaSettimanaMouseClicked
     {//GEN-HEADEREND:event_jButtonTotaliSalvaSettimanaMouseClicked
-        /*int indiceCliente = jListTotaliClienti.getSelectedIndex();
+        int indiceCliente = jListTotaliClienti.getSelectedIndex();
         if(indiceCliente != -1)
         {
-            long idCliente = dataBase.elencoClienti.get(indiceCliente).getId();
-            dataBase.salvaTotaliSettimana(idCliente, firstDay, lastDay);
-        }*/
+            long idCliente = dataBase.clienti.get(jListTotaliClienti.getSelectedValue().getId()).getId();
+            dataBase.saveTotaliSettimana(idCliente, firstDay, lastDay);
+        }
     }//GEN-LAST:event_jButtonTotaliSalvaSettimanaMouseClicked
 
     private void jButtonTotaliOrdinamentoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTotaliOrdinamentoMouseClicked
@@ -3587,23 +4105,23 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jButtonPesateRistampaScontrinoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonPesateRistampaScontrinoMouseClicked
     {//GEN-HEADEREND:event_jButtonPesateRistampaScontrinoMouseClicked
-        /*int indicePesata = jListPesatePesate.getSelectedIndex();
+        int indicePesata = jListPesate.getSelectedIndex();
         int indiceCliente = jListPesateClienti.getSelectedIndex();
         if(indicePesata != -1 && indiceCliente != -1)
         {
-            long idPesata = idPesateClienteMese.get(indicePesata);
-            Pesata p = (Pesata) dataBase.elencoPesate.get(idPesata);
-            ElencoOggettiOrdinabili ristampaPesate = new ElencoOggettiOrdinabili();
-            for(long idP: idPesateClienteMese)
+            Pesata p = (Pesata) dataBase.pesate.get(jListPesate.getSelectedValue().id);
+            PesateArray ristampaPesate = new PesateArray(0);
+            for(int i=0; i<jListPesate.getModel().getSize(); i++)
             {
-                Pesata p2 = (Pesata) dataBase.elencoPesate.get(idP);
-                if(p2.data.get(Calendar.DAY_OF_MONTH) == p.data.get(Calendar.DAY_OF_MONTH))
+                
+                Pesata p2 = (Pesata) dataBase.pesate.get(jListPesate.getModel().getElementAt(i).id);
+                if(p2.time.get(Calendar.DAY_OF_MONTH) == p.time.get(Calendar.DAY_OF_MONTH))
                 {
                     ristampaPesate.add(p2);
                 }
             }
             elaboraStampa(ristampaPesate);
-        }*/
+        }
     }//GEN-LAST:event_jButtonPesateRistampaScontrinoMouseClicked
 
     private void jListPesateClientiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListPesateClientiValueChanged
@@ -3741,14 +4259,163 @@ public class Interfaccia extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jTabbedPaneMouseReleased
 
+    private void jButtonClientiSuMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonClientiSuMouseClicked
+    {//GEN-HEADEREND:event_jButtonClientiSuMouseClicked
+        if(jButtonClientiSu.isEnabled())
+        {
+            swapCardinalClienti(Behavior.DECREASING);
+        }
+    }//GEN-LAST:event_jButtonClientiSuMouseClicked
+
+    private void jButtonClientiGiuMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonClientiGiuMouseClicked
+    {//GEN-HEADEREND:event_jButtonClientiGiuMouseClicked
+        if(jButtonClientiGiu.isEnabled())
+        {
+            swapCardinalClienti(Behavior.INCREASING);
+        }
+    }//GEN-LAST:event_jButtonClientiGiuMouseClicked
+
+    private void jButtonProdottiSuMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonProdottiSuMouseClicked
+    {//GEN-HEADEREND:event_jButtonProdottiSuMouseClicked
+        if(jButtonProdottiSu.isEnabled())
+        {
+            swapCardinalProdotti(Behavior.DECREASING);
+        }
+    }//GEN-LAST:event_jButtonProdottiSuMouseClicked
+
+    private void jButtonProdottiGiuMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonProdottiGiuMouseClicked
+    {//GEN-HEADEREND:event_jButtonProdottiGiuMouseClicked
+        if(jButtonProdottiGiu.isEnabled())
+        {
+            swapCardinalProdotti(Behavior.INCREASING);
+        }
+    }//GEN-LAST:event_jButtonProdottiGiuMouseClicked
+
+    private void jButtonTareSuMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareSuMouseClicked
+    {//GEN-HEADEREND:event_jButtonTareSuMouseClicked
+        if(jButtonTareSu.isEnabled())
+        {
+            swapCardinalTare(Behavior.DECREASING);
+        }
+    }//GEN-LAST:event_jButtonTareSuMouseClicked
+
+    private void jButtonTareGiuMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareGiuMouseClicked
+    {//GEN-HEADEREND:event_jButtonTareGiuMouseClicked
+        if(jButtonTareGiu.isEnabled())
+        {
+            swapCardinalTare(Behavior.INCREASING);
+        }
+    }//GEN-LAST:event_jButtonTareGiuMouseClicked
+
+    private void jLabelTareMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabelTareMouseClicked
+    {//GEN-HEADEREND:event_jLabelTareMouseClicked
+        jTextFieldTareSalva.setText(String.format("%.3f", lordo) + "");        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelTareMouseClicked
+
+    private void jLabelTareModificaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabelTareModificaMouseClicked
+    {//GEN-HEADEREND:event_jLabelTareModificaMouseClicked
+        jTextFieldTareModifica.setText(String.format("%.3f", lordo) + "");
+    }//GEN-LAST:event_jLabelTareModificaMouseClicked
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton10MouseClicked
+    {//GEN-HEADEREND:event_jButton10MouseClicked
+        if(jListRemovedProdotti.getSelectedIndex() != -1)
+        {
+            OrdinableObject cl = jListRemovedProdotti.getSelectedValue();
+             
+            String name = cl.getName();
+            
+            boolean esito = dataBase.removedProdotti.remove(cl.getId());
+            
+            if(esito)
+            {
+                infoBox("Ripristino Prodotto", name + "\nè stato ripristinato");
+                dataBase.prodotti.add(cl);
+                orderProdotti();
+                dataBase.saveProdotti();
+                dataBase.saveRemovedProdotti();
+                updatejPanelRemoved();
+            }
+            else
+            {
+                infoBox("ATTENZIONE", "Non è stato possibile Ripristinare\n" + name, Color.red);
+            }
+        }
+        else
+        {
+            infoBox("ATTENZIONE", "Seleziona prima un Prodotto dalla lista", Color.red);
+        }
+    }//GEN-LAST:event_jButton10MouseClicked
+
+    private void jComboBoxClientiItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxClientiItemStateChanged
+    {//GEN-HEADEREND:event_jComboBoxClientiItemStateChanged
+        if(!inizialization)
+        {
+            Registro.settings.orderClienti = jComboBoxClienti.getSelectedIndex();
+            Registro.saveSettings();
+        }
+    }//GEN-LAST:event_jComboBoxClientiItemStateChanged
+
+    private void jComboBoxProdottiItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxProdottiItemStateChanged
+    {//GEN-HEADEREND:event_jComboBoxProdottiItemStateChanged
+        if(!inizialization)
+        {
+            Registro.settings.orderProdotti = jComboBoxProdotti.getSelectedIndex();
+            Registro.saveSettings();
+        }
+    }//GEN-LAST:event_jComboBoxProdottiItemStateChanged
+
+    private void jComboBoxTareItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxTareItemStateChanged
+    {//GEN-HEADEREND:event_jComboBoxTareItemStateChanged
+        if(!inizialization)
+        {
+            Registro.settings.orderTare = jComboBoxTare.getSelectedIndex();
+            Registro.saveSettings();
+        }
+    }//GEN-LAST:event_jComboBoxTareItemStateChanged
+
+    private void jButtoBilanciaClienti1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtoBilanciaClienti1MouseClicked
+    {//GEN-HEADEREND:event_jButtoBilanciaClienti1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtoBilanciaClienti1MouseClicked
+
+    private void jListBilanciaClienti1ValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListBilanciaClienti1ValueChanged
+    {//GEN-HEADEREND:event_jListBilanciaClienti1ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jListBilanciaClienti1ValueChanged
+
+    private void jButtonBilanciaProdotti1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonBilanciaProdotti1MouseClicked
+    {//GEN-HEADEREND:event_jButtonBilanciaProdotti1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBilanciaProdotti1MouseClicked
+
+    private void jListBilanciaProdotti1ValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListBilanciaProdotti1ValueChanged
+    {//GEN-HEADEREND:event_jListBilanciaProdotti1ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jListBilanciaProdotti1ValueChanged
+
+    private void sviluppatoreStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_sviluppatoreStateChanged
+    {//GEN-HEADEREND:event_sviluppatoreStateChanged
+        if(sviluppatore.isSelected())
+        {
+            jTabbedPane.setEnabledAt(8, true);
+        }
+        else
+        {
+            jTabbedPane.setEnabledAt(8, false);;
+        }
+    }//GEN-LAST:event_sviluppatoreStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtoBilanciaClienti;
+    private javax.swing.JButton jButtoBilanciaClienti1;
     private javax.swing.JButton jButton0;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3760,20 +4427,15 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButtonBilanciaAggiungi;
     private javax.swing.JButton jButtonBilanciaElimina;
     private javax.swing.JButton jButtonBilanciaProdotti;
+    private javax.swing.JButton jButtonBilanciaProdotti1;
     private javax.swing.JButton jButtonBilanciaStampa;
     private javax.swing.JButton jButtonBilanciaTara;
     private javax.swing.JButton jButtonClientiElimina;
-    private javax.swing.JButton jButtonClientiElimina2;
     private javax.swing.JButton jButtonClientiGiu;
-    private javax.swing.JButton jButtonClientiGiu2;
     private javax.swing.JButton jButtonClientiModifica;
-    private javax.swing.JButton jButtonClientiModifica2;
     private javax.swing.JButton jButtonClientiOrdine;
-    private javax.swing.JButton jButtonClientiOrdine2;
     private javax.swing.JButton jButtonClientiSalva;
-    private javax.swing.JButton jButtonClientiSalva2;
-    private javax.swing.JButton jButtonClientiSu2;
-    private javax.swing.JButton jButtonClientiiSu;
+    private javax.swing.JButton jButtonClientiSu;
     private javax.swing.JButton jButtonPesateCambiaCliente;
     private javax.swing.JButton jButtonPesateElimina;
     private javax.swing.JButton jButtonPesateModifica;
@@ -3787,11 +4449,17 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButtonProdottiSu;
     private javax.swing.JButton jButtonRemovedClienti;
     private javax.swing.JButton jButtonSaveTotali;
+    private javax.swing.JButton jButtonTareElimina;
+    private javax.swing.JButton jButtonTareGiu;
+    private javax.swing.JButton jButtonTareModifica;
+    private javax.swing.JButton jButtonTareOrdine;
+    private javax.swing.JButton jButtonTareSalva;
+    private javax.swing.JButton jButtonTareSu;
     private javax.swing.JButton jButtonTotaliOrdinamento;
     private javax.swing.JButton jButtonTotaliSalvaSettimana;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBoxClienti;
+    private javax.swing.JComboBox<String> jComboBoxProdotti;
+    private javax.swing.JComboBox<String> jComboBoxTare;
     private javax.swing.JLabel jLabeBilanciaProdotto;
     private javax.swing.JLabel jLabelBilanciaCliente;
     private javax.swing.JLabel jLabelBilanciaLogo;
@@ -3799,7 +4467,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JLabel jLabelBilanciaTotalePesaScontrino;
     private javax.swing.JLabel jLabelBilanciaTotaleTitle;
     private javax.swing.JLabel jLabelClientiLogo;
-    private javax.swing.JLabel jLabelClientiLogo2;
     private javax.swing.JLabel jLabelClientiModifica;
     private javax.swing.JLabel jLabelClientiModifica2;
     private javax.swing.JLabel jLabelClientiSalva;
@@ -3812,20 +4479,24 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JLabel jLabelProdottiSalva;
     private javax.swing.JLabel jLabelProdottiStats;
     private javax.swing.JLabel jLabelTare;
+    private javax.swing.JLabel jLabelTareLogo;
     private javax.swing.JLabel jLabelTareModifica;
+    private javax.swing.JLabel jLabelTareStats;
     private javax.swing.JLabel jLabelTotaliLogo;
-    private javax.swing.JList<OrdinableObject> jList1;
     private javax.swing.JList<OrdinableObject> jListBilanciaClienti;
+    private javax.swing.JList<OrdinableObject> jListBilanciaClienti1;
     private javax.swing.JList<OrdinableObject> jListBilanciaProdotti;
+    private javax.swing.JList<OrdinableObject> jListBilanciaProdotti1;
     private javax.swing.JList<IdName> jListBilanciaScontrino;
     private javax.swing.JList<OrdinableObject> jListClienti;
-    private javax.swing.JList<OrdinableObject> jListClienti2;
     private javax.swing.JList<IdName> jListPesate;
     private javax.swing.JList<OrdinableObject> jListPesateCambiaCliente;
     private javax.swing.JList<OrdinableObject> jListPesateClienti;
     private javax.swing.JList<OrdinableObject> jListProdotti;
     private javax.swing.JList<OrdinableObject> jListRemovedClienti;
     private javax.swing.JList<IdName> jListRemovedPesate;
+    private javax.swing.JList<OrdinableObject> jListRemovedProdotti;
+    private javax.swing.JList<OrdinableObject> jListTare;
     private javax.swing.JList<OrdinableObject> jListTotaliClienti;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -3837,12 +4508,16 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -3856,7 +4531,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanelBilanciaLogo;
     private javax.swing.JPanel jPanelClienti;
     private javax.swing.JPanel jPanelClientiInserimento;
-    private javax.swing.JPanel jPanelClientiInserimento2;
     private javax.swing.JPanel jPanelClientiLista;
     private javax.swing.JPanel jPanelClientiLista2;
     private javax.swing.JPanel jPanelOptions;
@@ -3866,9 +4540,12 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanelProdottiLista;
     private javax.swing.JPanel jPanelRemoved;
     private javax.swing.JPanel jPanelTare;
+    private javax.swing.JPanel jPanelTareInserimento;
     private javax.swing.JPanel jPanelTotali;
     private javax.swing.JScrollPane jScrollPaneBilanciaClienti;
+    private javax.swing.JScrollPane jScrollPaneBilanciaClienti1;
     private javax.swing.JScrollPane jScrollPaneBilanciaProdotti;
+    private javax.swing.JScrollPane jScrollPaneBilanciaProdotti1;
     private javax.swing.JScrollPane jScrollPaneBilanciaScontrino;
     private javax.swing.JScrollPane jScrollPaneClienti;
     private javax.swing.JScrollPane jScrollPaneOpzioni;
@@ -3888,21 +4565,25 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JSplitPane jSplitPane4;
+    private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JSplitPane jSplitPaneBilancia;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTable jTableTotaliMensili;
     private javax.swing.JTextArea jTextAreaOpzioni;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldBilanciaNetto;
     private javax.swing.JTextField jTextFieldBilanciaTara;
     private javax.swing.JTextField jTextFieldClientiModifica;
-    private javax.swing.JTextField jTextFieldClientiModifica2;
     private javax.swing.JTextField jTextFieldClientiSalva;
-    private javax.swing.JTextField jTextFieldClientiSalva2;
     private javax.swing.JTextField jTextFieldProdottiModifica;
     private javax.swing.JTextField jTextFieldProdottiSalva;
+    private javax.swing.JTextField jTextFieldTareModifica;
+    private javax.swing.JTextField jTextFieldTareSalva;
     private javax.swing.JToggleButton jToggleButtonDemoBilancia;
     private javax.swing.JToggleButton jToggleButtonProdottiModifyUnit;
     private javax.swing.JToggleButton jToggleButtonProdottiSaveUnit;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerPesate;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerTotali;
     private javax.swing.JToggleButton sviluppatore;

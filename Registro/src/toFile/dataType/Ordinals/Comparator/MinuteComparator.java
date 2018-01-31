@@ -30,7 +30,7 @@ public class MinuteComparator implements Comparator<OrdinableObject>
     private int ordina(int uno, int due)
     {
         int valueReturn = 1;
-        if(behavior == behavior.INCREASING)
+        if(behavior == behavior.DECREASING)
         {
             valueReturn = - valueReturn;
         }

@@ -58,20 +58,32 @@ public class Settings
     public static final String TAB = "\t";
     public static final String BILANCIA_COM = "COM4";
     
-    public static int maxWeightMinuteAverage = 8;
-    public static int font = 10;
-    public static int fontMedium = 11;
-    public static int fontBig = 12;
-    public static int orderClienti = 0;
-    public static int orderProdotti = 0;
-    public static int widthScrollBar = 40;
+    public int maxWeightMinuteAverage = 8;
+    public int font = 20;
+    public int fontMedium = 25;
+    public int fontBig = 30;
+    public int orderClienti = 0;
+    public int orderProdotti = 0;
+    public int orderTare = 0;
+    public int widthScrollBar = 40;
 
-    public Settings(int maxWeightMinuteAverage, int font, int fontMedium, int fontBig)
+    public Settings(
+            int maxWeightMinuteAverage,
+            int font, int fontMedium,
+            int fontBig,
+            int orderClienti,
+            int orderProdotti,
+            int orderTare,
+            int widthScrollBar)
     {
         this.maxWeightMinuteAverage = maxWeightMinuteAverage;
         this.font = font;
         this.fontMedium = fontMedium;
         this.fontBig = fontBig;
+        this.orderClienti = orderClienti;
+        this.orderProdotti = orderProdotti;
+        this.orderTare = orderTare;
+        this.widthScrollBar = widthScrollBar;
     }
     public Settings()
     {
@@ -132,16 +144,24 @@ public class Settings
                 String[] split3 = s.split(SPLITTER_VAR);
                 split[j++][0] = split3[0];
             }
-            int i = 19;
+            int i=20;
             int maxWeightMinuteAverage = Integer.parseInt(split[++i][0]);
             int font = Integer.parseInt(split[++i][0]);
             int fontMedium = Integer.parseInt(split[++i][0]);
             int fontBig = Integer.parseInt(split[++i][0]);
+            int orderClienti = Integer.parseInt(split[++i][0]);
+            int orderProdotti = Integer.parseInt(split[++i][0]);
+            int orderTare = Integer.parseInt(split[++i][0]);
+            int widthScrollBar = Integer.parseInt(split[++i][0]);
             Settings settings = new Settings(
                     maxWeightMinuteAverage,
                     font,
                     fontMedium,
-                    fontBig
+                    fontBig,
+                    orderClienti,
+                    orderProdotti,
+                    orderTare,
+                    widthScrollBar
             );
             return settings;
         }

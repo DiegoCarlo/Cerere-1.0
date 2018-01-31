@@ -1,4 +1,4 @@
-64~64
+65~65
 id cardinal name unitOfMeesasure
 1~6~Arabo Grande~Kg
 2~7~Arabo Piccolo~Kg
@@ -57,8 +57,7 @@ id cardinal name unitOfMeesasure
 5~10~Sfoglie~Kg
 49~50~Soya~Kg
 50~51~Soya Piccolo~Kg
+65~65~ssdaz~Kg
 3~8~Tartarughe~Kg
 58~58~Toast~Kg
 21~22~Torte~Kg
-63~63~pt1~Kg
-64~64~pt2~n.

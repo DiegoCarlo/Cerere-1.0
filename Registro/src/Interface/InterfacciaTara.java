@@ -7,10 +7,12 @@ package Interface;
 
 import java.awt.Font;
 import java.awt.event.WindowEvent;
+import javax.swing.SwingConstants;
 import toFile.dataType.Base.Tara;
 import toFile.dataType.Ordinals.OrdinableArray;
 import toFile.dataType.Ordinals.OrdinableObject;
 import registro.Registro;
+import toFile.Utility.Utility;
 
 /**
  *
@@ -112,11 +114,19 @@ public class InterfacciaTara extends javax.swing.JFrame
         });
 
         jTextField1.setFont(fontMedium);
+        jTextField1.setHorizontalAlignment(SwingConstants.CENTER);
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 jTextField1MouseClicked(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyReleased(java.awt.event.KeyEvent evt)
+            {
+                jTextField1KeyReleased(evt);
             }
         });
 
@@ -458,6 +468,11 @@ public class InterfacciaTara extends javax.swing.JFrame
             jTextField1.setText(String.format("%.3f", peso).replaceAll(",", "."));
         }
     }//GEN-LAST:event_jComboBoxTaraItemStateChanged
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextField1KeyReleased
+    {//GEN-HEADEREND:event_jTextField1KeyReleased
+        jTextField1.setText(Utility.safeNumber(jTextField1.getText()));
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

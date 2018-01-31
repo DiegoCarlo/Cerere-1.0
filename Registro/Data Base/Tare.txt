@@ -1,0 +1,6 @@
+4~4
+id cardinal name quantity
+1~4~3.793~0.067
+3~3~3sdfsdf~6.416
+2~2~asdwaa32~0.283
+4~1~test~7.881
