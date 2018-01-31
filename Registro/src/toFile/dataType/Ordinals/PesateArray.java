@@ -52,7 +52,7 @@ public class PesateArray extends ArrayList<Pesata>
         {
             if(o.getId() == id)
             {
-                return super.remove(o);
+                return remove(o);
             }
         }
         return false;

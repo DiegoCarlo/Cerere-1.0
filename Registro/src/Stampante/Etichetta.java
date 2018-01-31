@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bilancia;
+package Stampante;
 
 import java.awt.Font;
 import java.awt.print.Paper;
@@ -31,7 +31,8 @@ public class Etichetta
 
     String totPeso;
     String totNume;
-    
+    public static final char backslash = '\\';
+    public static final String newLine = "\\&";
     public Etichetta(String data, String cliente, ArrayList<String> prodotto, String totPeso, String totNume)
     {
         this.intestazione = "Forneria Voglia di Pane\n"
@@ -136,8 +137,7 @@ public class Etichetta
             ^XZ
         */
         int maxLarghezza = 30;
-        char backslash = '\\';
-        String newLine = "\\&";
+        
 
         String s = "^XA\n"
                 + "^CFF,9,5^FO25,50"

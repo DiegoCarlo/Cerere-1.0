@@ -6,29 +6,34 @@
 package toFile.dataType.Ordinals.Comparator;
 
 import java.util.Comparator;
-import toFile.dataType.Base.Pesata;
-
+import toFile.dataType.Base.Prodotto;
+import toFile.dataType.Ordinals.OrdinableObject;
 
 /**
- * it can be used only with a Pesata Class
+ *
  * @author DiegoCG
  */
-public class CalendarComparator implements Comparator<Pesata>
+public class FrequencyProductComparator implements Comparator<OrdinableObject>
 {
-    public Behavior behavior;
-    public CalendarComparator(Behavior behavior)
+     public Behavior behavior;
+    
+    public FrequencyProductComparator()
+    {
+        this.behavior = Behavior.DECREASING;
+    }
+    public FrequencyProductComparator(Behavior behavior)
     {
         this.behavior = behavior;
     }
-    public int compare(Pesata one, Pesata two)
+    public int compare(OrdinableObject one, OrdinableObject two)
     {
-        return ordina(one.time.getTimeInMillis(), two.time.getTimeInMillis());
+        return ordina(((Prodotto)one).frequency, ((Prodotto)two).frequency);
     }
 
     private int ordina(long uno, long due)
     {
         int valueReturn = 1;
-        if(behavior == behavior.INCREASING)
+        if(behavior == behavior.DECREASING)
         {
             valueReturn = - valueReturn;
         }

@@ -56,6 +56,7 @@ public class Settings
     public static final String SPLITTER_ARRAY = "§";
     public static final String NEW_LINE = "\r\n";
     public static final String TAB = "\t";
+    public static final String BILANCIA_COM = "COM4";
     
     public static int maxWeightMinuteAverage = 8;
     public static int font = 10;
@@ -63,7 +64,7 @@ public class Settings
     public static int fontBig = 12;
     public static int orderClienti = 0;
     public static int orderProdotti = 0;
-    public static int orderTare = 0;
+    public static int widthScrollBar = 40;
 
     public Settings(int maxWeightMinuteAverage, int font, int fontMedium, int fontBig)
     {

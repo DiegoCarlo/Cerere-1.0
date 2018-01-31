@@ -13,7 +13,7 @@ import toFile.dataType.Ordinals.OrdinableObject;
  */
 public class Tara extends OrdinableObject
 {
-    float quantity;
+    public float quantity;
 
     /**
      * 
@@ -57,4 +57,11 @@ public class Tara extends OrdinableObject
         }
         return null;
     }
+
+    @Override
+    public String toString()
+    {
+        return getName() + quantity; //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

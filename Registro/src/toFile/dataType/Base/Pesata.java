@@ -57,5 +57,4 @@ public class Pesata extends IdObject
         }
         return null;
     }
-    
 }

@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author DiegoCG
  */
-public class AvviaRichieste implements Runnable
+public class StartRequest implements Runnable
 {
     public void run()
     {
@@ -27,7 +27,7 @@ public class AvviaRichieste implements Runnable
         }
         catch (InterruptedException ex)
         {
-            Logger.getLogger(AvviaRichieste.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StartRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

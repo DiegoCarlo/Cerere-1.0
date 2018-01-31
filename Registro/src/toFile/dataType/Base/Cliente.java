@@ -28,7 +28,12 @@ public class Cliente extends OrdinableObject
         super(id, cardinal, name);
         this.frequentMinute = frequentMinute;
     }
-    
+    /**
+     * write a string like:
+     * id cardinal name averageMinute weight
+     * @param splitter
+     * @return 
+     */
     public String toFile(String splitter)
     {
         return 

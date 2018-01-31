@@ -15,6 +15,7 @@ import toFile.dataType.Ordinals.OrdinableObject;
 public class Prodotto extends OrdinableObject
 {
     public UnitOfMeasure unitOfMeasure;
+    public long frequency;
 
     /**
      * the product r
@@ -27,6 +28,7 @@ public class Prodotto extends OrdinableObject
     {
         super(id, cardinal, name);
         this.unitOfMeasure = unitOfMeasure;
+        this.frequency = 0;
     }
     public String toFile(String splitter)
     {
@@ -65,7 +67,7 @@ public class Prodotto extends OrdinableObject
     @Override
     public String toString()
     {
-        return getName();
+        return unitOfMeasure.toString() + " " + getName();
     }
     
 }

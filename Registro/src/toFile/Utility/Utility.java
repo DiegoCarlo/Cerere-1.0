@@ -8,6 +8,7 @@ package toFile.Utility;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -21,13 +22,20 @@ public class Utility
         int month = 1 + date.get(Calendar.MONTH);
         return year + " " + month; 
     }
+    public static String getYearMonth(Date date)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = 1 + cal.get(Calendar.MONTH);
+        return year + " " + month; 
+    }
     public static int getMinuteOfTheDay(Calendar date)
     {
         int hour = date.get(Calendar.HOUR_OF_DAY);
         int minute = date.get(Calendar.MINUTE);
         return hour * 60 + minute; 
     }
-    
     public static String safeName(String string)
     {
         String result = "";
@@ -78,5 +86,15 @@ public class Utility
         res = word.substring(0, max-3);
         res += ".";
         return res;
+    }
+
+    public static String getCalendarString(Calendar time)
+    {
+        return time.get(Calendar.YEAR) + "-" +
+                (time.get(Calendar.MONTH) + 1) + "-" +
+                time.get(Calendar.DAY_OF_MONTH) + " " +
+                time.get(Calendar.HOUR_OF_DAY) + ":" +
+                time.get(Calendar.MINUTE);
+                
     }
 }

@@ -14,17 +14,17 @@ import registro.Settings;
 public class Frequency
 {
     public long idProdotto;
-    public long frequenza;
+    public long frequency;
     
     public Frequency(long idProdotto, long frequenza)
     {
         this.idProdotto = idProdotto;
-        this.frequenza = frequenza;
+        this.frequency = frequenza;
     }
     
     public String toFile()
     {
-        return idProdotto + Settings.SPLITTER_VAR + frequenza;
+        return idProdotto + Settings.SPLITTER_VAR + frequency;
     }
     public static Frequency fromFile(String val)
     {

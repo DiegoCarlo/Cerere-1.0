@@ -6,6 +6,7 @@
 package registro;
 
 import Bilancia.Bilancia;
+import Bilancia.StartRequest;
 import Interface.Interfaccia;
 import Interface.ProgressionBar;
 import javax.swing.UIManager;
@@ -21,7 +22,9 @@ public class Registro
 {
     public static Settings settings;
     public static DataBase dataBase;
+    
     public static Bilancia bilancia;
+    public static StartRequest startRequest;
     
     public static ProgressionBar progressionBar;
     public static Interfaccia interfaccia;
@@ -31,7 +34,7 @@ public class Registro
     public static void main(String[] args)
     {
         loadStyle();
-        progressionBar = new ProgressionBar(11);
+        progressionBar = new ProgressionBar(13);
         Thread barra = new Thread(new Runnable()
         {
             @Override
@@ -52,7 +55,7 @@ public class Registro
         dataBase = new DataBase();
         
         dataBase.load(progressionBar);
-        dataBase.save();
+        //dataBase.save();
         progressionBar.progress("Carico l'Interfaccia");
         interfaccia = new Interfaccia();
         
@@ -62,7 +65,13 @@ public class Registro
                 interfaccia.setVisible(true);
             }
         });
+        progressionBar.progress("Avvio la Bilancia");
+        bilancia = new Bilancia(Settings.BILANCIA_COM);
+        startRequest = new StartRequest();
+        Thread richieste = new Thread(startRequest);
+        richieste.start();
         
+        progressionBar.progress("Avvio la Stampante");
         
         progressionBar.close();
     }

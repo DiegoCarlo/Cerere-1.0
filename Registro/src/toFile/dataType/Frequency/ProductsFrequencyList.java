@@ -31,7 +31,7 @@ public class ProductsFrequencyList extends ArrayList<Frequency>
             if(f.idProdotto == idProdotto)
             {
                 found = true;
-                f.frequenza++;
+                f.frequency++;
                 return true;
             }
         }

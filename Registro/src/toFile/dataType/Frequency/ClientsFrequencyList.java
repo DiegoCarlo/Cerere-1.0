@@ -7,6 +7,8 @@ package toFile.dataType.Frequency;
 
 import java.util.ArrayList;
 import registro.Settings;
+import toFile.dataType.Base.Pesata;
+import toFile.dataType.Ordinals.PesateArray;
 
 /**
  *
@@ -64,5 +66,33 @@ public class ClientsFrequencyList extends ArrayList<ProductsFrequencyList>
             }
         }
         return new ClientsFrequencyList();
+    }
+
+    public void updateFrequency(long idCliente, PesateArray listaPesate)
+    {
+        boolean listaClienteTrovata = false;
+        for(ProductsFrequencyList lista: this)
+        {
+            // cerco la lista del cliente
+            if(lista.idCliente == idCliente)
+            {
+                // ho la lista del cliente
+                listaClienteTrovata = true;
+                for(Pesata p: listaPesate)
+                {
+                    lista.add(p.idProdotto);
+                }
+            }
+        }
+        if(!listaClienteTrovata)
+        {
+            ProductsFrequencyList lista = new ProductsFrequencyList(idCliente);
+            for(Pesata p: listaPesate)
+            {
+
+                lista.add(p.idProdotto);
+            }
+            add(lista);
+        }
     }
 }

@@ -1,9 +1,4 @@
 0~0
-8~2~Inka Kamut Dinkel Segale~Kg
-12~4~Focaccia~n.
-0~5~Ciabatte~Kg
-1~6~Arabo Grande~Kg
-2~7~Arabo Piccolo~Kg
 3~8~Tartarughe~Kg
 4~9~Hotdog~Kg
 5~10~Sfoglie~Kg
