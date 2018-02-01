@@ -452,7 +452,7 @@ public class DataBase
     {
         log("elaboraTotaliCliente");
         ArrayList<Long> idPesate = getPesateClienteMese(idCliente, date, Behavior.INCREASING);
-        
+        OrdinableArray prodotti = getAllProducts();
         // rintraccio tutte le pesate del cliente
         //log("carico le pesate \n Giorno");
         ArrayList<Pesata> listaPesate = new ArrayList<>();
@@ -462,8 +462,6 @@ public class DataBase
             listaPesate.add(p);
             //log(p.data.get(Calendar.DAY_OF_MONTH)+"\t"+p.idProdotto +"\t"+p.quantitaFisica);
         }
-        
-        // rintraccio tutti i tipi di prodotti pesati
         ArrayList<Prodotto> listaProdotti = new ArrayList<>();
         for(Pesata pe: listaPesate)
         {
@@ -481,7 +479,7 @@ public class DataBase
                 listaProdotti.add((Prodotto)prodotti.get((pe).idProdotto));
             }
         }
-        
+
         // creo l'intestazione delle colonne con i nomi dei prodotti
         String[] nomiProdotti = new String[listaProdotti.size()];
         int f=0;
@@ -491,15 +489,15 @@ public class DataBase
             //System.out.println(nomiProdotti[f]);
             f++;
         }
-        
+
         int numeroGiorniDelMese = date.getActualMaximum(Calendar.DAY_OF_MONTH);
         //numeroGiorniDelMese += 2; // linee per i totali
-        
+
         Object[][] dati = new Object[numeroGiorniDelMese][nomiProdotti.length];
-        
+
         float[] totali = new float[listaProdotti.size()];
         Arrays.fill(totali, 0);
-        
+
         //log("avvio il popolamento della tabella");
         for(int i=0; i<numeroGiorniDelMese; i++)
         {
@@ -524,8 +522,8 @@ public class DataBase
                 }
                 //log("totale giorno: "+totaleGiorno);
                 //log("totale attuale: "+totali[j]);
-                    
-                
+
+
                 if(totaleGiorno != 0)
                 {    
                     String format = "%.3f";
@@ -541,7 +539,7 @@ public class DataBase
                 }
             }
         }
-        
+
         String[] intestazione = new String[listaProdotti.size()+1];
         intestazione[0] = "Giorno:";
         for(int i=0; i<nomiProdotti.length; i++)
@@ -569,7 +567,7 @@ public class DataBase
         }
         TableModel dataModel = new DefaultTableModel(datiComplessivi, intestazione);
 
-        
+
         tabella.setModel(dataModel);
         for(int i=0; i<datiComplessivi[0].length; i++)
         {
@@ -591,7 +589,11 @@ public class DataBase
         {
             for(Frequency f: lista)
             {
-                ((Prodotto)prodotti.get(f.idProdotto)).frequency = f.frequency;
+                Prodotto prodotto = (Prodotto)prodotti.get(f.idProdotto);
+                if(prodotto != null)
+                {
+                    prodotto.frequency = f.frequency;
+                }
             }
             
             Collections.sort(prodotti, new FrequencyProductComparator());
@@ -787,8 +789,10 @@ public class DataBase
 
     public void saveTotaliSettimana(long idCliente, Calendar firstDay, Calendar lastDay)
     {
-        Registro.progressionBar = new ProgressionBar(4);
+        Registro.progressionBar = new ProgressionBar(4,750);
         Registro.progressionBar.setVisible(true);
+        
+        OrdinableArray prodotti = getAllProducts();
         
         ArrayList<Pesata> listaPesate = new ArrayList<>();
         if(firstDay.get(Calendar.MONTH) == lastDay.get(Calendar.MONTH))
@@ -814,7 +818,7 @@ public class DataBase
                 Pesata pesata = (Pesata)pesate.get(idPesata);
                 if(
                         firstDay.get(Calendar.DAY_OF_MONTH) <= pesata.time.get(Calendar.DAY_OF_MONTH) &&
-                        pesata.time.get(Calendar.DAY_OF_MONTH) <= lastDay.get(Calendar.DAY_OF_MONTH) 
+                        pesata.time.get(Calendar.DAY_OF_MONTH) <= firstDay.getActualMaximum(Calendar.DAY_OF_MONTH) 
                         )
                 {
                     listaPesate.add(pesata);
@@ -825,7 +829,7 @@ public class DataBase
             {
                 Pesata pesata = (Pesata)pesate.get(idPesata);
                 if(
-                        firstDay.get(Calendar.DAY_OF_MONTH) <= pesata.time.get(Calendar.DAY_OF_MONTH) &&
+                        1 <= pesata.time.get(Calendar.DAY_OF_MONTH) &&
                         pesata.time.get(Calendar.DAY_OF_MONTH) <= lastDay.get(Calendar.DAY_OF_MONTH) 
                         )
                 {
@@ -837,7 +841,7 @@ public class DataBase
        
         if(listaPesate.size() > 0)
         {
-// rintraccio tutti i tipi di prodotti pesati
+            // rintraccio tutti i tipi di prodotti pesati
             ArrayList<Prodotto> listaProdotti = new ArrayList<>();
             for(Pesata pe: listaPesate)
             {
@@ -866,7 +870,7 @@ public class DataBase
                 f++;
             }
 
-            int numeroGiorniDelMese = lastDay.get(Calendar.DAY_OF_MONTH)-firstDay.get(Calendar.DAY_OF_MONTH);
+            int numeroGiorniDelMese = 7;
             //numeroGiorniDelMese += 2; // linee per i totali
 
             Object[][] dati = new Object[numeroGiorniDelMese][nomiProdotti.length];
@@ -875,6 +879,7 @@ public class DataBase
             Arrays.fill(totali, 0);
 
             //log("avvio il popolamento della tabella");
+            int nuovoMese = 1;
             for(int i=0; i<numeroGiorniDelMese; i++)
             {
                 //log(i+"");
@@ -888,12 +893,25 @@ public class DataBase
                     {
                         //log("giorno da trovare: " + (i+1) + " giorno pesata: "+ pe.data.get(Calendar.DAY_OF_MONTH));
                         //log("Pesata idProdotto"+ pe.idProdotto + "/t"+ pe.quantitaFisica);
-                        if(
-                                pe.time.get(Calendar.DAY_OF_MONTH) == i+firstDay.get(Calendar.DAY_OF_MONTH) &&
-                                pe.idProdotto == pr.getId())
+                        if(i+firstDay.get(Calendar.DAY_OF_MONTH) <= firstDay.getActualMaximum(Calendar.DAY_OF_MONTH))
                         {
-                            totaleGiorno += pe.quantita;
-                            totali[j] += pe.quantita;
+                            if(
+                                    pe.time.get(Calendar.DAY_OF_MONTH) == i+firstDay.get(Calendar.DAY_OF_MONTH) &&
+                                    pe.idProdotto == pr.getId())
+                            {
+                                totaleGiorno += pe.quantita;
+                                totali[j] += pe.quantita;
+                            }
+                        }
+                        else
+                        {
+                            if(
+                                    pe.time.get(Calendar.DAY_OF_MONTH) == nuovoMese &&
+                                    pe.idProdotto == pr.getId())
+                            {
+                                totaleGiorno += pe.quantita;
+                                totali[j] += pe.quantita;
+                            }
                         }
                     }
                     //log("totale giorno: "+totaleGiorno);
@@ -914,6 +932,10 @@ public class DataBase
                         dati[i][j] = "";
                     }
                 }
+                if(i+firstDay.get(Calendar.DAY_OF_MONTH) > firstDay.getActualMaximum(Calendar.DAY_OF_MONTH))
+                {
+                    nuovoMese ++;
+                }
             }
             Cliente c = (Cliente)clienti.get(idCliente);
             String scrittura = c.getName()+ nl;
@@ -926,6 +948,7 @@ public class DataBase
             scrittura += nl;
             
             int numeroGiorniDelMese1 = firstDay.getActualMaximum(Calendar.DAY_OF_MONTH);
+            nuovoMese = 0;
             for(int i=0; i<numeroGiorniDelMese; i++)
             {
                 
@@ -935,7 +958,7 @@ public class DataBase
                 }
                 else
                 {
-                    scrittura += (lastDay.get(Calendar.DAY_OF_MONTH) + i);
+                    scrittura += (1 + nuovoMese++);
                 }
                 for(int j=0; j<nomiProdotti.length; j++)
                 {

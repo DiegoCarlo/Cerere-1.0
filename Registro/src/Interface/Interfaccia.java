@@ -13,9 +13,12 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -64,6 +67,7 @@ public class Interfaccia extends javax.swing.JFrame
     float lordo;
     Cliente cliente;
     Prodotto prodotto;
+    String logo = "Icons\\Logo VDP.png";
     
     Calendar firstDay;
     Calendar lastDay;
@@ -121,6 +125,14 @@ public class Interfaccia extends javax.swing.JFrame
         orderTare();
         inizialization = false;
         jTabbedPane.setEnabledAt(8, false);
+        /*jTextField1.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Enter pressed");
+                salva();
+            }
+        });*/
+
     }
     private void updateOrder()
     {
@@ -169,12 +181,30 @@ public class Interfaccia extends javax.swing.JFrame
                                 .getScaledInstance(dimensioni, dimensioni, Image.SCALE_DEFAULT)
                         );
         JButton dateBtn2 = (JButton) jXDatePickerTotali.getComponent(1);
+        
         dateBtn2.setIcon(icona2);
         dateBtn2.setFocusPainted(false);
         dateBtn2.setMargin(new Insets(0, 0, 0, 0));
         dateBtn2.setContentAreaFilled(false);
         dateBtn2.setBorderPainted(false);
         dateBtn2.setOpaque(false);
+        
+        
+        
+        ImageIcon icona3 = new ImageIcon();
+        icona2 = new ImageIcon(
+                        new ImageIcon("Icons\\button.png")
+                                .getImage()
+                                .getScaledInstance(dimensioni, dimensioni, Image.SCALE_DEFAULT)
+                        );
+        JButton dateBtn3 = (JButton) jXDatePickerMaker.getComponent(1);
+          
+        dateBtn3.setIcon(icona3);
+        dateBtn3.setFocusPainted(false);
+        dateBtn3.setMargin(new Insets(0, 0, 0, 0));
+        dateBtn3.setContentAreaFilled(false);
+        dateBtn3.setBorderPainted(false);
+        dateBtn3.setOpaque(false);
         
         updateLogo();
         
@@ -217,7 +247,7 @@ public class Interfaccia extends javax.swing.JFrame
     }
     private void setAllFonts()
     {
-        /*jTabbedPane.setFont(font);
+        jTabbedPane.setFont(font);
         
         // bilancia 
         jButtoBilanciaClienti.setFont(font);
@@ -280,7 +310,7 @@ public class Interfaccia extends javax.swing.JFrame
         
         jButtonClientiOrdine.setFont(font);
         jButtonClientiGiu.setFont(font);
-        jButtonClientiiSu.setFont(font);
+        jButtonClientiSu.setFont(font);
         
         jListClienti.setFont(font);
         
@@ -291,7 +321,6 @@ public class Interfaccia extends javax.swing.JFrame
         // removed
         jListRemovedClienti.setFont(font);
         jButtonRemovedClienti.setFont(font);
-        */
         
         jLabelBilanciaCliente.setHorizontalAlignment(SwingConstants.CENTER);
         jLabeBilanciaProdotto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -318,7 +347,7 @@ public class Interfaccia extends javax.swing.JFrame
         }
         jLabelBilanciaLogo.setHorizontalAlignment(SwingConstants.CENTER);
         logoBilancia = new ImageIcon(
-                        new ImageIcon("Icons\\Logo VDP.png")
+                        new ImageIcon(logo)
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
@@ -328,7 +357,7 @@ public class Interfaccia extends javax.swing.JFrame
         int altezza = (int)((float)larghezza * (float)0.48);
         ImageIcon logoPesate = new ImageIcon();
         logoPesate = new ImageIcon(
-                        new ImageIcon("Icons\\Logo VDP.png")
+                        new ImageIcon(logo)
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
@@ -339,7 +368,7 @@ public class Interfaccia extends javax.swing.JFrame
         larghezza = jPanelClientiInserimento.getWidth();
         altezza = (int)((float)larghezza * (float)0.48);
         logoClienti = new ImageIcon(
-                        new ImageIcon("Icons\\Logo VDP.png")
+                        new ImageIcon(logo)
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
@@ -351,7 +380,7 @@ public class Interfaccia extends javax.swing.JFrame
         larghezza = jPanelProdottiInserimento.getWidth();
         altezza = (int)((float)larghezza * (float)0.48);
         logoProdotti = new ImageIcon(
-                        new ImageIcon("Icons\\Logo VDP.png")
+                        new ImageIcon(logo)
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
@@ -363,7 +392,7 @@ public class Interfaccia extends javax.swing.JFrame
         larghezza = jPanelTareInserimento.getWidth();
         altezza = (int)((float)larghezza * (float)0.48);
         logoTare = new ImageIcon(
-                        new ImageIcon("Icons\\Logo VDP.png")
+                        new ImageIcon(logo)
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
@@ -374,7 +403,7 @@ public class Interfaccia extends javax.swing.JFrame
         larghezza = jButtonSaveTotali.getWidth();
         altezza = (int)((float)larghezza * (float)0.48);
         logoTotali = new ImageIcon(
-                        new ImageIcon("Icons\\Logo VDP.png")
+                        new ImageIcon(logo)
                                 .getImage()
                                 .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
                         );
@@ -396,7 +425,8 @@ public class Interfaccia extends javax.swing.JFrame
                     updatePesate();
                     break;
                 case 2:
-                    jXDatePickerTotali.setDate(GregorianCalendar.getInstance().getTime());
+                    Calendar cal = GregorianCalendar.getInstance();
+                    jXDatePickerTotali.setDate(cal.getTime());
                     updateTotali();
                     updateSettimana();
                     break;
@@ -413,8 +443,16 @@ public class Interfaccia extends javax.swing.JFrame
                 case 7:
                     updatejPanelRemoved();
                     break;
+                case 8:
+                    updatejPanelMaker();
             }
         }
+    }
+    private void updatejPanelMaker()
+    {
+        updatejList(jListMakerClienti, dataBase.clienti);
+        updatejList(jListMakerProdotti, dataBase.prodotti);
+        
     }
     private void setEnableNotBilancia(boolean enable)
     {
@@ -1176,8 +1214,9 @@ public class Interfaccia extends javax.swing.JFrame
         jComboBoxClienti = new javax.swing.JComboBox<>();
         jComboBoxProdotti = new javax.swing.JComboBox<>();
         jComboBoxTare = new javax.swing.JComboBox<>();
-        jScrollPaneOpzioni = new javax.swing.JScrollPane();
-        jTextAreaOpzioni = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jToggleButtonDemoBilancia = new javax.swing.JToggleButton();
         jPanel7 = new javax.swing.JPanel();
         jSpinnerFont = new javax.swing.JSpinner();
@@ -1185,6 +1224,8 @@ public class Interfaccia extends javax.swing.JFrame
         jSpinnerFontBig = new javax.swing.JSpinner();
         sviluppatore = new javax.swing.JToggleButton();
         jPanel19 = new javax.swing.JPanel();
+        jScrollPaneOpzioni = new javax.swing.JScrollPane();
+        jTextAreaOpzioni = new javax.swing.JTextArea();
         jPanelRemoved = new javax.swing.JPanel();
         jSplitPane4 = new javax.swing.JSplitPane();
         jPanel4 = new javax.swing.JPanel();
@@ -1203,16 +1244,17 @@ public class Interfaccia extends javax.swing.JFrame
         jButton12 = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
-        jButtoBilanciaClienti1 = new javax.swing.JButton();
+        jButtonMakerClienti = new javax.swing.JButton();
         jScrollPaneBilanciaClienti1 = new javax.swing.JScrollPane();
-        jListBilanciaClienti1 = new javax.swing.JList<>();
+        jListMakerClienti = new javax.swing.JList<>();
         jPanel27 = new javax.swing.JPanel();
-        jButtonBilanciaProdotti1 = new javax.swing.JButton();
+        jButtonMakerProdotti = new javax.swing.JButton();
         jScrollPaneBilanciaProdotti1 = new javax.swing.JScrollPane();
-        jListBilanciaProdotti1 = new javax.swing.JList<>();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        jListMakerProdotti = new javax.swing.JList<>();
+        jPanel28 = new javax.swing.JPanel();
+        jXDatePickerMaker = new org.jdesktop.swingx.JXDatePicker();
         jTextField1 = new javax.swing.JTextField();
-        jButton13 = new javax.swing.JButton();
+        jButtonMaker = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Voglia di Pane");
@@ -1683,7 +1725,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelBilanciaLayout.setHorizontalGroup(
             jPanelBilanciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBilanciaLayout.createSequentialGroup()
-                .addComponent(jSplitPaneBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(jSplitPaneBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelBilancia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1794,7 +1836,7 @@ public class Interfaccia extends javax.swing.JFrame
                         .addContainerGap()
                         .addComponent(jButtonPesateModifica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelPesateStats, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                        .addComponent(jLabelPesateStats, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesateElimina))
                     .addComponent(jScrollPanePesate))
@@ -1856,7 +1898,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
                 .addComponent(jButtonPesateOrdinamentoClienti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(jPanel23);
@@ -1885,7 +1927,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
-                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonPesateCambiaCliente))
         );
@@ -1968,7 +2010,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2042,7 +2084,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneTotaliClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+            .addComponent(jScrollPaneTotaliClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
             .addComponent(jLabelTotaliLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
@@ -2247,7 +2289,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jButtonClientiOrdine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelClientiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addComponent(jLabelClientiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonClientiSu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2295,7 +2337,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanelClientiListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButtonClientiElimina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPaneClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jScrollPaneClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
         jPanelClientiListaLayout.setVerticalGroup(
             jPanelClientiListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2506,7 +2548,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jButtonProdottiOrdine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelProdottiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addComponent(jLabelProdottiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonProdottiSu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2554,7 +2596,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanelProdottiListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButtonProdottiElimina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPaneProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jScrollPaneProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
         jPanelProdottiListaLayout.setVerticalGroup(
             jPanelProdottiListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2813,7 +2855,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanelClientiLista2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButtonTareElimina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
         jPanelClientiLista2Layout.setVerticalGroup(
             jPanelClientiLista2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2872,6 +2914,12 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
+        jLabel1.setText("Clienti");
+
+        jLabel2.setText("Prodotti");
+
+        jLabel3.setText("Tare");
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -2879,28 +2927,34 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxClienti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxProdotti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxTare, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBoxTare, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxClienti, 0, 233, Short.MAX_VALUE)
+                    .addComponent(jComboBoxProdotti, 0, 233, Short.MAX_VALUE)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxClienti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxProdotti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxTare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
-
-        jTextAreaOpzioni.setColumns(20);
-        jTextAreaOpzioni.setRows(5);
-        jTextAreaOpzioni.setLineWrap(true);
-        jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);
-        jScrollPaneOpzioni.setViewportView(jTextAreaOpzioni);
 
         jToggleButtonDemoBilancia.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jToggleButtonDemoBilancia.setText("Demo Bilancia");
@@ -2936,6 +2990,7 @@ public class Interfaccia extends javax.swing.JFrame
         );
 
         sviluppatore.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        sviluppatore.setSelected(true);
         sviluppatore.setText("Sviluppatore");
         sviluppatore.addChangeListener(new javax.swing.event.ChangeListener()
         {
@@ -2945,15 +3000,27 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
+        jTextAreaOpzioni.setColumns(20);
+        jTextAreaOpzioni.setRows(5);
+        jTextAreaOpzioni.setLineWrap(true);
+        jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);
+        jScrollPaneOpzioni.setViewportView(jTextAreaOpzioni);
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 211, Short.MAX_VALUE)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPaneOpzioni)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanelOptionsLayout = new javax.swing.GroupLayout(jPanelOptions);
@@ -2967,14 +3034,10 @@ public class Interfaccia extends javax.swing.JFrame
                         .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                            .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelOptionsLayout.setVerticalGroup(
@@ -2982,12 +3045,11 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneOpzioni)
                     .addGroup(jPanelOptionsLayout.createSequentialGroup()
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                         .addComponent(sviluppatore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonDemoBilancia))
@@ -2997,7 +3059,6 @@ public class Interfaccia extends javax.swing.JFrame
 
         jTabbedPane.addTab("Opzioni", jPanelOptions);
 
-        jSplitPane4.setDividerLocation(-1);
         jSplitPane4.setDividerSize(15);
         jSplitPane4.setResizeWeight(0.33);
 
@@ -3038,7 +3099,6 @@ public class Interfaccia extends javax.swing.JFrame
 
             jSplitPane4.setLeftComponent(jPanel4);
 
-            jSplitPane5.setDividerLocation(-1);
             jSplitPane5.setDividerSize(15);
             jSplitPane5.setResizeWeight(0.66);
 
@@ -3125,7 +3185,7 @@ public class Interfaccia extends javax.swing.JFrame
                 jPanelRemovedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelRemovedLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jSplitPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+                    .addComponent(jSplitPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
                     .addContainerGap())
             );
             jPanelRemovedLayout.setVerticalGroup(
@@ -3138,81 +3198,122 @@ public class Interfaccia extends javax.swing.JFrame
 
             jTabbedPane.addTab("Cestino", jPanelRemoved);
 
-            jButtoBilanciaClienti1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jButtoBilanciaClienti1.setText("order");
-            jButtoBilanciaClienti1.addMouseListener(new java.awt.event.MouseAdapter()
+            jButtonMakerClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButtonMakerClienti.setText("order");
+            jButtonMakerClienti.addMouseListener(new java.awt.event.MouseAdapter()
             {
                 public void mouseClicked(java.awt.event.MouseEvent evt)
                 {
-                    jButtoBilanciaClienti1MouseClicked(evt);
+                    jButtonMakerClientiMouseClicked(evt);
                 }
             });
 
-            jListBilanciaClienti1.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
-            jListBilanciaClienti1.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+            jListMakerClienti.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
+            jListMakerClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
             {
                 public void valueChanged(javax.swing.event.ListSelectionEvent evt)
                 {
-                    jListBilanciaClienti1ValueChanged(evt);
+                    jListMakerClientiValueChanged(evt);
                 }
             });
-            jScrollPaneBilanciaClienti1.setViewportView(jListBilanciaClienti1);
+            jScrollPaneBilanciaClienti1.setViewportView(jListMakerClienti);
 
             javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
             jPanel26.setLayout(jPanel26Layout);
             jPanel26Layout.setHorizontalGroup(
                 jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtoBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonMakerClienti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPaneBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
             );
             jPanel26Layout.setVerticalGroup(
                 jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel26Layout.createSequentialGroup()
-                    .addComponent(jButtoBilanciaClienti1)
+                    .addComponent(jButtonMakerClienti)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPaneBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneBilanciaClienti1))
             );
 
-            jButtonBilanciaProdotti1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jButtonBilanciaProdotti1.setText("order");
-            jButtonBilanciaProdotti1.addMouseListener(new java.awt.event.MouseAdapter()
+            jButtonMakerProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButtonMakerProdotti.setText("order");
+            jButtonMakerProdotti.addMouseListener(new java.awt.event.MouseAdapter()
             {
                 public void mouseClicked(java.awt.event.MouseEvent evt)
                 {
-                    jButtonBilanciaProdotti1MouseClicked(evt);
+                    jButtonMakerProdottiMouseClicked(evt);
                 }
             });
 
-            jListBilanciaProdotti1.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
-            jListBilanciaProdotti1.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+            jListMakerProdotti.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
+            jListMakerProdotti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
             {
                 public void valueChanged(javax.swing.event.ListSelectionEvent evt)
                 {
-                    jListBilanciaProdotti1ValueChanged(evt);
+                    jListMakerProdottiValueChanged(evt);
                 }
             });
-            jScrollPaneBilanciaProdotti1.setViewportView(jListBilanciaProdotti1);
+            jScrollPaneBilanciaProdotti1.setViewportView(jListMakerProdotti);
 
             javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
             jPanel27.setLayout(jPanel27Layout);
             jPanel27Layout.setHorizontalGroup(
                 jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonBilanciaProdotti1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonMakerProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPaneBilanciaProdotti1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
             );
             jPanel27Layout.setVerticalGroup(
                 jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel27Layout.createSequentialGroup()
-                    .addComponent(jButtonBilanciaProdotti1)
+                    .addComponent(jButtonMakerProdotti)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPaneBilanciaProdotti1))
             );
 
             jTextField1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jTextField1.setText("jTextField1");
+            jTextField1.addKeyListener(new java.awt.event.KeyAdapter()
+            {
+                public void keyPressed(java.awt.event.KeyEvent evt)
+                {
+                    jTextField1KeyPressed(evt);
+                }
+                public void keyReleased(java.awt.event.KeyEvent evt)
+                {
+                    jTextField1KeyReleased(evt);
+                }
+            });
 
-            jButton13.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jButton13.setText("jButton13");
+            jButtonMaker.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+            jButtonMaker.setText("Salva");
+            jButtonMaker.addMouseListener(new java.awt.event.MouseAdapter()
+            {
+                public void mouseClicked(java.awt.event.MouseEvent evt)
+                {
+                    jButtonMakerMouseClicked(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+            jPanel28.setLayout(jPanel28Layout);
+            jPanel28Layout.setHorizontalGroup(
+                jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel28Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                        .addComponent(jXDatePickerMaker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonMaker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(11, Short.MAX_VALUE))
+            );
+            jPanel28Layout.setVerticalGroup(
+                jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel28Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jXDatePickerMaker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButtonMaker, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(382, Short.MAX_VALUE))
+            );
 
             javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
             jPanel25.setLayout(jPanel25Layout);
@@ -3220,41 +3321,25 @@ public class Interfaccia extends javax.swing.JFrame
                 jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel25Layout.createSequentialGroup()
                     .addContainerGap()
+                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel25Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(96, 96, 96))
-                        .addGroup(jPanel25Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1)
-                            .addContainerGap())
-                        .addGroup(jPanel25Layout.createSequentialGroup()
-                            .addGap(127, 127, 127)
-                            .addComponent(jButton13)
-                            .addContainerGap(92, Short.MAX_VALUE))))
+                    .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(75, Short.MAX_VALUE))
             );
             jPanel25Layout.setVerticalGroup(
                 jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()
                     .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel25Layout.createSequentialGroup()
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(159, 159, 159)
-                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
             );
 
-            jTabbedPane.addTab("tab9", jPanel25);
+            jTabbedPane.addTab("Maker", jPanel25);
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -3947,7 +4032,29 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jButtonTareEliminaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTareEliminaMouseClicked
     {//GEN-HEADEREND:event_jButtonTareEliminaMouseClicked
-        // TODO add your handling code here:
+        if(jListTare.getSelectedIndex() != -1)
+        {
+            OrdinableObject cl = jListTare.getSelectedValue();
+             
+            String name = cl.getName();
+            
+            boolean esito = dataBase.tare.remove(cl.getId());
+            
+            if(esito)
+            {
+                infoBox("Eliminazione Tara", name + "\nè stata eliminata");
+                dataBase.saveTare();
+                updatejPanelTare();
+            }
+            else
+            {
+                infoBox("ATTENZIONE", "Non è stato possibile eliminare\n" + name, Color.red);
+            }
+        }
+        else
+        {
+            infoBox("ATTENZIONE", "Seleziona prima una Tara dalla lista", Color.red);
+        }
     }//GEN-LAST:event_jButtonTareEliminaMouseClicked
 
     private void jListTareValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListTareValueChanged
@@ -3981,8 +4088,10 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jXDatePickerTotaliPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt)//GEN-FIRST:event_jXDatePickerTotaliPopupMenuWillBecomeInvisible
     {//GEN-HEADEREND:event_jXDatePickerTotaliPopupMenuWillBecomeInvisible
+        int cliente = jListTotaliClienti.getSelectedIndex();
         updateTotali();
         updateSettimana();
+        jListTotaliClienti.setSelectedIndex(cliente);
     }//GEN-LAST:event_jXDatePickerTotaliPopupMenuWillBecomeInvisible
 
     private void jButtonSaveTotaliMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonSaveTotaliMouseClicked
@@ -4001,12 +4110,19 @@ public class Interfaccia extends javax.swing.JFrame
 
     private void jButtonTotaliSalvaSettimanaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTotaliSalvaSettimanaMouseClicked
     {//GEN-HEADEREND:event_jButtonTotaliSalvaSettimanaMouseClicked
-        int indiceCliente = jListTotaliClienti.getSelectedIndex();
-        if(indiceCliente != -1)
+        Runnable runner = new Runnable()
         {
-            long idCliente = dataBase.clienti.get(jListTotaliClienti.getSelectedValue().getId()).getId();
-            dataBase.saveTotaliSettimana(idCliente, firstDay, lastDay);
-        }
+            public void run() {
+                int indiceCliente = jListTotaliClienti.getSelectedIndex();
+                if(indiceCliente != -1)
+                {
+                    long idCliente = dataBase.clienti.get(jListTotaliClienti.getSelectedValue().getId()).getId();
+                    dataBase.saveTotaliSettimana(idCliente, firstDay, lastDay);
+                }
+            }
+        };
+        Thread t = new Thread(runner, "Code Executer");
+        t.start();
     }//GEN-LAST:event_jButtonTotaliSalvaSettimanaMouseClicked
 
     private void jButtonTotaliOrdinamentoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonTotaliOrdinamentoMouseClicked
@@ -4374,25 +4490,29 @@ public class Interfaccia extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jComboBoxTareItemStateChanged
 
-    private void jButtoBilanciaClienti1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtoBilanciaClienti1MouseClicked
-    {//GEN-HEADEREND:event_jButtoBilanciaClienti1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtoBilanciaClienti1MouseClicked
+    private void jButtonMakerClientiMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonMakerClientiMouseClicked
+    {//GEN-HEADEREND:event_jButtonMakerClientiMouseClicked
+        oClienti.getNext();
+        orderClienti();
+        updatejList(jListBilanciaClienti, dataBase.clienti);
+    }//GEN-LAST:event_jButtonMakerClientiMouseClicked
 
-    private void jListBilanciaClienti1ValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListBilanciaClienti1ValueChanged
-    {//GEN-HEADEREND:event_jListBilanciaClienti1ValueChanged
+    private void jListMakerClientiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListMakerClientiValueChanged
+    {//GEN-HEADEREND:event_jListMakerClientiValueChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jListBilanciaClienti1ValueChanged
+    }//GEN-LAST:event_jListMakerClientiValueChanged
 
-    private void jButtonBilanciaProdotti1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonBilanciaProdotti1MouseClicked
-    {//GEN-HEADEREND:event_jButtonBilanciaProdotti1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBilanciaProdotti1MouseClicked
+    private void jButtonMakerProdottiMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonMakerProdottiMouseClicked
+    {//GEN-HEADEREND:event_jButtonMakerProdottiMouseClicked
+        oProdotti.getNext();
+        orderClienti();
+        updatejList(jListBilanciaProdotti, dataBase.prodotti);
+    }//GEN-LAST:event_jButtonMakerProdottiMouseClicked
 
-    private void jListBilanciaProdotti1ValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListBilanciaProdotti1ValueChanged
-    {//GEN-HEADEREND:event_jListBilanciaProdotti1ValueChanged
+    private void jListMakerProdottiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListMakerProdottiValueChanged
+    {//GEN-HEADEREND:event_jListMakerProdottiValueChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jListBilanciaProdotti1ValueChanged
+    }//GEN-LAST:event_jListMakerProdottiValueChanged
 
     private void sviluppatoreStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_sviluppatoreStateChanged
     {//GEN-HEADEREND:event_sviluppatoreStateChanged
@@ -4406,16 +4526,64 @@ public class Interfaccia extends javax.swing.JFrame
         }
     }//GEN-LAST:event_sviluppatoreStateChanged
 
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextField1KeyReleased
+    {//GEN-HEADEREND:event_jTextField1KeyReleased
+        jTextField1.setText(Utility.safeNumber(jTextField1.getText()));
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jButtonMakerMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonMakerMouseClicked
+    {//GEN-HEADEREND:event_jButtonMakerMouseClicked
+        salva();
+    }//GEN-LAST:event_jButtonMakerMouseClicked
+
+    private void salva()
+    {
+        int iProd = jListMakerProdotti.getSelectedIndex();
+        int iCli = jListMakerClienti.getSelectedIndex();
+        
+        if(iProd != -1 && iCli != -1)
+        {
+            try
+            {
+                Calendar cal = Calendar.getInstance();
+                Date date = jXDatePickerMaker.getDate();
+                if(date != null)
+                {
+                    cal.setTime(date);
+                    dataBase.loadPesate(cal);
+                    long id = dataBase.pesate.getNewId();
+                    long idCliente = jListMakerClienti.getSelectedValue().getId();
+                    long idProdotto = jListMakerProdotti.getSelectedValue().getId();
+
+
+                    float netto = Float.parseFloat(jTextField1.getText());
+                    Pesata p = new Pesata(id, idCliente, idProdotto, netto, cal);
+                    ;
+                    dataBase.pesate.add(p);
+                    dataBase.savePesate(cal);
+                    infoBox("inserimento Pesata", jListMakerClienti.getSelectedValue().getName()+":"+idCliente+"  "+ jListMakerProdotti.getSelectedValue().getName()+":"+ idProdotto+ " "+netto+" "+ Utility.getCalendarString(cal));
+                    jTextField1.setText("");
+                }
+            }
+            catch(NumberFormatException c)
+            {
+                c.printStackTrace();
+            }
+        }
+    }
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextField1KeyPressed
+    {//GEN-HEADEREND:event_jTextField1KeyPressed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtoBilanciaClienti;
-    private javax.swing.JButton jButtoBilanciaClienti1;
     private javax.swing.JButton jButton0;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -4427,7 +4595,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButtonBilanciaAggiungi;
     private javax.swing.JButton jButtonBilanciaElimina;
     private javax.swing.JButton jButtonBilanciaProdotti;
-    private javax.swing.JButton jButtonBilanciaProdotti1;
     private javax.swing.JButton jButtonBilanciaStampa;
     private javax.swing.JButton jButtonBilanciaTara;
     private javax.swing.JButton jButtonClientiElimina;
@@ -4436,6 +4603,9 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButtonClientiOrdine;
     private javax.swing.JButton jButtonClientiSalva;
     private javax.swing.JButton jButtonClientiSu;
+    private javax.swing.JButton jButtonMaker;
+    private javax.swing.JButton jButtonMakerClienti;
+    private javax.swing.JButton jButtonMakerProdotti;
     private javax.swing.JButton jButtonPesateCambiaCliente;
     private javax.swing.JButton jButtonPesateElimina;
     private javax.swing.JButton jButtonPesateModifica;
@@ -4461,6 +4631,9 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JComboBox<String> jComboBoxProdotti;
     private javax.swing.JComboBox<String> jComboBoxTare;
     private javax.swing.JLabel jLabeBilanciaProdotto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBilanciaCliente;
     private javax.swing.JLabel jLabelBilanciaLogo;
     private javax.swing.JLabel jLabelBilanciaLordo;
@@ -4484,11 +4657,11 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JLabel jLabelTareStats;
     private javax.swing.JLabel jLabelTotaliLogo;
     private javax.swing.JList<OrdinableObject> jListBilanciaClienti;
-    private javax.swing.JList<OrdinableObject> jListBilanciaClienti1;
     private javax.swing.JList<OrdinableObject> jListBilanciaProdotti;
-    private javax.swing.JList<OrdinableObject> jListBilanciaProdotti1;
     private javax.swing.JList<IdName> jListBilanciaScontrino;
     private javax.swing.JList<OrdinableObject> jListClienti;
+    private javax.swing.JList<OrdinableObject> jListMakerClienti;
+    private javax.swing.JList<OrdinableObject> jListMakerProdotti;
     private javax.swing.JList<IdName> jListPesate;
     private javax.swing.JList<OrdinableObject> jListPesateCambiaCliente;
     private javax.swing.JList<OrdinableObject> jListPesateClienti;
@@ -4518,6 +4691,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -4583,7 +4757,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JToggleButton jToggleButtonDemoBilancia;
     private javax.swing.JToggleButton jToggleButtonProdottiModifyUnit;
     private javax.swing.JToggleButton jToggleButtonProdottiSaveUnit;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerMaker;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerPesate;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerTotali;
     private javax.swing.JToggleButton sviluppatore;

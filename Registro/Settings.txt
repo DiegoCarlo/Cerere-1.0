@@ -24,6 +24,6 @@ COM4~BILANCIA_COM
 25~fontMedium
 30~fontBig
 1~orderClienti
-2~orderProdotti
+0~orderProdotti
 0~orderTare
 40~widthScrollBar

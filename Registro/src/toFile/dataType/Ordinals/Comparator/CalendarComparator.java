@@ -32,14 +32,10 @@ public class CalendarComparator implements Comparator<Pesata>
         {
             valueReturn = - valueReturn;
         }
-        if(uno < due)
+        if(uno <= due)
         {
             return - valueReturn;
         }
-        if(uno > due)
-        {
-            return + valueReturn;
-        }
-        return 0;
+        return + valueReturn;
     }
 }

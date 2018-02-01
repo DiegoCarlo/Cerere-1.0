@@ -339,6 +339,19 @@ public class InterfacciaTara extends javax.swing.JFrame
                 jComboBoxTaraItemStateChanged(evt);
             }
         });
+        jComboBoxTara.addPopupMenuListener(new javax.swing.event.PopupMenuListener()
+        {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt)
+            {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt)
+            {
+                jComboBoxTaraPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt)
+            {
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -462,17 +475,22 @@ public class InterfacciaTara extends javax.swing.JFrame
 
     private void jComboBoxTaraItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxTaraItemStateChanged
     {//GEN-HEADEREND:event_jComboBoxTaraItemStateChanged
-        if(!inizializzazione)
-        {
-            peso = ((Tara)Registro.dataBase.tare.get(jComboBoxTara.getSelectedIndex())).quantity;
-            jTextField1.setText(String.format("%.3f", peso).replaceAll(",", "."));
-        }
+        
     }//GEN-LAST:event_jComboBoxTaraItemStateChanged
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextField1KeyReleased
     {//GEN-HEADEREND:event_jTextField1KeyReleased
         jTextField1.setText(Utility.safeNumber(jTextField1.getText()));
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jComboBoxTaraPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt)//GEN-FIRST:event_jComboBoxTaraPopupMenuWillBecomeInvisible
+    {//GEN-HEADEREND:event_jComboBoxTaraPopupMenuWillBecomeInvisible
+        if(!inizializzazione)
+        {
+            peso = ((Tara)Registro.dataBase.tare.get(jComboBoxTara.getSelectedIndex())).quantity;
+            jTextField1.setText(String.format("%.3f", peso).replaceAll(",", "."));
+        }
+    }//GEN-LAST:event_jComboBoxTaraPopupMenuWillBecomeInvisible
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

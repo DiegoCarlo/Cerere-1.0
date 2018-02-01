@@ -1,0 +1,11 @@
+Bar Ricevitoria di Micheletti
+Giorno	FocTond Sfilat Ciab
+15	10
+16	10
+17	
+18	
+19	10
+20	10
+21	
+
+	40

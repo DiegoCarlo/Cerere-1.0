@@ -1,6 +1,7 @@
 package Bilancia;
 
 import java.nio.charset.StandardCharsets;
+import javax.swing.JOptionPane;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -33,6 +34,7 @@ public class Bilancia implements SerialPortEventListener
         {
             System.out.println(ex);
             log(ex.toString());
+            Registro.interfaccia.infoBox("BILANCIA", "PORTA OCCUPATA O INESISTENTE");
             System.exit(1);
         }
     }

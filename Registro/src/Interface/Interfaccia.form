@@ -63,7 +63,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jSplitPaneBilancia" pref="255" max="32767" attributes="0"/>
+                      <Component id="jSplitPaneBilancia" pref="212" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jPanelBilancia1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -762,7 +762,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButtonPesateModifica" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabelPesateStats" pref="114" max="32767" attributes="0"/>
+                                      <Component id="jLabelPesateStats" pref="71" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButtonPesateElimina" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -948,7 +948,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButtonPesateOrdinamentoClienti" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPanePesateClienti" pref="334" max="32767" attributes="0"/>
+                                  <Component id="jScrollPanePesateClienti" pref="336" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1012,7 +1012,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPanePesateCambiaClienti" pref="149" max="32767" attributes="0"/>
+                                  <Component id="jScrollPanePesateCambiaClienti" pref="147" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButtonPesateCambiaCliente" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -1112,7 +1112,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPaneTotali" alignment="0" pref="650" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneTotali" alignment="0" pref="606" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1162,7 +1162,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPaneTotaliClienti" pref="286" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneTotaliClienti" pref="287" max="32767" attributes="0"/>
                           <Component id="jLabelTotaliLogo" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -1479,7 +1479,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="0"/>
                       <Component id="jButtonClientiElimina" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPaneClienti" alignment="0" pref="627" max="32767" attributes="0"/>
+                      <Component id="jScrollPaneClienti" alignment="0" pref="584" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1504,7 +1504,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonClientiOrdine" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelClientiStats" pref="275" max="32767" attributes="0"/>
+                              <Component id="jLabelClientiStats" pref="232" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonClientiSu" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1837,7 +1837,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonProdottiElimina" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPaneProdotti" alignment="0" pref="627" max="32767" attributes="0"/>
+                      <Component id="jScrollPaneProdotti" alignment="0" pref="584" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1862,7 +1862,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonProdottiOrdine" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelProdottiStats" pref="275" max="32767" attributes="0"/>
+                              <Component id="jLabelProdottiStats" pref="232" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonProdottiSu" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -2198,7 +2198,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonTareElimina" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPaneTare" alignment="0" pref="627" max="32767" attributes="0"/>
+                      <Component id="jScrollPaneTare" alignment="0" pref="584" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -2349,24 +2349,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jPanel17" max="32767" attributes="0"/>
                                   <Component id="jToggleButtonDemoBilancia" pref="253" max="32767" attributes="0"/>
                                   <Component id="sviluppatore" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jPanel7" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jPanel19" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPaneOpzioni" min="-2" pref="467" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2375,12 +2370,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPaneOpzioni" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="213" max="32767" attributes="0"/>
+                              <EmptySpace pref="176" max="32767" attributes="0"/>
                               <Component id="sviluppatore" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jToggleButtonDemoBilancia" min="-2" max="-2" attributes="0"/>
@@ -2401,9 +2395,17 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBoxClienti" max="32767" attributes="0"/>
-                              <Component id="jComboBoxProdotti" max="32767" attributes="0"/>
                               <Component id="jComboBoxTare" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jComboBoxClienti" alignment="0" pref="233" max="32767" attributes="0"/>
+                              <Component id="jComboBoxProdotti" alignment="0" pref="233" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -2413,12 +2415,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jComboBoxClienti" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jComboBoxProdotti" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jComboBoxTare" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2487,23 +2495,20 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JScrollPane" name="jScrollPaneOpzioni">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextAreaOpzioni">
+                <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-                    <Property name="columns" type="int" value="20"/>
-                    <Property name="rows" type="int" value="5"/>
+                    <Property name="text" type="java.lang.String" value="Clienti"/>
                   </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextAreaOpzioni.setLineWrap(true);&#xa;jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);"/>
-                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Prodotti"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tare"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -2574,6 +2579,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="20" style="0"/>
                 </Property>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Sviluppatore"/>
               </Properties>
               <Events>
@@ -2585,15 +2591,43 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="211" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPaneOpzioni" pref="621" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPaneOpzioni" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPaneOpzioni">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="jTextAreaOpzioni">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="5"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextAreaOpzioni.setLineWrap(true);&#xa;jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
@@ -2611,7 +2645,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSplitPane4" pref="943" max="32767" attributes="0"/>
+                      <Component id="jSplitPane4" pref="900" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2629,7 +2663,6 @@
           <SubComponents>
             <Container class="javax.swing.JSplitPane" name="jSplitPane4">
               <Properties>
-                <Property name="dividerLocation" type="int" value="-1"/>
                 <Property name="dividerSize" type="int" value="15"/>
                 <Property name="resizeWeight" type="double" value="0.33"/>
               </Properties>
@@ -2698,7 +2731,6 @@
                 </Container>
                 <Container class="javax.swing.JSplitPane" name="jSplitPane5">
                   <Properties>
-                    <Property name="dividerLocation" type="int" value="-1"/>
                     <Property name="dividerSize" type="int" value="15"/>
                     <Property name="resizeWeight" type="double" value="0.66"/>
                   </Properties>
@@ -2857,8 +2889,8 @@
         <Container class="javax.swing.JPanel" name="jPanel25">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab9">
-                <Property name="tabTitle" type="java.lang.String" value="tab9"/>
+              <JTabbedPaneConstraints tabName="Maker">
+                <Property name="tabTitle" type="java.lang.String" value="Maker"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -2868,47 +2900,25 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jXDatePicker1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField1" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                              <Component id="jButton13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="92" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jPanel28" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="75" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jXDatePicker1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                              <Component id="jButton13" min="-2" pref="120" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel26" max="32767" attributes="0"/>
-                              <Component id="jPanel27" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jPanel26" max="32767" attributes="0"/>
+                          <Component id="jPanel27" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel28" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2919,22 +2929,22 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtoBilanciaClienti1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonMakerClienti" alignment="0" max="32767" attributes="0"/>
                       <Component id="jScrollPaneBilanciaClienti1" alignment="0" pref="292" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButtoBilanciaClienti1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonMakerClienti" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPaneBilanciaClienti1" pref="538" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneBilanciaClienti1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButtoBilanciaClienti1">
+                <Component class="javax.swing.JButton" name="jButtonMakerClienti">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="20" style="0"/>
@@ -2942,7 +2952,7 @@
                     <Property name="text" type="java.lang.String" value="order"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtoBilanciaClienti1MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonMakerClientiMouseClicked"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPaneBilanciaClienti1">
@@ -2952,7 +2962,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="jListBilanciaClienti1">
+                    <Component class="javax.swing.JList" name="jListMakerClienti">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="25" style="0"/>
@@ -2962,7 +2972,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListBilanciaClienti1ValueChanged"/>
+                        <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListMakerClientiValueChanged"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Interfaccia_jListBilanciaClienti"/>
@@ -2978,14 +2988,14 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonBilanciaProdotti1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonMakerProdotti" alignment="0" max="32767" attributes="0"/>
                       <Component id="jScrollPaneBilanciaProdotti1" alignment="0" pref="321" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButtonBilanciaProdotti1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonMakerProdotti" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPaneBilanciaProdotti1" max="32767" attributes="0"/>
                       </Group>
@@ -2993,7 +3003,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButtonBilanciaProdotti1">
+                <Component class="javax.swing.JButton" name="jButtonMakerProdotti">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="20" style="0"/>
@@ -3001,7 +3011,7 @@
                     <Property name="text" type="java.lang.String" value="order"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonBilanciaProdotti1MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonMakerProdottiMouseClicked"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPaneBilanciaProdotti1">
@@ -3011,7 +3021,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="jListBilanciaProdotti1">
+                    <Component class="javax.swing.JList" name="jListMakerProdotti">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="25" style="0"/>
@@ -3021,7 +3031,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListBilanciaProdotti1ValueChanged"/>
+                        <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListMakerProdottiValueChanged"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;OrdinableObject&gt;"/>
@@ -3031,24 +3041,63 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker1">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="20" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="jTextField1"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton13">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="20" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="jButton13"/>
-              </Properties>
-            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel28">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField1" pref="189" max="32767" attributes="0"/>
+                              <Component id="jXDatePickerMaker" max="32767" attributes="0"/>
+                              <Component id="jButtonMaker" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jXDatePickerMaker" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButtonMaker" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace pref="382" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePickerMaker">
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="20" style="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyReleased"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonMaker">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="20" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Salva"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonMakerMouseClicked"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>

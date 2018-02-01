@@ -1,15 +1,230 @@
+Nuovo Ateneo di Ivano Ferrari
+	Focaccia	Focaccia Farcita	FocTond Sfilat Ciab	Pizza Margherita	Brioches	Hamburger	Pizza Farcita	Cornetto G
+	67	17	132	85	193	15	3	42
+
+
+Bar della Borsa di Sanna Giovanni
+	FocTond Sfilat Ciab	Brioches	Pane	Focaccia	Cornetto G
+	180	78	4,160	24	18
+
+
+Bar della Borsa di Sanna Giovanni
+	FocTond Sfilat Ciab	Brioches	Pane	Focaccia	Cornetto G
+	180	78	4,160	24	18
+
+
+Ricevitoria Micheletti Miriam
+	FocTond Sfilat Ciab
+	40
+
+
+Bell'Epoque
+	Grissini	Hamburger	Pane	Hambuger Speciali
+	12,580	107	80,720	777
+
+
+Pizzeria Brother's Food di Bresciani Simone
+	Hambuger Speciali	Hamburger	Arabo Piccolo	Farina	Pane
+	404	1327	0,560	90,380	1,020
+
+
+Panificio Confortini di Oneda Bruna & C. S.N.C.
+	Inka Kamut Dinkel Segale	Grano Duro	Pane di Grano Duro	Chiacchiere di Armando	Pane	Focaccia Farcita	Focaccia	Brioches	Pizza Margherita	Pane Duro
+	67,820	24,260	53,580	8,120	289,620	210	108	370	204	9,180
+
+
+Dedalo Centro Studi S.R.L.
+	FocTond Sfilat Ciab	Focaccia Farcita	Focaccia	Pizza Margherita	Brioches	Krapfen	Cornetto G
+	210	36	246	192	126	170	7
+
+
+Caffetteria Gran Cafè di Siddha S.N.C.
+	Pane	Pizza Margherita	FocTond Sfilat Ciab	Focaccia
+	6,900	18	15	20
+
+
+I Ricevimenti S.R.L.
+	Focaccia	Inka Kamut Dinkel Segale
+	51	3,860
+
+
+La Grande Mela
+	Pane	Grano Duro	Pane di Grano Duro	Pane Duro
+	83,280	17,280	35,780	7,580
+
+
+La Chimera Cooperativa Sociale A.R.L.
+	Pane	Pizza Farcita	Focaccia
+	34,080	6	8
+
+
+Birreria la Pulce di Lenzini Luca
+	Pane	Hambuger Speciali	Hamburger Olive	Ciabatte
+	98,700	176	24	2,100
+
+
+Leonardo da Vinci di melis Simonetta S.A.S.
+	Pane	Arabo Piccolo
+	3,340	0,600
+
+
+Norma S.R.L.
+	Pane	Grissini	Hambuger Speciali	Hamburger	Arabo Grande	Arabo Piccolo	Lievito Madre	Inka Kamut Dinkel Segale	Pan Grattato	Toast
+	43,400	36,200	65	95	1,120	1,200	5,000	0,520	4,000	1,440
+
+
+Impanati S.R.L.
+	Pane	Pan Grattato
+	66,200	36,900
+
+
+Osteria Naviglio Peker Bevande S.R.L.
+	Pane	Hamburger	Pane Duro	Pan Grattato	Inka Kamut Dinkel Segale
+	86,260	112	2,000	4,060	1,840
+
+
+La Palazzina di Saviano Valeria & C.
+	Panini Speciali	FocTond Sfilat Ciab	Hamburger	Pane	Arabo Piccolo
+	7,630	75	84	33,380	5,320
+
+
+Singh's Restaurant S.N.C. di Singh Jasbir
+	Pane
+	51,740
+
+
+La Risotteria
+	Pane	Brioches
+	10,060	6
+
+
+Forneria Cav. Remo Zilioli di Zilioli B. & C. S.N.C.
+	Pane	Grano Duro	Inka Kamut Dinkel Segale	Expo	Pane di Grano Duro	Pane Duro	Pandoro	Panini Speciali
+	229,640	6,280	19,920	1,320	16,200	1,060	21,520	0,960
+
+
+Caffè Elia Rossi di Fornaro Alberto
+	Grissini	FocTond Sfilat Ciab
+	0,500	45
+
+
+Bar Marconi di Pellegrini Silvano
+	Integrali	FocTond Sfilat Ciab	Integrali Piccoli
+	2,180	110	2,900
+
+
+Piantavigna di Franceschini Mauro
+	Hamburger	Hambuger Speciali	Grissini	Pan Brioches
+	140	13	1,000	3,040
+
+
+Scuola dell'Infanzia 'Cristo Re'
+	Pane	Integrali Piccoli	Fondo Pizza	Focaccia	Integrali
+	30,380	2,820	7	2	5,680
+
+
+Ma Ely S.A.S. di Eliana Marino
+	Pizza Margherita	Hamburger	Pane	FocTond Sfilat Ciab	Focaccia
+	126	25	10,920	59	17
+
+
+The Pit Stop di Lorenzo Pagnoni
+	Inka Kamut Dinkel Segale	Brioches	Hamburger	Pane	Pizza Margherita	Toast	Pancarre	Focaccia
+	3,400	32	62	39,340	60	1,960	3,340	33
+
+
+Market Cefalonia S.R.L.
+	Pane	Grano Duro	Pane di Grano Duro	Pane Duro	Chiacchiere di Armando	Inka Kamut Dinkel Segale	Salatini Pizzette Sfoglia	Hotdog	Arabo Grande	Integrali Piccoli	Cereali	Integrali	Ciabatte	Tartarughe	Grano Duro Piccolo
+	170,720	155,940	193,160	75,720	7,000	6,460	18,060	13,600	3,000	2,540	5,100	6,580	13,160	5,600	6,300
+
+
+Arnaldo Food S.R.L. Biif
+	Hamburger
+	1176
+
+
+P.M. di Gregorelli O. & P. S.N.C.
+	Pane	Fondo Pizza	Chiacchiere di Armando	Focaccia	Base Pizza Pomodoro	Pan Grattato	Ciabatte	Integrali	Arabo Grande	Arabo Piccolo	Hotdog	Tartarughe	Sfoglie
+	234,460	48	6,100	15	66	3,000	2,020	1,500	1,520	0,760	1,720	1,280	1,220
+
+
+Società Agricola Uggeri Enrico E Umberto S.S.
+	Evolutivo	Pane	Inka Kamut Dinkel Segale
+	24,680	2,600	59,640
+
+
+Risotteria
+	Pane	Focaccia	Brioches	Chiacchiere di Armando	Grissini
+	39,460	6	11	2,020	1,040
+
+
+Pontevico
+	Hambuger Speciali	Hamburger
+	77	265
+
+
+Dorotee
+	Pane
+	35,440
+
+
+Raggio 35
+	Pane	Brioches	Chiacchiere di Armando	Cornetto G
+	35,680	160	4,000	30
+
+
+Bar Ricevitoria di Micheletti
+	FocTond Sfilat Ciab
+	120
+
+
+Bar Porticone
+	Focaccia Farcita	Pancarre	FocTond Sfilat Ciab	Grissini	Brioches	Toast
+	25	5,940	260	4,900	12	1,360
+
+
+Padenghe Malu
+	Hamburger
+	106
+
+
+Norma Spalto S.R.L
+	Pane	Grissini
+	20,980	6,080
+
+
+Antico Ponte
+	Pane di Grano Duro	Inka Kamut Dinkel Segale	Pancarre	Expo	Chiacchiere di Armando	Toast
+	11,040	13,440	5,760	4,540	34,740	1,540
+
+
+Pleasure
+	Toast	Hamburger
+	0,820	83
+
+
 ZCliente per i TEST
-	Evolutivo	Colombe	Expo	Ciabatte	Focaccia	Brioches	Cornetto P	Gastronomico	Chiacchiere di Armando
-	10,665	14,381	7,622	5,832	7	8	9	9,249	7,001
+	Expo	Chiacchiere di Armando	Arabo Piccolo	Brioches	Colombe	Cornetto P	Ciabatte	Base Pizza Pomodoro
+	0,860	20,060	2,040	6	0,300	25	0,240	85
 
 
-test 3
-	Colombe
-	7,888
+Gnutti Macelleria
+	Chiacchiere di Armando
+	4,000
 
 
-test 1
-	pt22
-	0,486
+Pasquariello
+	Inka Kamut Dinkel Segale
+	0,600
+
+
+macelleria 
+	Grissini	Inka Kamut Dinkel Segale	Pane	Pane di Grano Duro	Grano Duro	Pane Duro	Hambuger Speciali	Hamburger
+	0,520	7,520	6,700	7,320	1,520	1,540	29	10
+
+
+Prosciutteria
+	Pane
+	28,320
 
 

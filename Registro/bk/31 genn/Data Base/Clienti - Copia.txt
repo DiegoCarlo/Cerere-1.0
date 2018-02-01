@@ -1,0 +1,50 @@
+55
+id~cardinale~nomevisibile~oraMedia~PesoDellMedia
+0~0~Rangoni e Affini S.P.A.~true~720~1
+1~1~Nuovo Ateneo di Ivano Ferrari~true~720~1
+2~2~Bar della Borsa di Sanna Giovanni~true~786~2
+3~3~Ricevitoria Micheletti Miriam~true~720~1
+4~4~Bell'Epoque~true~720~1
+5~5~Trattoria Briscola~true~720~1
+6~6~Pizzeria Brother's Food di Bresciani Simone~true~720~1
+7~7~Panificio Confortini di Oneda Bruna & C. S.N.C.~true~720~1
+8~8~Dedalo Centro Studi S.R.L.~true~720~1
+9~9~Caffetteria Gran Cafè di Siddha S.N.C.~true~720~1
+10~10~I Ricevimenti S.R.L.~true~720~1
+11~11~La Grande Mela~true~720~1
+12~12~La Chimera Cooperativa Sociale A.R.L.~true~720~1
+13~13~Birreria la Pulce di Lenzini Luca~true~720~1
+14~14~Leonardo da Vinci di melis Simonetta S.A.S.~true~720~1
+15~15~Norma S.R.L.~true~720~1
+16~16~Impanati S.R.L.~true~720~1
+17~17~Osteria Naviglio Peker Bevande S.R.L.~true~720~1
+18~18~La Palazzina di Saviano Valeria & C.~true~720~1
+19~19~Singh's Restaurant S.N.C. di Singh Jasbir~true~720~1
+20~20~La Risotteria~true~720~1
+21~21~Forneria Cav. Remo Zilioli di Zilioli B. & C. S.N.C.~true~720~1
+22~22~Caffetteria delle Bassiche di Borroni Adriana~true~720~1
+23~23~Caffè Elia Rossi di Fornaro Alberto~true~720~1
+24~24~Bar Marconi di Pellegrini Silvano~true~720~1
+25~25~Piantavigna di Franceschini Mauro~true~720~1
+26~26~Scuola dell'Infanzia 'Cristo Re'~true~720~1
+27~27~Ma Ely S.A.S. di Eliana Marino~true~720~1
+28~28~The Pit Stop di Lorenzo Pagnoni~true~720~1
+29~29~Market Cefalonia S.R.L.~true~720~1
+30~30~Arnaldo Food S.R.L. Biif~true~720~1
+31~31~P.M. di Gregorelli O. & P. S.N.C.~true~720~1
+32~32~Società Agricola Uggeri Enrico E Umberto S.S.~true~720~1
+33~33~Raviolificio Tinari di Tinari & Baroni S.N.C.~true~720~1
+35~34~Risotteria~true~720~1
+36~35~Pontevico~true~720~1
+37~36~Dorotee~true~720~1
+38~37~Raggio 35~true~720~1
+39~38~Bar Ricevitoria di Micheletti~true~720~1
+40~39~Bar Porticone~true~720~1
+42~40~Padenghe Malu~true~720~1
+43~42~Norma Spalto S.R.L~true~720~1
+44~43~Antico Ponte~true~720~1
+45~44~Pleasure~true~720~1
+34~45~ZCliente per i TEST~false~720~1
+49~49~Gnutti Macelleria~true~720~1
+50~50~Pasquariello~true~720~1
+51~51~macelleria ~true~720~1

@@ -1,0 +1,140 @@
+Nuovo Ateneo di Ivano Ferrari
+	Pizza Margherita	Focaccia Farcita	Focaccia	FocTond Sfilat Ciab	Brioches
+	4	3	3	10	12
+
+
+Bar della Borsa di Sanna Giovanni
+	FocTond Sfilat Ciab	Brioches
+	20	6
+
+
+Bell'Epoque
+	Pane
+	2,200
+
+
+Panificio Confortini di Oneda Bruna & C. S.N.C.
+	Inka Kamut Dinkel Segale	Grano Duro	Pane	Pizza Margherita	Focaccia Farcita	Focaccia	Brioches
+	2,180	3,020	13,520	12	12	6	23
+
+
+Dedalo Centro Studi S.R.L.
+	Focaccia	Focaccia Farcita	Pizza Margherita	FocTond Sfilat Ciab	Brioches	Krapfen
+	12	3	12	20	8	12
+
+
+Caffetteria Gran Cafè di Siddha S.N.C.
+	Pizza Margherita	FocTond Sfilat Ciab	Pane
+	6	10	2,040
+
+
+La Grande Mela
+	Grano Duro	Pane
+	2,580	3,040
+
+
+La Chimera Cooperativa Sociale A.R.L.
+	Pane
+	3,320
+
+
+Leonardo da Vinci di melis Simonetta S.A.S.
+	Pane
+	0,300
+
+
+Norma S.R.L.
+	Hamburger	Grissini
+	12	1,000
+
+
+Impanati S.R.L.
+	Pane
+	2,480
+
+
+Osteria Naviglio Peker Bevande S.R.L.
+	Pane
+	3,060
+
+
+Singh's Restaurant S.N.C. di Singh Jasbir
+	Pane
+	2,680
+
+
+La Risotteria
+	Pane
+	3,000
+
+
+Forneria Cav. Remo Zilioli di Zilioli B. & C. S.N.C.
+	Grano Duro	Pane
+	1,020	9,040
+
+
+Bar Marconi di Pellegrini Silvano
+	Integrali
+	0,300
+
+
+Scuola dell'Infanzia 'Cristo Re'
+	Pane
+	2,940
+
+
+Ma Ely S.A.S. di Eliana Marino
+	Hamburger	Pane	Pizza Margherita
+	5	0,560	6
+
+
+The Pit Stop di Lorenzo Pagnoni
+	Pizza Margherita	Pane
+	6	2,060
+
+
+Market Cefalonia S.R.L.
+	Grano Duro	Pane
+	22,080	4,020
+
+
+P.M. di Gregorelli O. & P. S.N.C.
+	Pane	Fondo Pizza
+	10,120	12
+
+
+Pontevico
+	Hamburger	Hambuger Speciali
+	62	12
+
+
+Dorotee
+	Pane
+	1,000
+
+
+Raggio 35
+	Pane	Brioches
+	1,520	20
+
+
+Bar Ricevitoria di Micheletti
+	Pane
+	1,060
+
+
+Bar Porticone
+	FocTond Sfilat Ciab
+	30
+
+
+Norma Spalto S.R.L
+	Pane	Grissini
+	3,580	2,020
+
+
+macelleria 
+	Pane	Inka Kamut Dinkel Segale	Grissini
+	1,040	0,600	0,520
+
+
