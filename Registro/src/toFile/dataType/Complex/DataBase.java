@@ -5,6 +5,7 @@
  */
 package toFile.dataType.Complex;
 
+import Interface.IdName;
 import toFile.Utility.Utility;
 import Interface.ProgressionBar;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import toFile.dataType.Ordinals.Comparator.AlphabeticalComparator;
 import toFile.dataType.Ordinals.Comparator.Behavior;
 import toFile.dataType.Ordinals.Comparator.CalendarComparator;
 import toFile.dataType.Ordinals.Comparator.FrequencyProductComparator;
+import toFile.dataType.Ordinals.Comparator.IdComparator;
 import toFile.dataType.Ordinals.PesateArray;
 import toFile.dataType.Ordinals.OrdinableArray;
 import toFile.dataType.Ordinals.OrdinableObject;
@@ -43,6 +45,7 @@ import toFile.dataType.Ordinals.OrdinableObject;
  */
 public class DataBase
 {
+    //374493560
     public OrdinableArray clienti;
     public OrdinableArray removedClienti;
     public OrdinableArray prodotti;
@@ -448,7 +451,7 @@ public class DataBase
             pesate = new PesateArray(0) ;
         }
     }
-    public void elaboraTotaliCliente(long idCliente, Calendar date, JTable tabella)
+    public IdName[] elaboraTotaliCliente(long idCliente, Calendar date, JTable tabella)
     {
         log("elaboraTotaliCliente");
         ArrayList<Long> idPesate = getPesateClienteMese(idCliente, date, Behavior.INCREASING);
@@ -479,17 +482,17 @@ public class DataBase
                 listaProdotti.add((Prodotto)prodotti.get((pe).idProdotto));
             }
         }
-
+        Collections.sort(listaProdotti, new IdComparator(Behavior.INCREASING));
+                
         // creo l'intestazione delle colonne con i nomi dei prodotti
-        String[] nomiProdotti = new String[listaProdotti.size()];
+        IdName[] nomiProdotti = new IdName[listaProdotti.size()];
         int f=0;
         for(Prodotto pr: listaProdotti)
         {
-            nomiProdotti[f] = pr.getName();
+            nomiProdotti[f] = new IdName(pr.getId(),pr.getName());
             //System.out.println(nomiProdotti[f]);
             f++;
         }
-
         int numeroGiorniDelMese = date.getActualMaximum(Calendar.DAY_OF_MONTH);
         //numeroGiorniDelMese += 2; // linee per i totali
 
@@ -540,16 +543,24 @@ public class DataBase
             }
         }
 
-        String[] intestazione = new String[listaProdotti.size()+1];
-        intestazione[0] = "Giorno:";
+        IdName[] intestazione = new IdName[nomiProdotti.length+1];
+        intestazione[0] = new IdName(-1, "Giorno:");
         for(int i=0; i<nomiProdotti.length; i++)
         {
             intestazione[i+1] = nomiProdotti[i];
         }
+        String[] giorni = {"Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"};
+        
+        Calendar giorniCalendario = Calendar.getInstance();
+        giorniCalendario.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), 1);
+        
         Object[][] datiComplessivi = new Object[numeroGiorniDelMese+2][intestazione.length];
+        
         for(int i=0; i<numeroGiorniDelMese; i++)
         {
-            datiComplessivi[i][0] = i+1;
+            giorniCalendario.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), 1+i);
+            int g = giorniCalendario.get(Calendar.DAY_OF_WEEK);
+            datiComplessivi[i][0] = i+1+" "+giorni[g-1];
             for(int j=0; j<nomiProdotti.length; j++)
             {
                 datiComplessivi[i][j+1] = dati[i][j];
@@ -575,6 +586,7 @@ public class DataBase
             center.setHorizontalAlignment(JLabel.CENTER);
             tabella.getColumnModel().getColumn(i).setCellRenderer(center);
         }
+        return nomiProdotti;
     }
 
     public void updateClientFrequency(long id)
@@ -657,6 +669,8 @@ public class DataBase
 
                 // rintraccio tutti i tipi di prodotti pesati
                 ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+                
+                Collections.sort(listaProdotti, new IdComparator(Behavior.INCREASING));
                 for(Pesata pe: listaPesate)
                 {
                     boolean presente = false;
@@ -769,27 +783,27 @@ public class DataBase
 
                 riassunto += nl + nl + nl;
 
-                Boolean results = IO.creaPath(Settings.SALVATAGGI_DIRECTORY);
+                Boolean results = IO.creaPath(Registro.settings.getSalvataggiDirectory());
                 
                 
-                String tot = Settings.SALVATAGGI_DIRECTORY + "/"+ Utility.getYearMonth(cal);
+                String tot = Registro.settings.getSalvataggiDirectory() + "/"+ Utility.getYearMonth(cal);
                 results = IO.creaPath(tot);
                 
-                IO.writeStringFile(tot+"/"+c.getName()+".txt", scrittura);
+                IO.writeStringFile(tot + "/"+ c.getName() + Settings.EXT_EXCEL, scrittura);
                 Registro.progressionBar.progress(c.getName());
                 
             }
         }
-        String tot = Settings.SALVATAGGI_DIRECTORY + "/"+ Utility.getYearMonth(cal);
+        String tot = Registro.settings.getSalvataggiDirectory() + "/"+ Utility.getYearMonth(cal);
         
-        IO.writeStringFile(tot + "/" + Utility.getYearMonth(cal) + " Riassunto.txt", riassunto);
+        IO.writeStringFile(tot + "/" + Utility.getYearMonth(cal) + " Riassunto" + Settings.EXT_EXCEL, riassunto);
         
         Registro.progressionBar.close();
     }
 
     public void saveTotaliSettimana(long idCliente, Calendar firstDay, Calendar lastDay)
     {
-        Registro.progressionBar = new ProgressionBar(4,750);
+        Registro.progressionBar = new ProgressionBar(4,250);
         Registro.progressionBar.setVisible(true);
         
         OrdinableArray prodotti = getAllProducts();
@@ -859,7 +873,9 @@ public class DataBase
                     listaProdotti.add((Prodotto)prodotti.get((pe).idProdotto));
                 }
             }
-
+            
+            Collections.sort(listaProdotti, new IdComparator(Behavior.INCREASING));
+                
             // creo l'intestazione delle colonne con i nomi dei prodotti
             String[] nomiProdotti = new String[listaProdotti.size()];
             int f=0;
@@ -979,17 +995,17 @@ public class DataBase
             }
 
 
-            Boolean results = IO.creaPath(Settings.SETTIMANALI_DIRECTORY);
+            Boolean results = IO.creaPath(Registro.settings.getSalvataggiSettimanaliDirectory());
             Registro.progressionBar.progress();
             //log(pathPesateMensili + " " + results);
             String nomeFile = c.getName()+ " " +
                     firstDay.get(Calendar.DAY_OF_MONTH) + "-" +
                     (1 + firstDay.get(Calendar.MONTH)) + " " +
                     lastDay.get(Calendar.DAY_OF_MONTH) + "-" +
-                    (1 + lastDay.get(Calendar.MONTH)) + ".txt";
+                    (1 + lastDay.get(Calendar.MONTH)) + Settings.EXT_EXCEL;
             Registro.progressionBar.progress();
             //log(pathPesateMensili + " " + results);
-            IO.writeStringFile(Settings.SETTIMANALI_DIRECTORY+"/"+nomeFile, scrittura);
+            IO.writeStringFile(Registro.settings.getSalvataggiSettimanaliDirectory() + "/" + nomeFile, scrittura);
             Registro.progressionBar.progress();
             
         }
