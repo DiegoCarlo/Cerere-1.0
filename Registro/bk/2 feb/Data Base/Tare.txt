@@ -1,0 +1,5 @@
+7~7
+id cardinal name quantity
+6~5~1 rossa~1.34
+7~6~2 rosse~2.64
+5~7~vaschetta bianca~1.4

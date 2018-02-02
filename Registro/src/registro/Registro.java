@@ -45,11 +45,11 @@ public class Registro
         });
         barra.start();
         
-        progressionBar.progress("Controllo le cartelle");
-        createDirectory();
-        
         progressionBar.progress("Carico le Impostazioni");
         loadSettings();
+        
+        progressionBar.progress("Controllo le cartelle");
+        createDirectory();
         
         progressionBar.progress("Carico il Data Base");
         dataBase = new DataBase();
@@ -130,8 +130,7 @@ public class Registro
         *     | - 2018 1
         *     | - 2018 2             
         */
-        IO.creaPath(Settings.SALVATAGGI_DIRECTORY);
-        IO.creaPath(Settings.SETTIMANALI_DIRECTORY);
+        
         IO.creaPath(Settings.DATA_BASE_DIRECTORY);
         IO.creaPath(Settings.MESI_PESATE_DIRECTORY);
     }

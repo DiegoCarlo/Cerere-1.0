@@ -1,0 +1,7 @@
+0~0
+id cardinal name unitOfMeesasure
+63~63~pt22~n.
+64~64~pt22~Kg
+6~1~Pane di Grano Duro~Kg
+52~53~Grano Duro Piccolo~Kg
+65~65~ssdaz~Kg

@@ -129,9 +129,13 @@ public class Interfaccia extends javax.swing.JFrame
         orderProdotti();
         orderTare();
         inizialization = false;
-        
+        updateSaveDirectory();
         UIManager.put("OptionPane.buttonFont", new FontUIResource(font));
 
+    }
+    public void updateSaveDirectory()
+    {
+        jLabelSaveDirectory.setText("Cartella: " + Registro.settings.salvataggiDirectory);
     }
     private void updateOrder()
     {
@@ -302,6 +306,9 @@ public class Interfaccia extends javax.swing.JFrame
         jButtonClientiElimina.setFont(font);
         
         // prodotti
+        
+        // opzioni
+        jLabelSaveDirectory.setFont(font);
         
         // removed
         jListRemovedClienti.setFont(font);
@@ -1213,6 +1220,8 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel19 = new javax.swing.JPanel();
         jScrollPaneOpzioni = new javax.swing.JScrollPane();
         jTextAreaOpzioni = new javax.swing.JTextArea();
+        jLabelSaveDirectory = new javax.swing.JLabel();
+        folderChooser1 = new Interface.FolderChooser();
         jPanelRemoved = new javax.swing.JPanel();
         jSplitPane4 = new javax.swing.JSplitPane();
         jPanel4 = new javax.swing.JPanel();
@@ -1982,30 +1991,6 @@ public class Interfaccia extends javax.swing.JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 jTableTotaliMensiliMouseClicked(evt);
-            }
-        });
-        jTableTotaliMensili.addInputMethodListener(new java.awt.event.InputMethodListener()
-        {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt)
-            {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt)
-            {
-                jTableTotaliMensiliInputMethodTextChanged(evt);
-            }
-        });
-        jTableTotaliMensili.addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {
-            public void propertyChange(java.beans.PropertyChangeEvent evt)
-            {
-                jTableTotaliMensiliPropertyChange(evt);
-            }
-        });
-        jTableTotaliMensili.addVetoableChangeListener(new java.beans.VetoableChangeListener()
-        {
-            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException
-            {
-                jTableTotaliMensiliVetoableChange(evt);
             }
         });
         jScrollPaneTotali.setViewportView(jTableTotaliMensili);
@@ -3049,13 +3034,20 @@ public class Interfaccia extends javax.swing.JFrame
         jTextAreaOpzioni.setAlignmentX(TextArea.CENTER_ALIGNMENT);
         jScrollPaneOpzioni.setViewportView(jTextAreaOpzioni);
 
+        jLabelSaveDirectory.setText("Directory dei salvataggi:");
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(folderChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jLabelSaveDirectory)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
@@ -3063,6 +3055,10 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPaneOpzioni)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelSaveDirectory)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(folderChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -4398,17 +4394,6 @@ public class Interfaccia extends javax.swing.JFrame
         log("adw");        // TODO add your handling code here:
     }//GEN-LAST:event_jSpinnerFontStateChanged
 
-    private void jTableTotaliMensiliInputMethodTextChanged(java.awt.event.InputMethodEvent evt)//GEN-FIRST:event_jTableTotaliMensiliInputMethodTextChanged
-    {//GEN-HEADEREND:event_jTableTotaliMensiliInputMethodTextChanged
-        log("InputMethodTextChanged");
-    }//GEN-LAST:event_jTableTotaliMensiliInputMethodTextChanged
-
-    private void jTableTotaliMensiliPropertyChange(java.beans.PropertyChangeEvent evt)//GEN-FIRST:event_jTableTotaliMensiliPropertyChange
-    {//GEN-HEADEREND:event_jTableTotaliMensiliPropertyChange
-        log("PropertyChange");
-        
-    }//GEN-LAST:event_jTableTotaliMensiliPropertyChange
-
     private void jTableTotaliMensiliMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableTotaliMensiliMouseClicked
     {//GEN-HEADEREND:event_jTableTotaliMensiliMouseClicked
         
@@ -4429,12 +4414,6 @@ public class Interfaccia extends javax.swing.JFrame
             updateSettimana(cal);
         }
     }//GEN-LAST:event_jTableTotaliMensiliMouseClicked
-
-    private void jTableTotaliMensiliVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException//GEN-FIRST:event_jTableTotaliMensiliVetoableChange
-    {//GEN-HEADEREND:event_jTableTotaliMensiliVetoableChange
-        log("vetoable change");
-        
-    }//GEN-LAST:event_jTableTotaliMensiliVetoableChange
 
     private void jButtonAddPesataMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonAddPesataMouseClicked
     {//GEN-HEADEREND:event_jButtonAddPesataMouseClicked
@@ -4490,6 +4469,7 @@ public class Interfaccia extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Interface.FolderChooser folderChooser1;
     private javax.swing.JButton jButtoBilanciaClienti;
     private javax.swing.JButton jButton0;
     private javax.swing.JButton jButton1;
@@ -4564,6 +4544,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JLabel jLabelProdottiModifica;
     private javax.swing.JLabel jLabelProdottiSalva;
     private javax.swing.JLabel jLabelProdottiStats;
+    private javax.swing.JLabel jLabelSaveDirectory;
     private javax.swing.JLabel jLabelTare;
     private javax.swing.JLabel jLabelTareLogo;
     private javax.swing.JLabel jLabelTareModifica;

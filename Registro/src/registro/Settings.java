@@ -6,6 +6,9 @@
 package registro;
 
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import toFile.Utility.IO;
 
 /**
@@ -37,7 +40,7 @@ public class Settings
      */
     public static final String DATA_BASE_DIRECTORY = "Data Base";
     public static final String SALVATAGGI_DIRECTORY = "Salvataggi";
-    public static final String SETTIMANALI_DIRECTORY = SALVATAGGI_DIRECTORY + "/Settimanali";
+    public static final String SETTIMANALI_DIRECTORY = "Settimanali";
     public static final String MESI_PESATE_DIRECTORY = DATA_BASE_DIRECTORY + "/Mensili";
     
     public static final String EXT = ".txt";
@@ -67,7 +70,9 @@ public class Settings
     public int orderProdotti = 0;
     public int orderTare = 0;
     public int widthScrollBar = 40;
+    public String salvataggiDirectory = "";
 
+    
     public Settings(
             int maxWeightMinuteAverage,
             int font, int fontMedium,
@@ -75,7 +80,8 @@ public class Settings
             int orderClienti,
             int orderProdotti,
             int orderTare,
-            int widthScrollBar)
+            int widthScrollBar,
+            String salvataggiDirectory)
     {
         this.maxWeightMinuteAverage = maxWeightMinuteAverage;
         this.font = font;
@@ -85,6 +91,7 @@ public class Settings
         this.orderProdotti = orderProdotti;
         this.orderTare = orderTare;
         this.widthScrollBar = widthScrollBar;
+        this.salvataggiDirectory = salvataggiDirectory;
     }
     public Settings()
     {
@@ -154,6 +161,7 @@ public class Settings
             int orderProdotti = Integer.parseInt(split[++i][0]);
             int orderTare = Integer.parseInt(split[++i][0]);
             int widthScrollBar = Integer.parseInt(split[++i][0]);
+            String saveDirectory = split[++i][0];
             Settings settings = new Settings(
                     maxWeightMinuteAverage,
                     font,
@@ -162,7 +170,8 @@ public class Settings
                     orderClienti,
                     orderProdotti,
                     orderTare,
-                    widthScrollBar
+                    widthScrollBar,
+                    saveDirectory
             );
             return settings;
         }
@@ -171,5 +180,45 @@ public class Settings
             a.printStackTrace();
         }
         return null;
+    }
+    public String getSalvataggiDirectory()
+    {
+        Path path = Paths.get(salvataggiDirectory);
+        if (Files.exists(path))
+        {
+            if(!salvataggiDirectory.isEmpty())
+            {
+                return salvataggiDirectory + "/" + SALVATAGGI_DIRECTORY;
+            }
+            return SALVATAGGI_DIRECTORY;
+        }
+        return SALVATAGGI_DIRECTORY;
+    }
+    public String getSalvataggiSettimanaliDirectory()
+    {
+        Path path = Paths.get(salvataggiDirectory);
+        if (Files.exists(path))
+        {
+            if(!salvataggiDirectory.isEmpty())
+            {
+                Path path2 = Paths.get(salvataggiDirectory + "/" + SALVATAGGI_DIRECTORY);
+                if (!Files.exists(path2))
+                {
+                    IO.creaPath(salvataggiDirectory + "/" + SALVATAGGI_DIRECTORY);
+                }
+                return salvataggiDirectory + "/" + SALVATAGGI_DIRECTORY + "/" + SETTIMANALI_DIRECTORY;
+            }
+            else
+            {
+                Path path2 = Paths.get(SALVATAGGI_DIRECTORY);
+                if (!Files.exists(path2))
+                {
+                    IO.creaPath(SALVATAGGI_DIRECTORY);
+                }
+                return SALVATAGGI_DIRECTORY + "/" + SETTIMANALI_DIRECTORY;
+            }
+            
+        }
+        return SALVATAGGI_DIRECTORY + "/" + SETTIMANALI_DIRECTORY;
     }
 }

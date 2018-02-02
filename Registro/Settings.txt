@@ -1,6 +1,6 @@
 Data Base~DATA_BASE_DIRECTORY
 Salvataggi~SALVATAGGI_DIRECTORY
-Salvataggi/Settimanali~SETTIMANALI_DIRECTORY
+Settimanali~SETTIMANALI_DIRECTORY
 Data Base/Mensili~MESI_PESATE_DIRECTORY
 .txt~EXT
 .txte~EXT_EXCEL
@@ -28,3 +28,4 @@ COM4~BILANCIA_COM
 0~orderProdotti
 0~orderTare
 40~widthScrollBar
+D:\Clouding\Test Registro Voglia di Pane~salvataggiDirectory

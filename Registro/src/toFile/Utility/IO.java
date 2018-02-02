@@ -10,8 +10,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
@@ -23,13 +23,18 @@ public class IO
 {
     /**
      * create the directory
-     * @param path 
+     * @param directory 
      * @return false if it already exist
      */
-    public static boolean creaPath(String path)
+    public static boolean creaPath(String directory)
     {
-        File dir = new File(path);
-        return dir.mkdir();
+        Path path = Paths.get(directory);
+        if (!Files.exists(path))
+        {
+            File dir = new File(directory);
+            return dir.mkdir();
+        }
+        return true;
     }
     public static void log(String string)
     {
@@ -61,9 +66,10 @@ public class IO
         {
             log("IO.writeStringFile " + pathFile);
             File file = new File (pathFile);
-            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), "Cp1252");
-            writer.write(text);
-            writer.close();
+            try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), "Cp1252"))
+            {
+                writer.write(text);
+            }
         }
         catch(IOException x)
         {
