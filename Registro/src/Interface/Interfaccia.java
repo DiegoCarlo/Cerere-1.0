@@ -28,6 +28,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
+import org.jdesktop.swingx.JXDatePicker;
 import registro.Registro;
 import toFile.dataType.Complex.DataBase;
 import registro.Settings;
@@ -79,6 +82,8 @@ public class Interfaccia extends javax.swing.JFrame
     
     boolean inizialization = true;
     
+    IdName[] tableProducts;
+    
     PesateArray bilanciaArrayPesate = new PesateArray(0);
     
     ActiveOrdering oClienti = new ActiveOrdering(new Order[]
@@ -124,14 +129,8 @@ public class Interfaccia extends javax.swing.JFrame
         orderProdotti();
         orderTare();
         inizialization = false;
-        jTabbedPane.setEnabledAt(8, false);
-        /*jTextField1.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Enter pressed");
-                salva();
-            }
-        });*/
+        
+        UIManager.put("OptionPane.buttonFont", new FontUIResource(font));
 
     }
     private void updateOrder()
@@ -188,23 +187,6 @@ public class Interfaccia extends javax.swing.JFrame
         dateBtn2.setContentAreaFilled(false);
         dateBtn2.setBorderPainted(false);
         dateBtn2.setOpaque(false);
-        
-        
-        
-        ImageIcon icona3 = new ImageIcon();
-        icona2 = new ImageIcon(
-                        new ImageIcon("Icons\\button.png")
-                                .getImage()
-                                .getScaledInstance(dimensioni, dimensioni, Image.SCALE_DEFAULT)
-                        );
-        JButton dateBtn3 = (JButton) jXDatePickerMaker.getComponent(1);
-          
-        dateBtn3.setIcon(icona3);
-        dateBtn3.setFocusPainted(false);
-        dateBtn3.setMargin(new Insets(0, 0, 0, 0));
-        dateBtn3.setContentAreaFilled(false);
-        dateBtn3.setBorderPainted(false);
-        dateBtn3.setOpaque(false);
         
         updateLogo();
         
@@ -298,6 +280,9 @@ public class Interfaccia extends javax.swing.JFrame
         jButtonPesateElimina.setFont(font);
         jButtonPesateRistampaScontrino.setFont(font);
         jXDatePickerPesate.setFont(font);
+        
+        // totali
+        jButtonAddPesata.setFont(font);
         
         // clienti
         jLabelClientiSalva.setFont(font);
@@ -428,7 +413,7 @@ public class Interfaccia extends javax.swing.JFrame
                     Calendar cal = GregorianCalendar.getInstance();
                     jXDatePickerTotali.setDate(cal.getTime());
                     updateTotali();
-                    updateSettimana();
+                    updateSettimana(jXDatePickerTotali);
                     break;
                 case 3:
                     updatejPanelClienti();
@@ -443,16 +428,8 @@ public class Interfaccia extends javax.swing.JFrame
                 case 7:
                     updatejPanelRemoved();
                     break;
-                case 8:
-                    updatejPanelMaker();
             }
         }
-    }
-    private void updatejPanelMaker()
-    {
-        updatejList(jListMakerClienti, dataBase.clienti);
-        updatejList(jListMakerProdotti, dataBase.prodotti);
-        
     }
     private void setEnableNotBilancia(boolean enable)
     {
@@ -542,14 +519,20 @@ public class Interfaccia extends javax.swing.JFrame
     {
         updatejList(jListTotaliClienti, dataBase.clienti);
     }
-    private void updateSettimana()
+    private void updateSettimana(JXDatePicker jXDatePicker)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(jXDatePicker.getDate());
+        updateSettimana(cal);
+    }
+    private void updateSettimana(Calendar cal)
     {
         firstDay = null;
         lastDay = null;
         Calendar tempF = Calendar.getInstance();
-        tempF.setTime(jXDatePickerTotali.getDate());
+        tempF.setTimeInMillis(cal.getTimeInMillis());
         Calendar tempL = Calendar.getInstance();
-        tempL.setTime(jXDatePickerTotali.getDate());
+        tempL.setTimeInMillis(cal.getTimeInMillis());
         
         do
         {
@@ -594,7 +577,7 @@ public class Interfaccia extends javax.swing.JFrame
             Calendar data = Calendar.getInstance();
             data.setTime(jXDatePickerTotali.getDate());
 
-            dataBase.elaboraTotaliCliente(idCliente, data, jTableTotaliMensili);
+            tableProducts = dataBase.elaboraTotaliCliente(idCliente, data, jTableTotaliMensili);
         }
         else
         {
@@ -1137,6 +1120,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel22 = new javax.swing.JPanel();
         jScrollPaneTotali = new javax.swing.JScrollPane();
         jTableTotaliMensili = new javax.swing.JTable();
+        jButtonAddPesata = new javax.swing.JButton();
         jPanel21 = new javax.swing.JPanel();
         jScrollPaneTotaliClienti = new javax.swing.JScrollPane();
         jListTotaliClienti = new javax.swing.JList<>();
@@ -1222,6 +1206,9 @@ public class Interfaccia extends javax.swing.JFrame
         jSpinnerFont = new javax.swing.JSpinner();
         jSpinnerFontMedium = new javax.swing.JSpinner();
         jSpinnerFontBig = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         sviluppatore = new javax.swing.JToggleButton();
         jPanel19 = new javax.swing.JPanel();
         jScrollPaneOpzioni = new javax.swing.JScrollPane();
@@ -1242,19 +1229,6 @@ public class Interfaccia extends javax.swing.JFrame
         jScrollPaneRemovedPesate = new javax.swing.JScrollPane();
         jListRemovedPesate = new javax.swing.JList<>();
         jButton12 = new javax.swing.JButton();
-        jPanel25 = new javax.swing.JPanel();
-        jPanel26 = new javax.swing.JPanel();
-        jButtonMakerClienti = new javax.swing.JButton();
-        jScrollPaneBilanciaClienti1 = new javax.swing.JScrollPane();
-        jListMakerClienti = new javax.swing.JList<>();
-        jPanel27 = new javax.swing.JPanel();
-        jButtonMakerProdotti = new javax.swing.JButton();
-        jScrollPaneBilanciaProdotti1 = new javax.swing.JScrollPane();
-        jListMakerProdotti = new javax.swing.JList<>();
-        jPanel28 = new javax.swing.JPanel();
-        jXDatePickerMaker = new org.jdesktop.swingx.JXDatePicker();
-        jTextField1 = new javax.swing.JTextField();
-        jButtonMaker = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Voglia di Pane");
@@ -1898,7 +1872,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
                 .addComponent(jButtonPesateOrdinamentoClienti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(jPanel23);
@@ -1927,7 +1901,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
-                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonPesateCambiaCliente))
         );
@@ -1961,7 +1935,6 @@ public class Interfaccia extends javax.swing.JFrame
         jTableTotaliMensili.setFont(font);
         jTableTotaliMensili.setRowHeight(25);
         jTableTotaliMensili.getTableHeader().setFont(font);
-        jTableTotaliMensili.setEnabled(false);
         jTableTotaliMensili.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -2004,17 +1977,61 @@ public class Interfaccia extends javax.swing.JFrame
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
+        jTableTotaliMensili.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jTableTotaliMensiliMouseClicked(evt);
+            }
+        });
+        jTableTotaliMensili.addInputMethodListener(new java.awt.event.InputMethodListener()
+        {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt)
+            {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt)
+            {
+                jTableTotaliMensiliInputMethodTextChanged(evt);
+            }
+        });
+        jTableTotaliMensili.addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {
+            public void propertyChange(java.beans.PropertyChangeEvent evt)
+            {
+                jTableTotaliMensiliPropertyChange(evt);
+            }
+        });
+        jTableTotaliMensili.addVetoableChangeListener(new java.beans.VetoableChangeListener()
+        {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException
+            {
+                jTableTotaliMensiliVetoableChange(evt);
+            }
+        });
         jScrollPaneTotali.setViewportView(jTableTotaliMensili);
+
+        jButtonAddPesata.setText("Aggiungi pesata");
+        jButtonAddPesata.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonAddPesataMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+            .addComponent(jButtonAddPesata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAddPesata))
         );
 
         jSplitPane3.setRightComponent(jPanel22);
@@ -2884,6 +2901,8 @@ public class Interfaccia extends javax.swing.JFrame
 
         jTabbedPane.addTab("Tare", jPanelTare);
 
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordinamento all'avvio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 20))); // NOI18N
+
         jComboBoxClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jComboBoxClienti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxClienti.addItemListener(new java.awt.event.ItemListener()
@@ -2960,10 +2979,23 @@ public class Interfaccia extends javax.swing.JFrame
         jToggleButtonDemoBilancia.setText("Demo Bilancia");
 
         jSpinnerFont.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jSpinnerFont.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                jSpinnerFontStateChanged(evt);
+            }
+        });
 
         jSpinnerFontMedium.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
 
         jSpinnerFontBig.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+
+        jLabel4.setText("Font Generale");
+
+        jLabel5.setText("Font Liste");
+
+        jLabel6.setText("Font Speciali");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -2972,25 +3004,36 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(219, Short.MAX_VALUE))
+                    .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSpinnerFont, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSpinnerFontBig)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         sviluppatore.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        sviluppatore.setSelected(true);
         sviluppatore.setText("Sviluppatore");
         sviluppatore.addChangeListener(new javax.swing.event.ChangeListener()
         {
@@ -3012,7 +3055,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
@@ -3028,14 +3071,12 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelOptionsLayout.setHorizontalGroup(
             jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelOptionsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                            .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -3049,7 +3090,7 @@ public class Interfaccia extends javax.swing.JFrame
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addComponent(sviluppatore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonDemoBilancia))
@@ -3197,149 +3238,6 @@ public class Interfaccia extends javax.swing.JFrame
             );
 
             jTabbedPane.addTab("Cestino", jPanelRemoved);
-
-            jButtonMakerClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jButtonMakerClienti.setText("order");
-            jButtonMakerClienti.addMouseListener(new java.awt.event.MouseAdapter()
-            {
-                public void mouseClicked(java.awt.event.MouseEvent evt)
-                {
-                    jButtonMakerClientiMouseClicked(evt);
-                }
-            });
-
-            jListMakerClienti.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
-            jListMakerClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-            {
-                public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-                {
-                    jListMakerClientiValueChanged(evt);
-                }
-            });
-            jScrollPaneBilanciaClienti1.setViewportView(jListMakerClienti);
-
-            javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-            jPanel26.setLayout(jPanel26Layout);
-            jPanel26Layout.setHorizontalGroup(
-                jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonMakerClienti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPaneBilanciaClienti1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-            );
-            jPanel26Layout.setVerticalGroup(
-                jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel26Layout.createSequentialGroup()
-                    .addComponent(jButtonMakerClienti)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPaneBilanciaClienti1))
-            );
-
-            jButtonMakerProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jButtonMakerProdotti.setText("order");
-            jButtonMakerProdotti.addMouseListener(new java.awt.event.MouseAdapter()
-            {
-                public void mouseClicked(java.awt.event.MouseEvent evt)
-                {
-                    jButtonMakerProdottiMouseClicked(evt);
-                }
-            });
-
-            jListMakerProdotti.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
-            jListMakerProdotti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-            {
-                public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-                {
-                    jListMakerProdottiValueChanged(evt);
-                }
-            });
-            jScrollPaneBilanciaProdotti1.setViewportView(jListMakerProdotti);
-
-            javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-            jPanel27.setLayout(jPanel27Layout);
-            jPanel27Layout.setHorizontalGroup(
-                jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonMakerProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPaneBilanciaProdotti1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-            );
-            jPanel27Layout.setVerticalGroup(
-                jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel27Layout.createSequentialGroup()
-                    .addComponent(jButtonMakerProdotti)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPaneBilanciaProdotti1))
-            );
-
-            jTextField1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jTextField1.addKeyListener(new java.awt.event.KeyAdapter()
-            {
-                public void keyPressed(java.awt.event.KeyEvent evt)
-                {
-                    jTextField1KeyPressed(evt);
-                }
-                public void keyReleased(java.awt.event.KeyEvent evt)
-                {
-                    jTextField1KeyReleased(evt);
-                }
-            });
-
-            jButtonMaker.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-            jButtonMaker.setText("Salva");
-            jButtonMaker.addMouseListener(new java.awt.event.MouseAdapter()
-            {
-                public void mouseClicked(java.awt.event.MouseEvent evt)
-                {
-                    jButtonMakerMouseClicked(evt);
-                }
-            });
-
-            javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-            jPanel28.setLayout(jPanel28Layout);
-            jPanel28Layout.setHorizontalGroup(
-                jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel28Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                        .addComponent(jXDatePickerMaker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonMaker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(11, Short.MAX_VALUE))
-            );
-            jPanel28Layout.setVerticalGroup(
-                jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel28Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jXDatePickerMaker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButtonMaker, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(382, Short.MAX_VALUE))
-            );
-
-            javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-            jPanel25.setLayout(jPanel25Layout);
-            jPanel25Layout.setHorizontalGroup(
-                jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel25Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(75, Short.MAX_VALUE))
-            );
-            jPanel25Layout.setVerticalGroup(
-                jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap())
-            );
-
-            jTabbedPane.addTab("Maker", jPanel25);
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -4090,7 +3988,7 @@ public class Interfaccia extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jXDatePickerTotaliPopupMenuWillBecomeInvisible
         int cliente = jListTotaliClienti.getSelectedIndex();
         updateTotali();
-        updateSettimana();
+        updateSettimana(jXDatePickerTotali);
         jListTotaliClienti.setSelectedIndex(cliente);
     }//GEN-LAST:event_jXDatePickerTotaliPopupMenuWillBecomeInvisible
 
@@ -4490,92 +4388,106 @@ public class Interfaccia extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jComboBoxTareItemStateChanged
 
-    private void jButtonMakerClientiMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonMakerClientiMouseClicked
-    {//GEN-HEADEREND:event_jButtonMakerClientiMouseClicked
-        oClienti.getNext();
-        orderClienti();
-        updatejList(jListBilanciaClienti, dataBase.clienti);
-    }//GEN-LAST:event_jButtonMakerClientiMouseClicked
-
-    private void jListMakerClientiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListMakerClientiValueChanged
-    {//GEN-HEADEREND:event_jListMakerClientiValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jListMakerClientiValueChanged
-
-    private void jButtonMakerProdottiMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonMakerProdottiMouseClicked
-    {//GEN-HEADEREND:event_jButtonMakerProdottiMouseClicked
-        oProdotti.getNext();
-        orderClienti();
-        updatejList(jListBilanciaProdotti, dataBase.prodotti);
-    }//GEN-LAST:event_jButtonMakerProdottiMouseClicked
-
-    private void jListMakerProdottiValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_jListMakerProdottiValueChanged
-    {//GEN-HEADEREND:event_jListMakerProdottiValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jListMakerProdottiValueChanged
-
     private void sviluppatoreStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_sviluppatoreStateChanged
     {//GEN-HEADEREND:event_sviluppatoreStateChanged
-        if(sviluppatore.isSelected())
-        {
-            jTabbedPane.setEnabledAt(8, true);
-        }
-        else
-        {
-            jTabbedPane.setEnabledAt(8, false);;
-        }
+        
     }//GEN-LAST:event_sviluppatoreStateChanged
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextField1KeyReleased
-    {//GEN-HEADEREND:event_jTextField1KeyReleased
-        jTextField1.setText(Utility.safeNumber(jTextField1.getText()));
-    }//GEN-LAST:event_jTextField1KeyReleased
+    private void jSpinnerFontStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_jSpinnerFontStateChanged
+    {//GEN-HEADEREND:event_jSpinnerFontStateChanged
+        log("adw");        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinnerFontStateChanged
 
-    private void jButtonMakerMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonMakerMouseClicked
-    {//GEN-HEADEREND:event_jButtonMakerMouseClicked
-        salva();
-    }//GEN-LAST:event_jButtonMakerMouseClicked
+    private void jTableTotaliMensiliInputMethodTextChanged(java.awt.event.InputMethodEvent evt)//GEN-FIRST:event_jTableTotaliMensiliInputMethodTextChanged
+    {//GEN-HEADEREND:event_jTableTotaliMensiliInputMethodTextChanged
+        log("InputMethodTextChanged");
+    }//GEN-LAST:event_jTableTotaliMensiliInputMethodTextChanged
 
-    private void salva()
-    {
-        int iProd = jListMakerProdotti.getSelectedIndex();
-        int iCli = jListMakerClienti.getSelectedIndex();
+    private void jTableTotaliMensiliPropertyChange(java.beans.PropertyChangeEvent evt)//GEN-FIRST:event_jTableTotaliMensiliPropertyChange
+    {//GEN-HEADEREND:event_jTableTotaliMensiliPropertyChange
+        log("PropertyChange");
         
-        if(iProd != -1 && iCli != -1)
+    }//GEN-LAST:event_jTableTotaliMensiliPropertyChange
+
+    private void jTableTotaliMensiliMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableTotaliMensiliMouseClicked
+    {//GEN-HEADEREND:event_jTableTotaliMensiliMouseClicked
+        
+        int giorno = jTableTotaliMensili.getSelectedRow() + 1;
+        int indiceProdotto = jTableTotaliMensili.getSelectedColumn();
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(jXDatePickerTotali.getDate());
+        
+        if(
+                tableProducts != null &&
+                1 <= giorno && giorno <= cal.getActualMaximum(Calendar.DAY_OF_MONTH) &&
+                indiceProdotto != 0 &&
+                jListTotaliClienti.getSelectedIndex() != -1
+                )
         {
-            try
-            {
-                Calendar cal = Calendar.getInstance();
-                Date date = jXDatePickerMaker.getDate();
-                if(date != null)
-                {
-                    cal.setTime(date);
-                    dataBase.loadPesate(cal);
-                    long id = dataBase.pesate.getNewId();
-                    long idCliente = jListMakerClienti.getSelectedValue().getId();
-                    long idProdotto = jListMakerProdotti.getSelectedValue().getId();
+            cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), giorno, 7, 30);
+            updateSettimana(cal);
+        }
+    }//GEN-LAST:event_jTableTotaliMensiliMouseClicked
 
+    private void jTableTotaliMensiliVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException//GEN-FIRST:event_jTableTotaliMensiliVetoableChange
+    {//GEN-HEADEREND:event_jTableTotaliMensiliVetoableChange
+        log("vetoable change");
+        
+    }//GEN-LAST:event_jTableTotaliMensiliVetoableChange
 
-                    float netto = Float.parseFloat(jTextField1.getText());
-                    Pesata p = new Pesata(id, idCliente, idProdotto, netto, cal);
-                    ;
-                    dataBase.pesate.add(p);
-                    dataBase.savePesate(cal);
-                    infoBox("inserimento Pesata", jListMakerClienti.getSelectedValue().getName()+":"+idCliente+"  "+ jListMakerProdotti.getSelectedValue().getName()+":"+ idProdotto+ " "+netto+" "+ Utility.getCalendarString(cal));
-                    jTextField1.setText("");
-                }
-            }
-            catch(NumberFormatException c)
-            {
-                c.printStackTrace();
-            }
+    private void jButtonAddPesataMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonAddPesataMouseClicked
+    {//GEN-HEADEREND:event_jButtonAddPesataMouseClicked
+        int giorno = jTableTotaliMensili.getSelectedRow() + 1;
+        int indiceProdotto = jTableTotaliMensili.getSelectedColumn();
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(jXDatePickerTotali.getDate());
+        
+        if(
+                tableProducts != null &&
+                1 <= giorno && giorno <= cal.getActualMaximum(Calendar.DAY_OF_MONTH) &&
+                indiceProdotto != 0 &&
+                jListTotaliClienti.getSelectedIndex() != -1
+                )
+        {
+            long idProdotto = tableProducts[indiceProdotto - 1].id;
+            Prodotto prodotto = (Prodotto) dataBase.getAllProducts().get(idProdotto);
+            log(Utility.getCalendarString(cal));
+            cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), giorno, 7, 30);
+            log(Utility.getCalendarString(cal));
+            setEnabled(false);
+            InterfacciaTastierino interfacciaTastierino = new InterfacciaTastierino(font, fontMedium, prodotto.unitOfMeasure);
+            interfacciaTastierino.setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonAddPesataMouseClicked
+
+    public void salvaPesata(float peso)
+    {
+        int giorno = jTableTotaliMensili.getSelectedRow() + 1;
+        int indiceProdotto = jTableTotaliMensili.getSelectedColumn();
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(jXDatePickerTotali.getDate());
+        
+        if(
+                tableProducts != null &&
+                1 <= giorno && giorno <= cal.getActualMaximum(Calendar.DAY_OF_MONTH) &&
+                indiceProdotto != 0 &&
+                jListTotaliClienti.getSelectedIndex() != -1
+                )
+        {
+            long idProdotto = tableProducts[indiceProdotto - 1].id;
+            cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), giorno, 7, 30);
+            dataBase.loadPesate(cal);
+            long id = dataBase.pesate.getNewId();
+            long idCliente = jListTotaliClienti.getSelectedValue().getId();
+            Pesata pesata = new Pesata(id, idCliente, idProdotto, peso, cal);
+            dataBase.pesate.add(pesata);
+            dataBase.savePesate(cal);
+            updatejTable();
         }
     }
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextField1KeyPressed
-    {//GEN-HEADEREND:event_jTextField1KeyPressed
-                // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1KeyPressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtoBilanciaClienti;
@@ -4592,6 +4504,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonAddPesata;
     private javax.swing.JButton jButtonBilanciaAggiungi;
     private javax.swing.JButton jButtonBilanciaElimina;
     private javax.swing.JButton jButtonBilanciaProdotti;
@@ -4603,9 +4516,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButtonClientiOrdine;
     private javax.swing.JButton jButtonClientiSalva;
     private javax.swing.JButton jButtonClientiSu;
-    private javax.swing.JButton jButtonMaker;
-    private javax.swing.JButton jButtonMakerClienti;
-    private javax.swing.JButton jButtonMakerProdotti;
     private javax.swing.JButton jButtonPesateCambiaCliente;
     private javax.swing.JButton jButtonPesateElimina;
     private javax.swing.JButton jButtonPesateModifica;
@@ -4634,6 +4544,9 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelBilanciaCliente;
     private javax.swing.JLabel jLabelBilanciaLogo;
     private javax.swing.JLabel jLabelBilanciaLordo;
@@ -4660,8 +4573,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JList<OrdinableObject> jListBilanciaProdotti;
     private javax.swing.JList<IdName> jListBilanciaScontrino;
     private javax.swing.JList<OrdinableObject> jListClienti;
-    private javax.swing.JList<OrdinableObject> jListMakerClienti;
-    private javax.swing.JList<OrdinableObject> jListMakerProdotti;
     private javax.swing.JList<IdName> jListPesate;
     private javax.swing.JList<OrdinableObject> jListPesateCambiaCliente;
     private javax.swing.JList<OrdinableObject> jListPesateClienti;
@@ -4688,10 +4599,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -4717,9 +4624,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanelTareInserimento;
     private javax.swing.JPanel jPanelTotali;
     private javax.swing.JScrollPane jScrollPaneBilanciaClienti;
-    private javax.swing.JScrollPane jScrollPaneBilanciaClienti1;
     private javax.swing.JScrollPane jScrollPaneBilanciaProdotti;
-    private javax.swing.JScrollPane jScrollPaneBilanciaProdotti1;
     private javax.swing.JScrollPane jScrollPaneBilanciaScontrino;
     private javax.swing.JScrollPane jScrollPaneClienti;
     private javax.swing.JScrollPane jScrollPaneOpzioni;
@@ -4745,7 +4650,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTable jTableTotaliMensili;
     private javax.swing.JTextArea jTextAreaOpzioni;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldBilanciaNetto;
     private javax.swing.JTextField jTextFieldBilanciaTara;
     private javax.swing.JTextField jTextFieldClientiModifica;
@@ -4757,7 +4661,6 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JToggleButton jToggleButtonDemoBilancia;
     private javax.swing.JToggleButton jToggleButtonProdottiModifyUnit;
     private javax.swing.JToggleButton jToggleButtonProdottiSaveUnit;
-    private org.jdesktop.swingx.JXDatePicker jXDatePickerMaker;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerPesate;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerTotali;
     private javax.swing.JToggleButton sviluppatore;

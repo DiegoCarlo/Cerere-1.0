@@ -7,6 +7,8 @@ package Interface;
 
 import registro.Registro;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import toFile.Utility.Utility;
@@ -23,25 +25,43 @@ public class InterfacciaTastierino extends javax.swing.JFrame
 
     
     float peso;
-    long idPesata;
-    Pesata pesata;
+    UnitOfMeasure unitOfMeasure;
     Font font;
     Font fontMedium;
-    Calendar calendar;
     /**
      * Creates new form InterfacciaTastierino
      */
-    public InterfacciaTastierino(Font font, Font fontMedium, long idPesata, Calendar calendar)
+    public InterfacciaTastierino(Font font, Font fontMedium, UnitOfMeasure unitOfMeasure)
     {
-        this.calendar = calendar;
+        
         this.font = font;
         this.fontMedium = fontMedium;
         initComponents();
-        this.idPesata = idPesata;
-        pesata = Registro.dataBase.pesate.get(idPesata);
-        Prodotto prodotto = (Prodotto)Registro.dataBase.prodotti.get(pesata.idProdotto);
-        jLabel1.setText(pesata.time.get(Calendar.DAY_OF_MONTH)+"/"+(1+pesata.time.get(Calendar.MONTH))+" "+ prodotto.unitOfMeasure+" "+prodotto.getName());
-        jButtonComma1.setEnabled(prodotto.unitOfMeasure == UnitOfMeasure.KILOGRAMMO);
+        this.unitOfMeasure = unitOfMeasure;
+        jButtonComma1.setEnabled(this.unitOfMeasure == UnitOfMeasure.KILOGRAMMO);
+        jTextField1.addKeyListener(new KeyAdapter() 
+        {
+            public void keyPressed(KeyEvent evt)
+            {
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+                {
+                    invia();
+                }
+            }
+        });
+    }
+    private void invia()
+    {
+        try
+        {
+            peso = Float.parseFloat(jTextField1.getText().replaceAll(",", "."));
+            Registro.interfaccia.salvaPesata(peso);
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        }
+        catch(NumberFormatException c)
+        {
+            c.printStackTrace();
+        }
     }
     private void insTastierino(String t)
     {
@@ -78,7 +98,7 @@ public class InterfacciaTastierino extends javax.swing.JFrame
     {
 
         jTextField1 = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
+        jButtonOk = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -92,9 +112,9 @@ public class InterfacciaTastierino extends javax.swing.JFrame
         jButtonComma1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nuova Pesata");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter()
         {
@@ -113,13 +133,13 @@ public class InterfacciaTastierino extends javax.swing.JFrame
             }
         });
 
-        jButton12.setText("OK");
-        jButton12.setFont(font);
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter()
+        jButtonOk.setText("OK");
+        jButtonOk.setFont(font);
+        jButtonOk.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jButton12MouseClicked(evt);
+                jButtonOkMouseClicked(evt);
             }
         });
 
@@ -313,8 +333,6 @@ public class InterfacciaTastierino extends javax.swing.JFrame
             }
         });
 
-        jLabel1.setText("Pesata");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -324,23 +342,20 @@ public class InterfacciaTastierino extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1)
                     .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonOk)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton13)
@@ -356,23 +371,10 @@ public class InterfacciaTastierino extends javax.swing.JFrame
         jTextField1.selectAll();
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jButton12MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton12MouseClicked
-    {//GEN-HEADEREND:event_jButton12MouseClicked
-        
-        try
-        {
-            peso = Float.parseFloat(jTextField1.getText().replaceAll(",", "."));
-            Registro.dataBase.pesate.get(idPesata).quantita = peso;
-            Pesata p = Registro.dataBase.pesate.get(idPesata);
-            Registro.dataBase.savePesate(Utility.getYearMonth(p.time));
-            Registro.interfaccia.updatejListPesate();
-        }
-        catch(NumberFormatException c)
-        {
-            c.printStackTrace();
-        }
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }//GEN-LAST:event_jButton12MouseClicked
+    private void jButtonOkMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonOkMouseClicked
+    {//GEN-HEADEREND:event_jButtonOkMouseClicked
+        invia();
+    }//GEN-LAST:event_jButtonOkMouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton8MouseClicked
     {//GEN-HEADEREND:event_jButton8MouseClicked
@@ -447,7 +449,6 @@ public class InterfacciaTastierino extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -458,7 +459,7 @@ public class InterfacciaTastierino extends javax.swing.JFrame
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonComma1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonOk;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

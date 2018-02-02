@@ -3,6 +3,7 @@ Salvataggi~SALVATAGGI_DIRECTORY
 Salvataggi/Settimanali~SETTIMANALI_DIRECTORY
 Data Base/Mensili~MESI_PESATE_DIRECTORY
 .txt~EXT
+.txte~EXT_EXCEL
 Data Base/Clienti.txt~CLIENTI
 Data Base/Clienti Eliminati.txt~CLIENTI_ELIMINATI
 Data Base/Prodotti.txt~PRODOTTI
@@ -23,7 +24,7 @@ COM4~BILANCIA_COM
 20~font
 25~fontMedium
 30~fontBig
-1~orderClienti
+0~orderClienti
 0~orderProdotti
 0~orderTare
 40~widthScrollBar

@@ -41,6 +41,7 @@ public class Settings
     public static final String MESI_PESATE_DIRECTORY = DATA_BASE_DIRECTORY + "/Mensili";
     
     public static final String EXT = ".txt";
+    public static final String EXT_EXCEL = ".txte";
     
     public static final String CLIENTI = DATA_BASE_DIRECTORY + "/Clienti" + EXT;
     public static final String CLIENTI_ELIMINATI = DATA_BASE_DIRECTORY + "/Clienti Eliminati" + EXT;
@@ -144,7 +145,7 @@ public class Settings
                 String[] split3 = s.split(SPLITTER_VAR);
                 split[j++][0] = split3[0];
             }
-            int i=20;
+            int i=21;
             int maxWeightMinuteAverage = Integer.parseInt(split[++i][0]);
             int font = Integer.parseInt(split[++i][0]);
             int fontMedium = Integer.parseInt(split[++i][0]);

@@ -35,7 +35,7 @@ public class Bilancia implements SerialPortEventListener
             System.out.println(ex);
             log(ex.toString());
             Registro.interfaccia.infoBox("BILANCIA", "PORTA OCCUPATA O INESISTENTE");
-            System.exit(1);
+            //System.exit(1);
         }
     }
     /*
