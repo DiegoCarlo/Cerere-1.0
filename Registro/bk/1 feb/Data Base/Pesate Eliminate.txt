@@ -1,4 +1,0 @@
-0
-id idClient idProduct quantity timeInMilli
-11~38~7~2.08~1517463758051
-45~21~51~1.0~1517470416120
