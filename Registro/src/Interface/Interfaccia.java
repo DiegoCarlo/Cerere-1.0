@@ -13,12 +13,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextArea;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,9 +55,9 @@ public class Interfaccia extends javax.swing.JFrame
 {
 
     DataBase dataBase = registro.Registro.dataBase;
-    Font font;
-    Font fontMedium;
-    Font fontBig;
+    public Font font;
+    public Font fontMedium;
+    public Font fontBig;
     Color coloreClienti = new Color(226, 239, 255);
     Color coloreProdotti = new Color(255, 247, 216);
     Color colorePesate = new Color(246, 255, 242);
@@ -70,7 +67,7 @@ public class Interfaccia extends javax.swing.JFrame
     float lordo;
     Cliente cliente;
     Prodotto prodotto;
-    String logo = "Icons\\Logo VDP.png";
+    String logo = "Icons\\Logo.png";
     
     Calendar firstDay;
     Calendar lastDay;
@@ -129,9 +126,17 @@ public class Interfaccia extends javax.swing.JFrame
         orderProdotti();
         orderTare();
         inizialization = false;
-        updateSaveDirectory();
+        
         UIManager.put("OptionPane.buttonFont", new FontUIResource(font));
 
+    }
+    public void updatejSpinnerPortaCom()
+    {
+        jSpinnerPortaCom.setValue(Registro.settings.portaBilancia);
+    }
+    public void updatejTextFieldNomeStampante()
+    {
+        jTextFieldNomeStampante.setText(Registro.settings.nomeStampante);
     }
     public void updateSaveDirectory()
     {
@@ -140,13 +145,10 @@ public class Interfaccia extends javax.swing.JFrame
     private void updateOrder()
     {
         oClienti.setInitial(settings.orderClienti);
-        jComboBoxClienti.setSelectedIndex(settings.orderClienti);
         
         oProdotti.setInitial(settings.orderProdotti);
-        jComboBoxProdotti.setSelectedIndex(settings.orderProdotti);
         
         oTare.setInitial(settings.orderTare);
-        jComboBoxTare.setSelectedIndex(settings.orderTare);
     }
     private void log(String msg)
     {
@@ -192,7 +194,6 @@ public class Interfaccia extends javax.swing.JFrame
         dateBtn2.setBorderPainted(false);
         dateBtn2.setOpaque(false);
         
-        updateLogo();
         
         
         
@@ -265,9 +266,9 @@ public class Interfaccia extends javax.swing.JFrame
         jButton8.setFont(font);
         jButton9.setFont(font);
         
-        //jLabelBilanciaTotaleTitle.setFont(font);
+        jLabelBilanciaTotaleTitle.setFont(font);
         jLabelBilanciaTotaleTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        //jLabelBilanciaTotalePesaScontrino.setFont(fontBig);
+        jLabelBilanciaTotalePesaScontrino.setFont(fontBig);
         jLabelBilanciaTotalePesaScontrino.setHorizontalAlignment(SwingConstants.CENTER);
         jListBilanciaScontrino.setFont(fontMedium);
         jButtonBilanciaStampa.setFont(font);
@@ -275,18 +276,24 @@ public class Interfaccia extends javax.swing.JFrame
         
         // pesate
         jButtonPesateOrdinamentoClienti.setFont(font);
-        jListPesateClienti.setFont(font);
-        jListPesateCambiaCliente.setFont(font);
+        jListPesateClienti.setFont(fontMedium);
+        jListPesateCambiaCliente.setFont(fontMedium);
         jButtonPesateCambiaCliente.setFont(font);
         
-        jListPesate.setFont(font);
+        jListPesate.setFont(fontMedium);
         jButtonPesateModifica.setFont(font);
         jButtonPesateElimina.setFont(font);
         jButtonPesateRistampaScontrino.setFont(font);
         jXDatePickerPesate.setFont(font);
         
         // totali
+        jTableTotaliMensili.setFont(font);
+        jTableTotaliMensili.setRowHeight(25);
+        jTableTotaliMensili.getTableHeader().setFont(font);
         jButtonAddPesata.setFont(font);
+        jButtonTotaliOrdinamento.setFont(font);
+        jButtonSaveTotali.setFont(font);
+        jListTotaliClienti.setFont(fontMedium);
         
         // clienti
         jLabelClientiSalva.setFont(font);
@@ -301,18 +308,71 @@ public class Interfaccia extends javax.swing.JFrame
         jButtonClientiGiu.setFont(font);
         jButtonClientiSu.setFont(font);
         
-        jListClienti.setFont(font);
+        jListClienti.setFont(fontMedium);
         
         jButtonClientiElimina.setFont(font);
         
         // prodotti
-        
+        jLabelProdottiSalva.setFont(font);
+        jTextFieldProdottiSalva.setFont(font);
+        jToggleButtonProdottiSaveUnit.setFont(font);
+        jButtonProdottiSalva.setFont(font);
+        jLabelProdottiModifica.setFont(font);
+        jTextFieldProdottiModifica.setFont(font);
+        jToggleButtonProdottiModifyUnit.setFont(font);
+        jButtonProdottiModifica.setFont(font);
+        jButtonProdottiOrdine.setFont(font);
+        jButtonProdottiSu.setFont(font);
+        jButtonProdottiGiu.setFont(font);
+        jButtonProdottiElimina.setFont(font);
+        jListProdotti.setFont(fontMedium);
+        // tare
+        jLabelClientiSalva2.setFont(font);
+        jTextFieldTareSalva.setFont(font);
+        jLabelTare.setFont(font);
+        jButtonTareSalva.setFont(font);
+        jLabelClientiModifica2.setFont(font);
+        jTextFieldTareModifica.setFont(font);
+        jLabelTareModifica.setFont(font);
+        jButtonTareModifica.setFont(font);
+        jButtonTareOrdine.setFont(font);
+        jButtonTareSu.setFont(font);
+        jButtonTareGiu.setFont(font);
+        jButtonTareElimina.setFont(font);
+        jListTare.setFont(fontMedium);
         // opzioni
         jLabelSaveDirectory.setFont(font);
+        jLabel1.setFont(font);
+        jLabel2.setFont(font);
+        jLabel3.setFont(font);
+        jLabel7.setFont(font);
+        jSpinnerPortaCom.setFont(font);
+        jLabel4.setFont(font);
+        jSpinnerFont.setFont(font);
+        jLabel5.setFont(font);
+        jSpinnerFontMedium.setFont(font);
+        jLabel6.setFont(font);
+        jSpinnerFontBig.setFont(font);
+        jButtonSalvaImpostazioni.setFont(fontMedium);
+        jLabel8.setFont(font);
+        jComboBoxClienti.setFont(font);
+        jComboBoxProdotti.setFont(font);
+        jComboBoxTare.setFont(font);
+        jButtonSalvaImpostazioni.setFont(font);
+        sviluppatore.setFont(font);
+        jToggleButtonDemoBilancia.setFont(font);
+        jTextFieldNomeStampante.setFont(font);
         
         // removed
-        jListRemovedClienti.setFont(font);
+        jListRemovedClienti.setFont(fontMedium);
         jButtonRemovedClienti.setFont(font);
+        jListRemovedProdotti.setFont(fontMedium);
+        jButton10.setFont(font);
+        jListRemovedPesate.setFont(fontMedium);
+        jButton11.setFont(font);
+        jButton12.setFont(font);
+        
+        
         
         jLabelBilanciaCliente.setHorizontalAlignment(SwingConstants.CENTER);
         jLabeBilanciaProdotto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -326,80 +386,12 @@ public class Interfaccia extends javax.swing.JFrame
     }
     private void updateLogo()
     {
-        /*ImageIcon logoBilancia = new ImageIcon();
-        int larghezza = jPanelBilanciaLogo.getWidth();
-        int altezza = (int)((float)larghezza * (float)0.48);
-        int altezza2 = jPanelBilanciaLogo.getHeight();
-        int larghezza2 = (int)((float)altezza2 * (float)2.083);
-        if(altezza * larghezza > altezza2 * larghezza2)
-        {
-            larghezza = larghezza2;
-            altezza = altezza2;
-            
-        }
-        jLabelBilanciaLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        logoBilancia = new ImageIcon(
-                        new ImageIcon(logo)
-                                .getImage()
-                                .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
-                        );
-        jLabelBilanciaLogo.setIcon(logoBilancia);*/
-        // Pesate
-        int larghezza = jButtonPesateRistampaScontrino.getWidth();
-        int altezza = (int)((float)larghezza * (float)0.48);
-        ImageIcon logoPesate = new ImageIcon();
-        logoPesate = new ImageIcon(
-                        new ImageIcon(logo)
-                                .getImage()
-                                .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
-                        );
-        jLabelPesateLogo.setIcon(logoPesate);
-
-        // Clienti
-        ImageIcon logoClienti = new ImageIcon();
-        larghezza = jPanelClientiInserimento.getWidth();
-        altezza = (int)((float)larghezza * (float)0.48);
-        logoClienti = new ImageIcon(
-                        new ImageIcon(logo)
-                                .getImage()
-                                .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
-                        );
-        jLabelClientiLogo.setIcon(logoClienti);
-        jLabelClientiLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        // Prodotti
-        ImageIcon logoProdotti = new ImageIcon();
-        larghezza = jPanelProdottiInserimento.getWidth();
-        altezza = (int)((float)larghezza * (float)0.48);
-        logoProdotti = new ImageIcon(
-                        new ImageIcon(logo)
-                                .getImage()
-                                .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
-                        );
-        jLabelProdottiLogo.setIcon(logoProdotti);
-        jLabelProdottiLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        // Tare
-        ImageIcon logoTare = new ImageIcon();
-        larghezza = jPanelTareInserimento.getWidth();
-        altezza = (int)((float)larghezza * (float)0.48);
-        logoTare = new ImageIcon(
-                        new ImageIcon(logo)
-                                .getImage()
-                                .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
-                        );
-        jLabelTareLogo.setIcon(logoTare);
-
-        // Totali
-        ImageIcon logoTotali = new ImageIcon();
-        larghezza = jButtonSaveTotali.getWidth();
-        altezza = (int)((float)larghezza * (float)0.48);
-        logoTotali = new ImageIcon(
-                        new ImageIcon(logo)
-                                .getImage()
-                                .getScaledInstance(larghezza, altezza, Image.SCALE_DEFAULT)
-                        );
-        jLabelTotaliLogo.setIcon(logoTotali);
+        InterfaceUtility.setImage(jLabelPesateLogo, logo);
+        InterfaceUtility.setImage(jLabelClientiLogo, logo);
+        InterfaceUtility.setImage(jLabelProdottiLogo, logo);
+        InterfaceUtility.setImage(jLabelTareLogo, logo);
+        InterfaceUtility.setImage(jLabelTotaliLogo, logo);
+        InterfaceUtility.setImage(jLabelBilanciaLogo, logo);
     }
     private void updatejTabbedPane()
     {
@@ -432,11 +424,26 @@ public class Interfaccia extends javax.swing.JFrame
                     updatejPanelTare();
                     activeWeightRequest = 5;
                     break;
+                case 6:
+                    updatejPanelOpzioni();
+                    break;
                 case 7:
                     updatejPanelRemoved();
                     break;
             }
         }
+    }
+    private void updatejPanelOpzioni()
+    {
+        jComboBoxClienti.setSelectedIndex(settings.orderClienti);
+        jComboBoxProdotti.setSelectedIndex(settings.orderProdotti);
+        jComboBoxTare.setSelectedIndex(settings.orderTare);
+        updateSaveDirectory();
+        updatejTextFieldNomeStampante();
+        updatejSpinnerPortaCom();
+        jSpinnerFont.setValue(settings.font);
+        jSpinnerFontMedium.setValue(settings.fontMedium);
+        jSpinnerFontBig.setValue(settings.fontBig);
     }
     private void setEnableNotBilancia(boolean enable)
     {
@@ -1222,6 +1229,13 @@ public class Interfaccia extends javax.swing.JFrame
         jTextAreaOpzioni = new javax.swing.JTextArea();
         jLabelSaveDirectory = new javax.swing.JLabel();
         folderChooser1 = new Interface.FolderChooser();
+        jPanel25 = new javax.swing.JPanel();
+        jButtonSalvaImpostazioni = new javax.swing.JButton();
+        jPanel26 = new javax.swing.JPanel();
+        jTextFieldNomeStampante = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jSpinnerPortaCom = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
         jPanelRemoved = new javax.swing.JPanel();
         jSplitPane4 = new javax.swing.JSplitPane();
         jPanel4 = new javax.swing.JPanel();
@@ -1272,7 +1286,6 @@ public class Interfaccia extends javax.swing.JFrame
         jSplitPaneBilancia.setResizeWeight(0.6);
         jSplitPaneBilancia.setMinimumSize(new java.awt.Dimension(212, 550));
 
-        jButtonBilanciaProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonBilanciaProdotti.setText("order");
         jButtonBilanciaProdotti.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -1282,7 +1295,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jListBilanciaProdotti.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
         jListBilanciaProdotti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -1304,12 +1316,11 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jButtonBilanciaProdotti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneBilanciaProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
+                .addComponent(jScrollPaneBilanciaProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
         );
 
         jSplitPaneBilancia.setRightComponent(jPanel9);
 
-        jButtoBilanciaClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtoBilanciaClienti.setText("order");
         jButtoBilanciaClienti.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -1319,7 +1330,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jListBilanciaClienti.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
         jListBilanciaClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -1341,12 +1351,11 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jButtoBilanciaClienti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneBilanciaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
+                .addComponent(jScrollPaneBilanciaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
         );
 
         jSplitPaneBilancia.setLeftComponent(jPanel10);
 
-        jButtonBilanciaTara.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonBilanciaTara.setText("Tara");
         jButtonBilanciaTara.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -1356,7 +1365,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jTextFieldBilanciaNetto.setFont(new java.awt.Font("SansSerif", 0, 30)); // NOI18N
         jTextFieldBilanciaNetto.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -1372,15 +1380,12 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jLabeBilanciaProdotto.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabeBilanciaProdotto.setText("Prodotto");
 
-        jLabelBilanciaCliente.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelBilanciaCliente.setText("Cliente");
 
         jPanelBilancia2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton7.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton7.setText("7");
         jButton7.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton7.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1391,7 +1396,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton4.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton4.setText("4");
         jButton4.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton4.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1402,7 +1406,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton8.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton8.setText("8");
         jButton8.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton8.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1413,7 +1416,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton5.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton5.setText("5");
         jButton5.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton5.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1424,7 +1426,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton9.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton9.setText("9");
         jButton9.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton9.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1435,7 +1436,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton6.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton6.setText("6");
         jButton6.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton6.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1446,7 +1446,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton1.setText("1");
         jButton1.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1457,7 +1456,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton2.setText("2");
         jButton2.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1468,7 +1466,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton3.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton3.setText("3");
         jButton3.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1479,7 +1476,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButton0.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButton0.setText("0");
         jButton0.setPreferredSize(new java.awt.Dimension(80, 60));
         jButton0.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1548,7 +1544,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButtonBilanciaAggiungi.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonBilanciaAggiungi.setText("Pesa");
         jButtonBilanciaAggiungi.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -1558,7 +1553,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jTextFieldBilanciaTara.setFont(new java.awt.Font("SansSerif", 0, 25)); // NOI18N
         jTextFieldBilanciaTara.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -1574,7 +1568,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jLabelBilanciaLordo.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelBilanciaLordo.setText("Lordo: ");
 
         javax.swing.GroupLayout jPanelBilanciaLogoLayout = new javax.swing.GroupLayout(jPanelBilanciaLogo);
@@ -1635,13 +1628,10 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel8.setMaximumSize(new java.awt.Dimension(400, 550));
         jPanel8.setPreferredSize(new java.awt.Dimension(330, 550));
 
-        jLabelBilanciaTotaleTitle.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelBilanciaTotaleTitle.setText("Totale in pesa | Totale scontrino");
 
-        jLabelBilanciaTotalePesaScontrino.setFont(new java.awt.Font("SansSerif", 0, 30)); // NOI18N
         jLabelBilanciaTotalePesaScontrino.setText("0,00");
 
-        jListBilanciaScontrino.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListBilanciaScontrino.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -1651,7 +1641,6 @@ public class Interfaccia extends javax.swing.JFrame
         });
         jScrollPaneBilanciaScontrino.setViewportView(jListBilanciaScontrino);
 
-        jButtonBilanciaElimina.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonBilanciaElimina.setText("Elimina");
         jButtonBilanciaElimina.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -1661,7 +1650,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonBilanciaStampa.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonBilanciaStampa.setText("Stampa");
         jButtonBilanciaStampa.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -1718,14 +1706,13 @@ public class Interfaccia extends javax.swing.JFrame
             jPanelBilanciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPaneBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelBilancia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Bilancia", jPanelBilancia);
 
         jSplitPane1.setDividerLocation(400);
 
-        jButtonPesateModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonPesateModifica.setText("Modifica Valore");
         jButtonPesateModifica.setFont(font);
         jButtonPesateModifica.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1736,7 +1723,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonPesateElimina.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonPesateElimina.setText("Elimina");
         jButtonPesateElimina.setFont(font);
         jButtonPesateElimina.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1762,7 +1748,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonPesateRistampaScontrino.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonPesateRistampaScontrino.setText("Ristampa");
         jButtonPesateRistampaScontrino.setFont(font);
         jButtonPesateRistampaScontrino.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1797,7 +1782,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jListPesate.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListPesate.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -1819,7 +1803,7 @@ public class Interfaccia extends javax.swing.JFrame
                         .addContainerGap()
                         .addComponent(jButtonPesateModifica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelPesateStats, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addComponent(jLabelPesateStats, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesateElimina))
                     .addComponent(jScrollPanePesate))
@@ -1831,7 +1815,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addComponent(jScrollPanePesate, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                        .addComponent(jScrollPanePesate, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1848,7 +1832,6 @@ public class Interfaccia extends javax.swing.JFrame
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane2.setResizeWeight(0.5);
 
-        jListPesateClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListPesateClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -1858,7 +1841,6 @@ public class Interfaccia extends javax.swing.JFrame
         });
         jScrollPanePesateClienti.setViewportView(jListPesateClienti);
 
-        jButtonPesateOrdinamentoClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonPesateOrdinamentoClienti.setText("Ordinamento");
         jButtonPesateOrdinamentoClienti.setFont(font);
         jButtonPesateOrdinamentoClienti.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1881,15 +1863,13 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
                 .addComponent(jButtonPesateOrdinamentoClienti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
+                .addComponent(jScrollPanePesateClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(jPanel23);
 
-        jListPesateCambiaCliente.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jScrollPanePesateCambiaClienti.setViewportView(jListPesateCambiaCliente);
 
-        jButtonPesateCambiaCliente.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonPesateCambiaCliente.setText("Cambia Cliente");
         jButtonPesateCambiaCliente.setFont(font);
         jButtonPesateCambiaCliente.addMouseListener(new java.awt.event.MouseAdapter()
@@ -1910,7 +1890,7 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
-                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addComponent(jScrollPanePesateCambiaClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonPesateCambiaCliente))
         );
@@ -1941,9 +1921,6 @@ public class Interfaccia extends javax.swing.JFrame
         jSplitPane3.setResizeWeight(0.2);
         jSplitPane3.setToolTipText("");
 
-        jTableTotaliMensili.setFont(font);
-        jTableTotaliMensili.setRowHeight(25);
-        jTableTotaliMensili.getTableHeader().setFont(font);
         jTableTotaliMensili.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -2014,14 +1991,13 @@ public class Interfaccia extends javax.swing.JFrame
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
-                .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTotali, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddPesata))
         );
 
         jSplitPane3.setRightComponent(jPanel22);
 
-        jListTotaliClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListTotaliClienti.setFont(font);
         jListTotaliClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
@@ -2032,9 +2008,7 @@ public class Interfaccia extends javax.swing.JFrame
         });
         jScrollPaneTotaliClienti.setViewportView(jListTotaliClienti);
 
-        jButtonTotaliOrdinamento.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTotaliOrdinamento.setText("jButton10");
-        jButtonTotaliOrdinamento.setFont(font);
         jButtonTotaliOrdinamento.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -2058,7 +2032,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonTotaliSalvaSettimana.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTotaliSalvaSettimana.setText("Salva Sett");
         jButtonTotaliSalvaSettimana.setFont(font);
         jButtonTotaliSalvaSettimana.addMouseListener(new java.awt.event.MouseAdapter()
@@ -2069,9 +2042,7 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonSaveTotali.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonSaveTotali.setText("Salva Tutti");
-        jButtonSaveTotali.setFont(fontBig);
         jButtonSaveTotali.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -2105,7 +2076,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(jButtonTotaliOrdinamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneTotaliClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTotaliClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonTotaliSalvaSettimana)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2137,10 +2108,8 @@ public class Interfaccia extends javax.swing.JFrame
 
         jPanelClientiInserimento.setPreferredSize(new java.awt.Dimension(330, 550));
 
-        jLabelClientiModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelClientiModifica.setText("Modifica il Cliente");
 
-        jTextFieldClientiModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jTextFieldClientiModifica.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -2149,7 +2118,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonClientiModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiModifica.setText("Modifica");
         jButtonClientiModifica.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2185,10 +2153,8 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabelClientiSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelClientiSalva.setText("Inserimento di un nuovo Cliente");
 
-        jTextFieldClientiSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jTextFieldClientiSalva.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -2197,7 +2163,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonClientiSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiSalva.setText("Salva");
         jButtonClientiSalva.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2218,7 +2183,7 @@ public class Interfaccia extends javax.swing.JFrame
                     .addComponent(jButtonClientiSalva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabelClientiSalva)
-                        .addGap(0, 38, Short.MAX_VALUE)))
+                        .addGap(0, 158, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -2251,7 +2216,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButtonClientiOrdine.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiOrdine.setText("Ordine");
         jButtonClientiOrdine.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2261,7 +2225,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonClientiSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiSu.setText("Su");
         jButtonClientiSu.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2271,7 +2234,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonClientiGiu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiGiu.setText("Giù");
         jButtonClientiGiu.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2291,7 +2253,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jButtonClientiOrdine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelClientiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addComponent(jLabelClientiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonClientiSu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2313,7 +2275,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jButtonClientiElimina.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonClientiElimina.setText("Elimina");
         jButtonClientiElimina.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2323,7 +2284,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jListClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListClienti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -2346,7 +2306,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelClientiListaLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPaneClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonClientiElimina))
         );
@@ -2363,17 +2323,15 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelClientiLayout.setVerticalGroup(
             jPanelClientiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelClientiLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelClientiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanelClientiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Clienti", jPanelClienti);
 
         jPanelProdottiInserimento.setPreferredSize(new java.awt.Dimension(330, 550));
 
-        jLabelProdottiModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelProdottiModifica.setText("Modifica il Prodotto");
 
-        jTextFieldProdottiModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jTextFieldProdottiModifica.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -2382,7 +2340,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonProdottiModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiModifica.setText("Modifica");
         jButtonProdottiModifica.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2392,7 +2349,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jToggleButtonProdottiModifyUnit.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jToggleButtonProdottiModifyUnit.setText("jToggleButton1");
         jToggleButtonProdottiModifyUnit.addChangeListener(new javax.swing.event.ChangeListener()
         {
@@ -2413,7 +2369,7 @@ public class Interfaccia extends javax.swing.JFrame
                     .addComponent(jButtonProdottiModifica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabelProdottiModifica)
-                        .addGap(0, 140, Short.MAX_VALUE))
+                        .addGap(0, 219, Short.MAX_VALUE))
                     .addComponent(jToggleButtonProdottiModifyUnit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2431,10 +2387,8 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jLabelProdottiSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelProdottiSalva.setText("Inserimento di un nuovo Prodotto");
 
-        jTextFieldProdottiSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jTextFieldProdottiSalva.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -2443,7 +2397,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonProdottiSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiSalva.setText("Salva");
         jButtonProdottiSalva.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2453,7 +2406,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jToggleButtonProdottiSaveUnit.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jToggleButtonProdottiSaveUnit.setText("jToggleButton1");
         jToggleButtonProdottiSaveUnit.addChangeListener(new javax.swing.event.ChangeListener()
         {
@@ -2510,7 +2462,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButtonProdottiOrdine.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiOrdine.setText("Ordine");
         jButtonProdottiOrdine.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2520,7 +2471,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonProdottiSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiSu.setText("Su");
         jButtonProdottiSu.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2530,7 +2480,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonProdottiGiu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiGiu.setText("Giù");
         jButtonProdottiGiu.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2550,7 +2499,7 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jButtonProdottiOrdine, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelProdottiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addComponent(jLabelProdottiStats, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonProdottiSu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2572,7 +2521,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jButtonProdottiElimina.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonProdottiElimina.setText("Elimina");
         jButtonProdottiElimina.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2582,7 +2530,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jListProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListProdotti.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -2605,7 +2552,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelProdottiListaLayout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPaneProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonProdottiElimina))
         );
@@ -2622,17 +2569,15 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelProdottiLayout.setVerticalGroup(
             jPanelProdottiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelProdottiLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelProdottiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanelProdottiInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Prodotti", jPanelProdotti);
 
         jPanelTareInserimento.setPreferredSize(new java.awt.Dimension(330, 550));
 
-        jLabelClientiModifica2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelClientiModifica2.setText("Modifica la Tara");
 
-        jTextFieldTareModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jTextFieldTareModifica.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -2641,7 +2586,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonTareModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTareModifica.setText("Modifica");
         jButtonTareModifica.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2651,8 +2595,7 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jLabelTareModifica.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabelTareModifica.setText("jLabel2");
+        jLabelTareModifica.setText("0");
         jLabelTareModifica.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -2690,10 +2633,8 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jLabelClientiSalva2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabelClientiSalva2.setText("Inserimento di una nuova Tara");
 
-        jTextFieldTareSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jTextFieldTareSalva.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -2702,7 +2643,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonTareSalva.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTareSalva.setText("Salva");
         jButtonTareSalva.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2712,8 +2652,7 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jLabelTare.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabelTare.setText("jLabel1");
+        jLabelTare.setText("0");
         jLabelTare.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -2733,7 +2672,7 @@ public class Interfaccia extends javax.swing.JFrame
                     .addComponent(jButtonTareSalva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jLabelClientiSalva2)
-                        .addGap(0, 46, Short.MAX_VALUE))
+                        .addGap(0, 163, Short.MAX_VALUE))
                     .addComponent(jLabelTare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2769,7 +2708,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButtonTareOrdine.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTareOrdine.setText("Ordine");
         jButtonTareOrdine.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2779,7 +2717,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonTareSu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTareSu.setText("Su");
         jButtonTareSu.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2789,7 +2726,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jButtonTareGiu.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTareGiu.setText("Giù");
         jButtonTareGiu.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2831,7 +2767,6 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jButtonTareElimina.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jButtonTareElimina.setText("Elimina");
         jButtonTareElimina.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -2841,7 +2776,6 @@ public class Interfaccia extends javax.swing.JFrame
             }
         });
 
-        jListTare.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jListTare.addListSelectionListener(new javax.swing.event.ListSelectionListener()
         {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt)
@@ -2864,7 +2798,7 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelClientiLista2Layout.createSequentialGroup()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTare, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonTareElimina))
         );
@@ -2881,42 +2815,18 @@ public class Interfaccia extends javax.swing.JFrame
         jPanelTareLayout.setVerticalGroup(
             jPanelTareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelClientiLista2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelTareInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(jPanelTareInserimento, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Tare", jPanelTare);
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordinamento all'avvio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 20))); // NOI18N
 
-        jComboBoxClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jComboBoxClienti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxClienti.addItemListener(new java.awt.event.ItemListener()
-        {
-            public void itemStateChanged(java.awt.event.ItemEvent evt)
-            {
-                jComboBoxClientiItemStateChanged(evt);
-            }
-        });
 
-        jComboBoxProdotti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jComboBoxProdotti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxProdotti.addItemListener(new java.awt.event.ItemListener()
-        {
-            public void itemStateChanged(java.awt.event.ItemEvent evt)
-            {
-                jComboBoxProdottiItemStateChanged(evt);
-            }
-        });
 
-        jComboBoxTare.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jComboBoxTare.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxTare.addItemListener(new java.awt.event.ItemListener()
-        {
-            public void itemStateChanged(java.awt.event.ItemEvent evt)
-            {
-                jComboBoxTareItemStateChanged(evt);
-            }
-        });
 
         jLabel1.setText("Clienti");
 
@@ -2931,9 +2841,9 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxTare, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxClienti, 0, 233, Short.MAX_VALUE)
-                    .addComponent(jComboBoxProdotti, 0, 233, Short.MAX_VALUE)
+                    .addComponent(jComboBoxTare, 0, 423, Short.MAX_VALUE)
+                    .addComponent(jComboBoxClienti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxProdotti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -2960,17 +2870,9 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jToggleButtonDemoBilancia.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jToggleButtonDemoBilancia.setText("Demo Bilancia");
 
         jSpinnerFont.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jSpinnerFont.addChangeListener(new javax.swing.event.ChangeListener()
-        {
-            public void stateChanged(javax.swing.event.ChangeEvent evt)
-            {
-                jSpinnerFontStateChanged(evt);
-            }
-        });
 
         jSpinnerFontMedium.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
 
@@ -2989,36 +2891,38 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSpinnerFont, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSpinnerFontBig)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinnerFont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinnerFontMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerFontBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        sviluppatore.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         sviluppatore.setText("Sviluppatore");
         sviluppatore.addChangeListener(new javax.swing.event.ChangeListener()
         {
@@ -3036,6 +2940,8 @@ public class Interfaccia extends javax.swing.JFrame
 
         jLabelSaveDirectory.setText("Directory dei salvataggi:");
 
+        folderChooser1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -3047,7 +2953,7 @@ public class Interfaccia extends javax.swing.JFrame
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addComponent(jLabelSaveDirectory)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneOpzioni, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
@@ -3062,6 +2968,77 @@ public class Interfaccia extends javax.swing.JFrame
                 .addContainerGap())
         );
 
+        jButtonSalvaImpostazioni.setBackground(new java.awt.Color(255, 255, 102));
+        jButtonSalvaImpostazioni.setForeground(new java.awt.Color(255, 51, 51));
+        jButtonSalvaImpostazioni.setText("SALVA IMPOSTAZIONI");
+        jButtonSalvaImpostazioni.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButtonSalvaImpostazioniMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonSalvaImpostazioni, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonSalvaImpostazioni, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTextFieldNomeStampante.setText("jTextField1");
+
+        jLabel7.setText("COM");
+
+        jSpinnerPortaCom.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                jSpinnerPortaComStateChanged(evt);
+            }
+        });
+
+        jLabel8.setText("Nome della stampante");
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldNomeStampante, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(jSpinnerPortaCom))
+                .addContainerGap())
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNomeStampante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerPortaCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanelOptionsLayout = new javax.swing.GroupLayout(jPanelOptions);
         jPanelOptions.setLayout(jPanelOptionsLayout);
         jPanelOptionsLayout.setHorizontalGroup(
@@ -3069,10 +3046,14 @@ public class Interfaccia extends javax.swing.JFrame
             .addGroup(jPanelOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(sviluppatore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelOptionsLayout.createSequentialGroup()
+                        .addComponent(sviluppatore, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButtonDemoBilancia, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -3086,10 +3067,14 @@ public class Interfaccia extends javax.swing.JFrame
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                        .addComponent(sviluppatore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonDemoBilancia))
+                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jToggleButtonDemoBilancia)
+                            .addComponent(sviluppatore)))
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -3109,7 +3094,6 @@ public class Interfaccia extends javax.swing.JFrame
             });
             jScrollPaneRemovedClienti.setViewportView(jListRemovedClienti);
 
-            jButtonRemovedClienti.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
             jButtonRemovedClienti.setText("Ripristina Cliente");
             jButtonRemovedClienti.addMouseListener(new java.awt.event.MouseAdapter()
             {
@@ -3129,7 +3113,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanel4Layout.setVerticalGroup(
                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addComponent(jScrollPaneRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneRemovedClienti, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jButtonRemovedClienti))
             );
@@ -3139,7 +3123,6 @@ public class Interfaccia extends javax.swing.JFrame
             jSplitPane5.setDividerSize(15);
             jSplitPane5.setResizeWeight(0.66);
 
-            jButton10.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
             jButton10.setText("Ripristina Prodotto");
             jButton10.addMouseListener(new java.awt.event.MouseAdapter()
             {
@@ -3162,14 +3145,13 @@ public class Interfaccia extends javax.swing.JFrame
             jPanel5Layout.setVerticalGroup(
                 jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addComponent(jScrollPaneRemovedProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneRemovedProdotti, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jButton10))
             );
 
             jSplitPane5.setLeftComponent(jPanel5);
 
-            jButton11.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
             jButton11.setText("Ripristina Pesata");
             jButton11.addMouseListener(new java.awt.event.MouseAdapter()
             {
@@ -3182,7 +3164,6 @@ public class Interfaccia extends javax.swing.JFrame
             jListRemovedPesate.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
             jScrollPaneRemovedPesate.setViewportView(jListRemovedPesate);
 
-            jButton12.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
             jButton12.setText("ELIMINA PESATE");
             jButton12.addMouseListener(new java.awt.event.MouseAdapter()
             {
@@ -3205,7 +3186,7 @@ public class Interfaccia extends javax.swing.JFrame
             jPanel6Layout.setVerticalGroup(
                 jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                    .addComponent(jScrollPaneRemovedPesate, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneRemovedPesate, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton11)
@@ -4357,42 +4338,10 @@ public class Interfaccia extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jButton10MouseClicked
 
-    private void jComboBoxClientiItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxClientiItemStateChanged
-    {//GEN-HEADEREND:event_jComboBoxClientiItemStateChanged
-        if(!inizialization)
-        {
-            Registro.settings.orderClienti = jComboBoxClienti.getSelectedIndex();
-            Registro.saveSettings();
-        }
-    }//GEN-LAST:event_jComboBoxClientiItemStateChanged
-
-    private void jComboBoxProdottiItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxProdottiItemStateChanged
-    {//GEN-HEADEREND:event_jComboBoxProdottiItemStateChanged
-        if(!inizialization)
-        {
-            Registro.settings.orderProdotti = jComboBoxProdotti.getSelectedIndex();
-            Registro.saveSettings();
-        }
-    }//GEN-LAST:event_jComboBoxProdottiItemStateChanged
-
-    private void jComboBoxTareItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxTareItemStateChanged
-    {//GEN-HEADEREND:event_jComboBoxTareItemStateChanged
-        if(!inizialization)
-        {
-            Registro.settings.orderTare = jComboBoxTare.getSelectedIndex();
-            Registro.saveSettings();
-        }
-    }//GEN-LAST:event_jComboBoxTareItemStateChanged
-
     private void sviluppatoreStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_sviluppatoreStateChanged
     {//GEN-HEADEREND:event_sviluppatoreStateChanged
         
     }//GEN-LAST:event_sviluppatoreStateChanged
-
-    private void jSpinnerFontStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_jSpinnerFontStateChanged
-    {//GEN-HEADEREND:event_jSpinnerFontStateChanged
-        log("adw");        // TODO add your handling code here:
-    }//GEN-LAST:event_jSpinnerFontStateChanged
 
     private void jTableTotaliMensiliMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableTotaliMensiliMouseClicked
     {//GEN-HEADEREND:event_jTableTotaliMensiliMouseClicked
@@ -4440,6 +4389,34 @@ public class Interfaccia extends javax.swing.JFrame
             interfacciaTastierino.setVisible(true);
         }
     }//GEN-LAST:event_jButtonAddPesataMouseClicked
+
+    private void jSpinnerPortaComStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_jSpinnerPortaComStateChanged
+    {//GEN-HEADEREND:event_jSpinnerPortaComStateChanged
+        
+        int value = (int)jSpinnerPortaCom.getModel().getValue();
+        if(value < 1)
+        {
+            value = 1;
+            jSpinnerPortaCom.setValue(value);
+            
+        }
+    }//GEN-LAST:event_jSpinnerPortaComStateChanged
+
+    private void jButtonSalvaImpostazioniMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButtonSalvaImpostazioniMouseClicked
+    {//GEN-HEADEREND:event_jButtonSalvaImpostazioniMouseClicked
+
+        Registro.settings.orderClienti = jComboBoxClienti.getSelectedIndex();
+        Registro.settings.orderProdotti = jComboBoxProdotti.getSelectedIndex();
+        Registro.settings.orderTare = jComboBoxTare.getSelectedIndex();
+        Registro.settings.font = (int)jSpinnerFont.getModel().getValue();
+        Registro.settings.fontMedium = (int)jSpinnerFontMedium.getModel().getValue();
+        Registro.settings.fontBig = (int)jSpinnerFontBig.getModel().getValue();
+        Registro.settings.nomeStampante = jTextFieldNomeStampante.getText();
+        Registro.settings.portaBilancia = (int)jSpinnerPortaCom.getModel().getValue();
+        Registro.saveSettings();
+        infoBox("SALVATAGGIO E RIAVVIO", "<html>Per poter applicare le nuove impostazioni<br>è necessario avviare nuovamente il programma</html>", Color.red);
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSalvaImpostazioniMouseClicked
 
     public void salvaPesata(float peso)
     {
@@ -4508,6 +4485,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JButton jButtonProdottiSalva;
     private javax.swing.JButton jButtonProdottiSu;
     private javax.swing.JButton jButtonRemovedClienti;
+    private javax.swing.JButton jButtonSalvaImpostazioni;
     private javax.swing.JButton jButtonSaveTotali;
     private javax.swing.JButton jButtonTareElimina;
     private javax.swing.JButton jButtonTareGiu;
@@ -4527,6 +4505,8 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelBilanciaCliente;
     private javax.swing.JLabel jLabelBilanciaLogo;
     private javax.swing.JLabel jLabelBilanciaLordo;
@@ -4580,6 +4560,8 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -4622,6 +4604,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JSpinner jSpinnerFont;
     private javax.swing.JSpinner jSpinnerFontBig;
     private javax.swing.JSpinner jSpinnerFontMedium;
+    private javax.swing.JSpinner jSpinnerPortaCom;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
@@ -4635,6 +4618,7 @@ public class Interfaccia extends javax.swing.JFrame
     private javax.swing.JTextField jTextFieldBilanciaTara;
     private javax.swing.JTextField jTextFieldClientiModifica;
     private javax.swing.JTextField jTextFieldClientiSalva;
+    private javax.swing.JTextField jTextFieldNomeStampante;
     private javax.swing.JTextField jTextFieldProdottiModifica;
     private javax.swing.JTextField jTextFieldProdottiSalva;
     private javax.swing.JTextField jTextFieldTareModifica;

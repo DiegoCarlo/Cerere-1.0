@@ -377,6 +377,16 @@ public class DataBase
         }
         IO.writeStringFile(Settings.MESI_PESATE_DIRECTORY + "/" + fileName + Settings.EXT, scrittura);
     }
+    public void savePesate(String directory, String fileName)
+    {
+        String scrittura = pesate.getId() + Settings.SPLITTER_LINE;
+        scrittura += "id idClient idProduct quantity timeInMilli" + Settings.SPLITTER_LINE;
+        for(Pesata p: pesate)
+        {
+            scrittura += p.toFile(Settings.SPLITTER_VAR) + Settings.SPLITTER_LINE;
+        }
+        IO.writeStringFile(directory, scrittura);
+    }
     public void loadRemovedPesate()
     {
         String lettura = IO.readStringFile(Settings.PESATE_ELIMINATE);
@@ -797,6 +807,7 @@ public class DataBase
         String tot = Registro.settings.getSalvataggiDirectory() + "/"+ Utility.getYearMonth(cal);
         
         IO.writeStringFile(tot + "/" + Utility.getYearMonth(cal) + " Riassunto" + Settings.EXT_EXCEL, riassunto);
+        savePesate(tot + "/" + Utility.getYearMonth(cal) + " back up" + Settings.EXT, Utility.getYearMonth(cal));
         
         Registro.progressionBar.close();
     }

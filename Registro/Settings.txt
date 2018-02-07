@@ -19,13 +19,14 @@ Settings.txt~SETTINGS
 
 ~NEW_LINE
 	~TAB
-COM4~BILANCIA_COM
 8~maxWeightMinuteAverage
 20~font
 25~fontMedium
 30~fontBig
-0~orderClienti
+2~orderClienti
 0~orderProdotti
 0~orderTare
 40~widthScrollBar
-D:\Clouding\Test Registro Voglia di Pane~salvataggiDirectory
+~salvataggiDirectory
+ZEBRA GK420d~nomeStampante
+4~portaBilancia

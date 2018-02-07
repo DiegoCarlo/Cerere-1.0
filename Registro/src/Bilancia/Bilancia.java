@@ -1,6 +1,8 @@
 package Bilancia;
 
+import java.awt.Color;
 import java.nio.charset.StandardCharsets;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -34,8 +36,15 @@ public class Bilancia implements SerialPortEventListener
         {
             System.out.println(ex);
             log(ex.toString());
-            Registro.interfaccia.infoBox("BILANCIA", "PORTA OCCUPATA O INESISTENTE");
-            //System.exit(1);
+            JLabel label = new JLabel("<html>PORTA OCCUPATA O INESISTENTE <br>"
+                    + "Vuoi comunque aprire il programma?</html>");
+            label.setFont(Registro.interfaccia.fontBig);
+            label.setForeground(Color.red);
+            int reply = JOptionPane.showConfirmDialog(null, label, "BILANCIA", JOptionPane.YES_NO_OPTION);
+            if (reply != JOptionPane.YES_OPTION)
+            {
+                System.exit(1);
+            }
         }
     }
     /*

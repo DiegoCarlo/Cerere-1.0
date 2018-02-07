@@ -1,0 +1,7 @@
+0~0
+id cardinal name averageMinute weight
+59~58~test 1~1248~2
+61~61~l~82~1
+58~59~test 2~1068~1
+57~57~test 3~1086~2
+56~56~test 3~254~2

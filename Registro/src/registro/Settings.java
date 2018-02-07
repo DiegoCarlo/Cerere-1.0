@@ -60,7 +60,6 @@ public class Settings
     public static final String SPLITTER_ARRAY = "§";
     public static final String NEW_LINE = "\r\n";
     public static final String TAB = "\t";
-    public static final String BILANCIA_COM = "COM4";
     
     public int maxWeightMinuteAverage = 8;
     public int font = 20;
@@ -71,6 +70,8 @@ public class Settings
     public int orderTare = 0;
     public int widthScrollBar = 40;
     public String salvataggiDirectory = "";
+    public String nomeStampante = "ZEBRA GK420d";
+    public int portaBilancia = 4;
 
     
     public Settings(
@@ -81,7 +82,10 @@ public class Settings
             int orderProdotti,
             int orderTare,
             int widthScrollBar,
-            String salvataggiDirectory)
+            String salvataggiDirectory,
+            String nomeStampante,
+            int portaBilancia
+    )
     {
         this.maxWeightMinuteAverage = maxWeightMinuteAverage;
         this.font = font;
@@ -92,6 +96,8 @@ public class Settings
         this.orderTare = orderTare;
         this.widthScrollBar = widthScrollBar;
         this.salvataggiDirectory = salvataggiDirectory;
+        this.nomeStampante = nomeStampante;
+        this.portaBilancia = portaBilancia;
     }
     public Settings()
     {
@@ -152,16 +158,39 @@ public class Settings
                 String[] split3 = s.split(SPLITTER_VAR);
                 split[j++][0] = split3[0];
             }
-            int i=21;
+            
+            
+            
+            
+            
+            int i=20;
+            
+            
+            
+            
+            Registro.log(split[i+1][0]);
             int maxWeightMinuteAverage = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int font = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int fontMedium = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int fontBig = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int orderClienti = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int orderProdotti = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int orderTare = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             int widthScrollBar = Integer.parseInt(split[++i][0]);
+            Registro.log(split[i+1][0]);
             String saveDirectory = split[++i][0];
+            Registro.log(split[i+1][0]);
+            String nomeStampante = split[++i][0];
+            Registro.log(split[i+1][0]);
+            int portaBilancia = Integer.parseInt(split[++i][0]);
+            
             Settings settings = new Settings(
                     maxWeightMinuteAverage,
                     font,
@@ -171,7 +200,9 @@ public class Settings
                     orderProdotti,
                     orderTare,
                     widthScrollBar,
-                    saveDirectory
+                    saveDirectory,
+                    nomeStampante,
+                    portaBilancia
             );
             return settings;
         }
@@ -220,5 +251,9 @@ public class Settings
             
         }
         return SALVATAGGI_DIRECTORY + "/" + SETTIMANALI_DIRECTORY;
+    }
+    public String getPortaBilancia()
+    {
+        return "COM" + portaBilancia;
     }
 }

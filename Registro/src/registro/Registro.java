@@ -66,7 +66,7 @@ public class Registro
             }
         });
         progressionBar.progress("Avvio la Bilancia");
-        bilancia = new Bilancia(Settings.BILANCIA_COM);
+        bilancia = new Bilancia(settings.getPortaBilancia());
         startRequest = new StartRequest();
         Thread richieste = new Thread(startRequest);
         richieste.start();
@@ -101,7 +101,7 @@ public class Registro
     }
     public static void log(String messaggio)
     {
-        System.out.println(messaggio);
+        //System.out.println(messaggio);
     }
     public static void log(int messaggio)
     {

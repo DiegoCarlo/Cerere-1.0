@@ -75,7 +75,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jSplitPaneBilancia" max="32767" attributes="0"/>
                   <Component id="jPanelBilancia1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanel8" alignment="0" pref="601" max="32767" attributes="0"/>
+                  <Component id="jPanel8" alignment="0" pref="610" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -110,7 +110,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButtonBilanciaProdotti" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPaneBilanciaProdotti" pref="558" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneBilanciaProdotti" pref="579" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -118,9 +118,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButtonBilanciaProdotti">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="order"/>
                       </Properties>
                       <Events>
@@ -136,9 +133,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="jListBilanciaProdotti">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="25" style="0"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                               <StringArray count="0"/>
                             </Property>
@@ -173,7 +167,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButtoBilanciaClienti" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPaneBilanciaClienti" pref="558" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneBilanciaClienti" pref="579" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -181,9 +175,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButtoBilanciaClienti">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="order"/>
                       </Properties>
                       <Events>
@@ -199,9 +190,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="jListBilanciaClienti">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="25" style="0"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                               <StringArray count="0"/>
                             </Property>
@@ -274,9 +262,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButtonBilanciaTara">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Tara"/>
                   </Properties>
                   <Events>
@@ -284,11 +269,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldBilanciaNetto">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="30" style="0"/>
-                    </Property>
-                  </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldBilanciaNettoMouseClicked"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldBilanciaNettoKeyReleased"/>
@@ -296,17 +276,11 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabeBilanciaProdotto">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Prodotto"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelBilanciaCliente">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Cliente"/>
                   </Properties>
                 </Component>
@@ -397,9 +371,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButton7">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="7"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -411,9 +382,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton4">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="4"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -425,9 +393,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton8">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="8"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -439,9 +404,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton5">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="5"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -453,9 +415,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton9">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="9"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -467,9 +426,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton6">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="6"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -481,9 +437,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton1">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="1"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -495,9 +448,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton2">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="2"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -509,9 +459,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton3">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="3"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -523,9 +470,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton0">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="0"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 60]"/>
@@ -539,9 +483,6 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonBilanciaAggiungi">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Pesa"/>
                   </Properties>
                   <Events>
@@ -549,11 +490,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextFieldBilanciaTara">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="25" style="0"/>
-                    </Property>
-                  </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldBilanciaTaraMouseClicked"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldBilanciaTaraKeyReleased"/>
@@ -561,9 +497,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelBilanciaLordo">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Lordo: "/>
                   </Properties>
                 </Component>
@@ -644,17 +577,11 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabelBilanciaTotaleTitle">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Totale in pesa | Totale scontrino"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelBilanciaTotalePesaScontrino">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="30" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="0,00"/>
                   </Properties>
                 </Component>
@@ -667,9 +594,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JList" name="jListBilanciaScontrino">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="0"/>
                         </Property>
@@ -685,9 +609,6 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonBilanciaElimina">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Elimina"/>
                   </Properties>
                   <Events>
@@ -696,9 +617,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonBilanciaStampa">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Stampa"/>
                   </Properties>
                   <Events>
@@ -762,7 +680,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButtonPesateModifica" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabelPesateStats" pref="71" max="32767" attributes="0"/>
+                                      <Component id="jLabelPesateStats" pref="170" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButtonPesateElimina" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -778,7 +696,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jScrollPanePesate" pref="525" max="32767" attributes="0"/>
+                                      <Component id="jScrollPanePesate" pref="546" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -798,9 +716,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButtonPesateModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica Valore"/>
                       </Properties>
                       <Events>
@@ -812,9 +727,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonPesateElimina">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Elimina"/>
                       </Properties>
                       <Events>
@@ -865,9 +777,6 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="jButtonPesateRistampaScontrino">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="text" type="java.lang.String" value="Ristampa"/>
                           </Properties>
                           <Events>
@@ -890,9 +799,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="jListPesate">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                               <StringArray count="0"/>
                             </Property>
@@ -948,7 +854,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButtonPesateOrdinamentoClienti" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPanePesateClienti" pref="337" max="32767" attributes="0"/>
+                                  <Component id="jScrollPanePesateClienti" pref="353" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -963,9 +869,6 @@
                           <SubComponents>
                             <Component class="javax.swing.JList" name="jListPesateClienti">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="SansSerif" size="20" style="0"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                                   <StringArray count="0"/>
                                 </Property>
@@ -981,9 +884,6 @@
                         </Container>
                         <Component class="javax.swing.JButton" name="jButtonPesateOrdinamentoClienti">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="text" type="java.lang.String" value="Ordinamento"/>
                           </Properties>
                           <Events>
@@ -1012,7 +912,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPanePesateCambiaClienti" pref="146" max="32767" attributes="0"/>
+                                  <Component id="jScrollPanePesateCambiaClienti" pref="163" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButtonPesateCambiaCliente" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -1029,9 +929,6 @@
                           <SubComponents>
                             <Component class="javax.swing.JList" name="jListPesateCambiaCliente">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="SansSerif" size="20" style="0"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                                   <StringArray count="0"/>
                                 </Property>
@@ -1044,9 +941,6 @@
                         </Container>
                         <Component class="javax.swing.JButton" name="jButtonPesateCambiaCliente">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="text" type="java.lang.String" value="Cambia Cliente"/>
                           </Properties>
                           <Events>
@@ -1119,7 +1013,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPaneTotali" pref="548" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneTotali" pref="557" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonAddPesata" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1181,9 +1075,6 @@
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableTotaliMensiliMouseClicked"/>
                           </Events>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTableTotaliMensili.setFont(font);&#xa;jTableTotaliMensili.setRowHeight(25);&#xa;jTableTotaliMensili.getTableHeader().setFont(font);"/>
-                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1229,7 +1120,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButtonTotaliOrdinamento" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPaneTotaliClienti" pref="316" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneTotaliClienti" pref="361" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonTotaliSalvaSettimana" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1250,9 +1141,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="jListTotaliClienti">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                               <StringArray count="0"/>
                             </Property>
@@ -1269,17 +1157,11 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="jButtonTotaliOrdinamento">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="jButton10"/>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonTotaliOrdinamentoMouseClicked"/>
                       </Events>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jButtonTotaliOrdinamento.setFont(font);"/>
-                      </AuxValues>
                     </Component>
                     <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePickerTotali">
                       <Events>
@@ -1291,9 +1173,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonTotaliSalvaSettimana">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Salva Sett"/>
                       </Properties>
                       <Events>
@@ -1305,17 +1184,11 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonSaveTotali">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Salva Tutti"/>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSaveTotaliMouseClicked"/>
                       </Events>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jButtonSaveTotali.setFont(fontBig);"/>
-                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabelTotaliLogo">
                       <AuxValues>
@@ -1350,7 +1223,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanelClientiLista" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanelClientiInserimento" alignment="0" pref="601" max="32767" attributes="0"/>
+                  <Component id="jPanelClientiInserimento" alignment="0" pref="610" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1419,27 +1292,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelClientiModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica il Cliente"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldClientiModifica">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldClientiModificaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonClientiModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica"/>
                       </Properties>
                       <Events>
@@ -1462,7 +1324,7 @@
                                   <Component id="jButtonClientiSalva" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabelClientiSalva" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="158" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1486,27 +1348,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelClientiSalva">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Inserimento di un nuovo Cliente"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldClientiSalva">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldClientiSalvaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonClientiSalva">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Salva"/>
                       </Properties>
                       <Events>
@@ -1532,7 +1383,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPaneClienti" pref="497" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneClienti" pref="530" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonClientiElimina" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1549,7 +1400,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonClientiOrdine" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelClientiStats" pref="232" max="32767" attributes="0"/>
+                              <Component id="jLabelClientiStats" pref="258" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonClientiSu" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1581,9 +1432,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButtonClientiOrdine">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Ordine"/>
                       </Properties>
                       <Events>
@@ -1592,9 +1440,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonClientiSu">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Su"/>
                       </Properties>
                       <Events>
@@ -1603,9 +1448,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonClientiGiu">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Gi&#xf9;"/>
                       </Properties>
                       <Events>
@@ -1623,9 +1465,6 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonClientiElimina">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Elimina"/>
                   </Properties>
                   <Events>
@@ -1640,11 +1479,6 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JList" name="jListClienti">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListClientiValueChanged"/>
                       </Events>
@@ -1680,7 +1514,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanelProdottiLista" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanelProdottiInserimento" alignment="0" pref="601" max="32767" attributes="0"/>
+                  <Component id="jPanelProdottiInserimento" alignment="0" pref="610" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -1725,7 +1559,7 @@
                                   <Component id="jButtonProdottiModifica" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabelProdottiModifica" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="140" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="219" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jToggleButtonProdottiModifyUnit" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -1752,27 +1586,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelProdottiModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica il Prodotto"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldProdottiModifica">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldProdottiModificaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonProdottiModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica"/>
                       </Properties>
                       <Events>
@@ -1781,9 +1604,6 @@
                     </Component>
                     <Component class="javax.swing.JToggleButton" name="jToggleButtonProdottiModifyUnit">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="jToggleButton1"/>
                       </Properties>
                       <Events>
@@ -1833,27 +1653,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelProdottiSalva">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Inserimento di un nuovo Prodotto"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldProdottiSalva">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldProdottiSalvaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonProdottiSalva">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Salva"/>
                       </Properties>
                       <Events>
@@ -1862,9 +1671,6 @@
                     </Component>
                     <Component class="javax.swing.JToggleButton" name="jToggleButtonProdottiSaveUnit">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="jToggleButton1"/>
                       </Properties>
                       <Events>
@@ -1890,7 +1696,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPaneProdotti" pref="497" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneProdotti" pref="530" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonProdottiElimina" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1907,7 +1713,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonProdottiOrdine" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelProdottiStats" pref="232" max="32767" attributes="0"/>
+                              <Component id="jLabelProdottiStats" pref="258" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonProdottiSu" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1939,9 +1745,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButtonProdottiOrdine">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Ordine"/>
                       </Properties>
                       <Events>
@@ -1950,9 +1753,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonProdottiSu">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Su"/>
                       </Properties>
                       <Events>
@@ -1961,9 +1761,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonProdottiGiu">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Gi&#xf9;"/>
                       </Properties>
                       <Events>
@@ -1981,9 +1778,6 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonProdottiElimina">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Elimina"/>
                   </Properties>
                   <Events>
@@ -1999,9 +1793,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JList" name="jListProdotti">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="0"/>
                         </Property>
@@ -2041,7 +1832,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanelClientiLista2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanelTareInserimento" alignment="0" pref="601" max="32767" attributes="0"/>
+                  <Component id="jPanelTareInserimento" alignment="0" pref="610" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -2113,27 +1904,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelClientiModifica2">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica la Tara"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldTareModifica">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldTareModificaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonTareModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Modifica"/>
                       </Properties>
                       <Events>
@@ -2142,10 +1922,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabelTareModifica">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="jLabel2"/>
+                        <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelTareModificaMouseClicked"/>
@@ -2167,7 +1944,7 @@
                                   <Component id="jButtonTareSalva" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabelClientiSalva2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="163" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jLabelTare" max="32767" attributes="0"/>
                               </Group>
@@ -2194,27 +1971,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelClientiSalva2">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Inserimento di una nuova Tara"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldTareSalva">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldTareSalvaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonTareSalva">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Salva"/>
                       </Properties>
                       <Events>
@@ -2223,10 +1989,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabelTare">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="jLabel1"/>
+                        <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelTareMouseClicked"/>
@@ -2251,7 +2014,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPaneTare" pref="497" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneTare" pref="530" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonTareElimina" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -2300,9 +2063,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButtonTareOrdine">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Ordine"/>
                       </Properties>
                       <Events>
@@ -2311,9 +2071,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonTareSu">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Su"/>
                       </Properties>
                       <Events>
@@ -2322,9 +2079,6 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonTareGiu">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Gi&#xf9;"/>
                       </Properties>
                       <Events>
@@ -2342,9 +2096,6 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonTareElimina">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Elimina"/>
                   </Properties>
                   <Events>
@@ -2360,9 +2111,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JList" name="jListTare">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="0"/>
                         </Property>
@@ -2395,14 +2143,19 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel17" max="32767" attributes="0"/>
-                          <Component id="jToggleButtonDemoBilancia" pref="265" max="32767" attributes="0"/>
-                          <Component id="sviluppatore" max="32767" attributes="0"/>
-                          <Component id="jPanel7" max="32767" attributes="0"/>
+                          <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel25" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="sviluppatore" min="-2" pref="217" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jToggleButtonDemoBilancia" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel19" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2415,10 +2168,15 @@
                               <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="81" max="32767" attributes="0"/>
-                              <Component id="sviluppatore" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jToggleButtonDemoBilancia" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel25" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jToggleButtonDemoBilancia" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sviluppatore" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="jPanel19" max="32767" attributes="0"/>
                       </Group>
@@ -2445,9 +2203,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBoxTare" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jComboBoxClienti" alignment="0" pref="233" max="32767" attributes="0"/>
-                              <Component id="jComboBoxProdotti" alignment="0" pref="233" max="32767" attributes="0"/>
+                              <Component id="jComboBoxTare" alignment="0" pref="423" max="32767" attributes="0"/>
+                              <Component id="jComboBoxClienti" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jComboBoxProdotti" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -2484,9 +2242,6 @@
               <SubComponents>
                 <Component class="javax.swing.JComboBox" name="jComboBoxClienti">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Item 1"/>
@@ -2496,18 +2251,12 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxClientiItemStateChanged"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="jComboBoxProdotti">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Item 1"/>
@@ -2517,18 +2266,12 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxProdottiItemStateChanged"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="jComboBoxTare">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Item 1"/>
@@ -2538,9 +2281,6 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxTareItemStateChanged"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -2564,9 +2304,6 @@
             </Container>
             <Component class="javax.swing.JToggleButton" name="jToggleButtonDemoBilancia">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="20" style="0"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Demo Bilancia"/>
               </Properties>
             </Component>
@@ -2578,16 +2315,21 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSpinnerFontMedium" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jSpinnerFont" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jSpinnerFontBig" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel4" pref="264" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jSpinnerFont" min="-2" pref="167" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel6" max="32767" attributes="0"/>
+                                      <Component id="jLabel5" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jSpinnerFontMedium" alignment="1" min="-2" pref="167" max="-2" attributes="0"/>
+                                      <Component id="jSpinnerFontBig" alignment="1" min="-2" pref="167" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -2598,18 +2340,21 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jSpinnerFont" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSpinnerFont" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jSpinnerFontMedium" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSpinnerFontMedium" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jSpinnerFontBig" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jSpinnerFontBig" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2621,9 +2366,6 @@
                       <Font name="SansSerif" size="20" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerFontStateChanged"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="jSpinnerFontMedium">
                   <Properties>
@@ -2658,9 +2400,6 @@
             </Container>
             <Component class="javax.swing.JToggleButton" name="sviluppatore">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="20" style="0"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Sviluppatore"/>
               </Properties>
               <Events>
@@ -2680,7 +2419,7 @@
                                   <Component id="jLabelSaveDirectory" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPaneOpzioni" pref="609" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneOpzioni" pref="419" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -2725,6 +2464,111 @@
                   </Properties>
                 </Component>
                 <Component class="Interface.FolderChooser" name="folderChooser1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="20" style="0"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel25">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButtonSalvaImpostazioni" pref="435" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButtonSalvaImpostazioni" pref="131" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="jButtonSalvaImpostazioni">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="SALVA IMPOSTAZIONI"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSalvaImpostazioniMouseClicked"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel26">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel7" pref="271" max="32767" attributes="0"/>
+                              <Component id="jLabel8" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextFieldNomeStampante" pref="160" max="32767" attributes="0"/>
+                              <Component id="jSpinnerPortaCom" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldNomeStampante" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jSpinnerPortaCom" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="jTextFieldNomeStampante">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jTextField1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="COM"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="jSpinnerPortaCom">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinnerPortaComStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel8">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nome della stampante"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -2785,7 +2629,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPaneRemovedClienti" pref="536" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneRemovedClienti" pref="557" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonRemovedClienti" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -2817,9 +2661,6 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="jButtonRemovedClienti">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="SansSerif" size="20" style="0"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Ripristina Cliente"/>
                       </Properties>
                       <Events>
@@ -2858,7 +2699,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jScrollPaneRemovedProdotti" pref="534" max="32767" attributes="0"/>
+                                  <Component id="jScrollPaneRemovedProdotti" pref="555" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton10" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -2868,9 +2709,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="jButton10">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="text" type="java.lang.String" value="Ripristina Prodotto"/>
                           </Properties>
                           <Events>
@@ -2922,7 +2760,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jScrollPaneRemovedPesate" pref="534" max="32767" attributes="0"/>
+                                  <Component id="jScrollPaneRemovedPesate" pref="555" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2935,9 +2773,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="jButton11">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="text" type="java.lang.String" value="Ripristina Pesata"/>
                           </Properties>
                           <Events>
@@ -2968,9 +2803,6 @@
                         </Container>
                         <Component class="javax.swing.JButton" name="jButton12">
                           <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="20" style="0"/>
-                            </Property>
                             <Property name="text" type="java.lang.String" value="ELIMINA PESATE"/>
                           </Properties>
                           <Events>

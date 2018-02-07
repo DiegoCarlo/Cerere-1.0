@@ -46,7 +46,7 @@ public class Stampante
         sPrinterName = ((PrinterName) attr).getValue();
 
 
-        if (sPrinterName.indexOf("ZEBRA GK420d") >= 0) {
+        if (sPrinterName.indexOf(registro.Registro.settings.nomeStampante) >= 0) {
         psZebra = services[i];
         break;
         }
