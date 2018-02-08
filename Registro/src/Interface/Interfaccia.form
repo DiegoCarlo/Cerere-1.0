@@ -2407,38 +2407,6 @@
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel19">
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="folderChooser1" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabelSaveDirectory" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPaneOpzioni" pref="419" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPaneOpzioni" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabelSaveDirectory" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="folderChooser1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
               <SubComponents>
                 <Container class="javax.swing.JScrollPane" name="jScrollPaneOpzioni">
                   <AuxValues>
@@ -2461,13 +2429,6 @@
                 <Component class="javax.swing.JLabel" name="jLabelSaveDirectory">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Directory dei salvataggi:"/>
-                  </Properties>
-                </Component>
-                <Component class="Interface.FolderChooser" name="folderChooser1">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="20" style="0"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

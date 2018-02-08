@@ -247,7 +247,7 @@ public class Interfaccia extends javax.swing.JFrame
         jLabelBilanciaCliente.setHorizontalAlignment(SwingConstants.CENTER);
         jLabeBilanciaProdotto.setFont(font);
         jLabeBilanciaProdotto.setHorizontalAlignment(SwingConstants.CENTER);
-        //jTextFieldBilanciaNetto.setFont(fontBig);
+        jTextFieldBilanciaNetto.setFont(fontBig);
         jTextFieldBilanciaNetto.setHorizontalAlignment(SwingConstants.CENTER);
         jButtonBilanciaTara.setFont(font);
         jTextFieldBilanciaTara.setFont(fontMedium);
